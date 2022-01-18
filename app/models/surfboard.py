@@ -1,0 +1,16 @@
+from .db import db
+from .user import User
+
+
+class Surfboard(db.Model):
+    __tablename__ = 'surfboards'
+
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String(255))
+    size = db.Column(db.Integer, nullable=False)
+    ownerId = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
+
+    owner_relation = db.relationship("User", back_populates="surfboards_relation")
+    rentals_relation = db.relationship("Rentals", back_populates="surfboard_relation", cascade="all, delete")
+    reviews_relation = db.relationship("Reviews", back_populates="surfboard_relation", cascade="all, delete")

@@ -11,6 +11,10 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    surfboards_relation = db.relationship("Surfboard", back_populates="owner_relation", cascade="all, delete")
+    rentals_relation = db.relationship("Rental", back_populates="user_relation", cascade="all, delete")
+    reviews_relation = db.relationship("Review", back_populates="user_relation", cascade="all, delete")
+
     @property
     def password(self):
         return self.hashed_password

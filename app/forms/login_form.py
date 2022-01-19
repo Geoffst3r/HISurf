@@ -1,3 +1,4 @@
+import re
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
@@ -23,7 +24,15 @@ def password_matches(form, field):
         raise ValidationError('Password was incorrect.')
 
 
+def is_email(form, field):
+    # Use RegEx to check if the email string is a basic form email
+    email = field.data
+    result = re.match(r'[0-9A-Za-z]+@[0-9A-Za-z]+\.com', email)
+    if not result:
+        raise ValidationError('Please provide a valid email.')
+
+
 class LoginForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired(), user_exists])
+    email = StringField('email', validators=[DataRequired(), user_exists, is_email])
     password = StringField('password', validators=[
                            DataRequired(), password_matches])

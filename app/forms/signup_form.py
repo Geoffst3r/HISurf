@@ -1,5 +1,3 @@
-from wsgiref import validate
-from email_validator import validate_email
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, ValidationError
@@ -9,7 +7,6 @@ from app.models import User
 def user_exists(form, field):
     # Checking if user exists
     email = field.data
-    validate_email(email)
     user = User.query.filter(User.email == email).first()
     if user:
         raise ValidationError('Email address is already in use.')

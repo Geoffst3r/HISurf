@@ -9,6 +9,7 @@ class Surfboard(db.Model):
     description = db.Column(db.Text, nullable=False)
     image = db.Column(db.String(255))
     size = db.Column(db.Integer, nullable=False)
+    location = db.Column(db.String(50), nullable=False)
     ownerId = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
 
     owner_relation = db.relationship("User", back_populates="surfboards_relation")

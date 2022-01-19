@@ -6,7 +6,7 @@ nav {
     background-color: #e1d9c7;
     align-items: center;
 }
-nav ul {
+nav ul:not(.profile-dropdown) {
     text-decoration: none;
     display: flex;
     flex-direction: row;
@@ -26,4 +26,46 @@ nav ul {
     padding: 5px;
     margin-right: 10px;
     cursor: pointer;
+}
+.NavButtons{
+    font-size: 11px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    background-color: #e1d9c7;
+    padding: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.profile-dropdown{
+    width: fit-content;
+    text-decoration: none;
+    list-style-type: none;
+    background-color: rgb(20, 20, 20);
+    position: absolute;
+    transform: translate(-30px, 4px);
+    margin: 0;
+    padding: 0;
+}
+.profile-dropdown:after{
+    content: "";
+    position: absolute;
+    transform: translate(40px, -45px);
+    border-top: none;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid rgb(20, 20, 20);
+}
+.logout-profile-button{
+    color: white;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    padding: 10px;
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import ProfileButton from './auth/ProfileButton';
+import LoginModal from './LoginModal';
+import SignUpModal from './SignupModal';
 import './NavBar.css'
 
 const NavBar = () => {
@@ -10,21 +12,17 @@ const NavBar = () => {
   if (sessionUser) {
     sessionLinks = (
       <li>
-        <LogoutButton />
+        <ProfileButton />
       </li>
     )
   } else {
     sessionLinks = (
       <>
         <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
+          <LoginModal />
         </li>
         <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
+          <SignUpModal />
         </li>
       </>
     )
@@ -32,7 +30,7 @@ const NavBar = () => {
   return (
     <nav>
       <NavLink to='/surfboards'>
-          <button className='appName' >HI Surf</button>
+          <button className='appName'>HI Surf</button>
       </NavLink>
       <ul>
         {sessionLinks}

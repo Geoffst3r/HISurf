@@ -15,3 +15,13 @@ class Surfboard(db.Model):
     owner_relation = db.relationship("User", back_populates="surfboards_relation")
     rentals_relation = db.relationship("Rental", back_populates="surfboard_relation", cascade="all, delete")
     reviews_relation = db.relationship("Review", back_populates="surfboard_relation", cascade="all, delete")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'description': self.description,
+            'image': self.image,
+            'size': self.size,
+            'location': self.location,
+            'ownerId': self.ownerId
+        }

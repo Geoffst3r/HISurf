@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, Surfboard, Rental, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -24,11 +24,18 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        return current_user.to_dict()
+        surfboards = Surfboard.query.filter(Surfboard.ownerId == current_user.id).all()
+        surfboards_list = {surfboard.id: {'description': surfboard.description,
+        'size': surfboard.size, 'location': surfboard.location} for surfboard in surfboards}
+        rentals = Rental.query.filter(Rental.userId == current_user.id).all()
+        rentals_list = {rental.id: {'date': rental.date} for rental in rentals}
+        res_user = {'id': current_user.id, 'username': current_user.username, 'listings': surfboards_list,
+        'rentals': rentals_list}
+        return jsonify(res_user)
     return {'errors': ['Unauthorized']}
 
 
-@auth_routes.route('/login', methods=['POST'])
+@auth_routes.route('/login/', methods=['POST'])
 def login():
     """
     Logs a user in
@@ -41,11 +48,18 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
-        return user.to_dict()
+        surfboards = Surfboard.query.filter(Surfboard.ownerId == user.id).all()
+        surfboards_list = {surfboard.id: {'description': surfboard.description,
+        'size': surfboard.size, 'location': surfboard.location} for surfboard in surfboards}
+        rentals = Rental.query.filter(Rental.userId == user.id).all()
+        rentals_list = {rental.id: {'date': rental.date} for rental in rentals}
+        res_user = {'id': user.id, 'username': user.username, 'listings': surfboards_list,
+        'rentals': rentals_list}
+        return jsonify(res_user)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/logout')
+@auth_routes.route('/logout/')
 def logout():
     """
     Logs a user out
@@ -54,7 +68,7 @@ def logout():
     return {'message': 'User logged out'}
 
 
-@auth_routes.route('/signup', methods=['POST'])
+@auth_routes.route('/signup/', methods=['POST'])
 def sign_up():
     """
     Creates a new user and logs them in
@@ -70,11 +84,13 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return user.to_dict()
+        res_user = {'id': user.id, 'username': user.username, 'listings': {},
+        'rentals': {}}
+        return jsonify(res_user)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/unauthorized')
+@auth_routes.route('/unauthorized/')
 def unauthorized():
     """
     Returns unauthorized JSON when flask-login authentication fails

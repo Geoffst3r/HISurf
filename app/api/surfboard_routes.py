@@ -39,3 +39,32 @@ def post_new_listing():
     except IntegrityError as e:
         print(e)
         return jsonify('Database entry error')
+
+@surfboard_routes.route('/<int:surfboardId>/', methods=["PUT"])
+def edit_listing(surfboardId):
+    listing = Surfboard.query.filter(Surfboard.id == surfboardId).first()
+    if not listing:
+        return jsonify('Listing does not exist.')
+    data = request.get_json(force=True)
+    description = data['description']
+    size = data['size']
+    location = data['location']
+    if description == '' or size == '' or location == '':
+        return jsonify('bad data')
+    listing.description = description
+    listing.size = size
+    listing.location = location
+    if 'image' in data and data['image'] != '':
+        listing['image'] = data['image']
+    db.session.commit()
+    return listing.to_dict()
+
+@surfboard_routes.route('/<int:surfboardId>/', methods=["DELETE"])
+def delete_listing(surfboardId):
+    listing = Surfboard.query.filter(Surfboard.id == surfboardId).first()
+    if listing:
+        db.session.delete(listing)
+        db.session.commit()
+        return jsonify("Success")
+    else:
+        return jsonify("Listing does not exist")

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import NavBar from './components/NavBar';
+import SideBar from './components/SideBar';
 // import UsersList from './components/UsersList';
 // import User from './components/User';
 import { authenticate } from './store/session';
@@ -25,8 +26,11 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/' exact={true} >
+        <Route path='/' exact={true}>
           <h1>My Home Page</h1>
+        </Route>
+        <Route path='/surfboards/'>
+          <SideBar />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { Modal } from '../../context/Modal';
+import SurfboardForm from '../SurfboardListings/SurfboardForm';
 import * as listingsActions from '../../store/surfboard';
+import { authenticate } from '../../store/session';
 import './ListingPage.css';
 
 const Listing = () => {
@@ -10,6 +13,7 @@ const Listing = () => {
     const params = useParams();
     const dispatch = useDispatch();
     const [showEditListingModal, setShowEditListingModal] = useState(false);
+    const [cogWheelClicked, setCogWheelClicked] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const listingObj = useSelector(state => state.surfboards);
     let listing;
@@ -17,29 +21,65 @@ const Listing = () => {
 
     const surfboardId = params.surfboardId;
     let owner_define;
-    if (sessionUser && surfboardId) owner_define = (sessionUser.id === surfboardId);
+    if (sessionUser && listing) owner_define = (sessionUser.id === listing.ownerId);
+
+    const callSetter = () => {
+        setShowEditListingModal(false);
+    };
+
+    const handleDelete = async () => {
+        const confirmed = window.confirm('Are you sure you want to remove this listing? This action cannot be undone.')
+        if (confirmed) {
+            await dispatch(listingsActions.deleteListing(surfboardId));
+            dispatch(listingsActions.getListings());
+            dispatch(authenticate());
+            history.push(`/surfboards/`);
+        };
+    }
 
     useEffect(() => {
         dispatch(listingsActions.getListing(surfboardId));
     }, [dispatch, surfboardId]);
 
+    useEffect(() => {
+        if (!cogWheelClicked) return;
+
+        const closeMenu = (e) => {
+            const editButton = document.querySelector('.edit-listing');
+            const deleteButton = document.querySelector('.delete-listing');
+
+            if (editButton && deleteButton && e.target !== deleteButton && e.target !== editButton) {
+                setCogWheelClicked(false);
+            }
+            return
+        };
+
+        document.addEventListener('click', closeMenu, false);
+
+        return () => document.removeEventListener("click", closeMenu);
+    })
+
     if (listing) {
         return (
             <div className='surfboard-listing'>
-                {/* {owner_define &&
-                <ul className='mod-listing' id={`listing-mod-${listing.id}`}>
-                    <li>
-                        <button className='edit-listing-button' onClick={() => setShowEditListingModal(true)}>Edit Listing</button>
-                        {showEditListingModal && (
-                            <Modal onClose={() => setShowEditChannelModal(false)}>
-                                <ChannelForm callSetter={callEditSetter} inputChannel={individualChannel} />
-                            </Modal>
-                        )}
-                    </li>
-                    <li>
-                        <button className='delete-channel-button' onClick={() => handleDelete()}>Delete Channel</button>
-                    </li>
-                </ul>} */}
+                {owner_define && <div className='modifications'>
+                    <button className='mod-channel-button' id={`cog-wheel`}
+                    onClick={() => setCogWheelClicked(true)} hidden={owner_define === true ? false : true}>
+                    <i className='fas fa-cog' id={`cog-icon`}></i></button>
+                    {cogWheelClicked && <div className='edit-delete'>
+                        <button className='edit-listing' onClick={() => setShowEditListingModal(true)}>
+                            Edit Listing
+                        </button>
+                        <button className='delete-listing' onClick={() => handleDelete()}>
+                            Delete Listing
+                        </button>
+                    </div>}
+                    {showEditListingModal && (
+                        <Modal onClose={() => setShowEditListingModal(false)}>
+                            <SurfboardForm inputBoard={listing} callSetter={callSetter} />
+                        </Modal>
+                    )}
+                </div>}
                 <div className='imgANDinfo'>
                     {listing.image ? <img alt='' src={`${listing.image}`}></img> :
                     <div className='surfboard-img'>

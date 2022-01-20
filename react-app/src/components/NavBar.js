@@ -29,7 +29,7 @@ const NavBar = () => {
   }
   return (
     <nav>
-      <NavLink to='/surfboards'>
+      <NavLink to='/surfboards/'>
           <button className='appName'>HI Surf</button>
       </NavLink>
       <ul>

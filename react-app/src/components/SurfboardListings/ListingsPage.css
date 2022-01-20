@@ -1,5 +1,5 @@
 .surfboards-list-page{
-    width: 80vw;
+    width: 100%;
     overflow-y: scroll;
     margin-bottom: 60px;
 }
@@ -16,6 +16,7 @@
 .island-filter, .size-filter{
     display: flex;
     flex-direction: row;
+    background-color: #e1d9c7;
 }
 .island-filter > p, .size-filter > p{
     margin: 0 5px 0 0;
@@ -37,6 +38,7 @@
     border: 1px solid black;
     border-radius: 20px;
     text-decoration: none;
+    background-color: #e1d9c7;
 }
 .listing-img{
     background-color: lightgray;

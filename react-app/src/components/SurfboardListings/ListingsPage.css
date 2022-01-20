@@ -1,0 +1,76 @@
+.surfboards-list-page{
+    width: 80vw;
+}
+.filters{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 10px;
+}
+.island-filter, .size-filter{
+    display: flex;
+    flex-direction: row;
+}
+.island-filter > p, .size-filter > p{
+    margin: 0 5px 0 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+.listings-list{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 30px;
+    padding-right: 40px;
+}
+.individual-item{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    text-decoration: none;
+}
+.listing-img{
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 10px;
+}
+.listing-img > i{
+    color: black;
+}
+.listing-img > p{
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    text-decoration: none;
+    color: black;
+}
+.listing-location{
+    font-size: 30px;
+    font-family: sans-serif;
+    color: black;
+    margin-left: 20px;
+}
+.listing-size{
+    font-size: 18px;
+    color: black;
+}
+.listing-description{
+    margin-left: 20px;
+    font-size: 16px;
+    color: black;
+}
+.listing-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+.locationANDsize{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

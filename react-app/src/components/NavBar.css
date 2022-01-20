@@ -49,6 +49,7 @@ nav ul:not(.profile-dropdown) {
     transform: translate(-30px, 4px);
     margin: 0;
     padding: 0;
+    z-index: 99;
 }
 .profile-dropdown:after{
     content: "";

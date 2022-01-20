@@ -2,6 +2,7 @@
     height: calc(100vh - 50px);
     width: 200px;
     border-right: 1px solid black;
+    flex-shrink: 0;
 }
 .split{
     height: calc(6vh - 50px);

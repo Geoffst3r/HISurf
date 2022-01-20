@@ -7,9 +7,39 @@ def seed_surfboards():
         description='This board is great for catching barrels', image='', size=6, location='Oahu', ownerId=1)
     surfboard2 = Surfboard(
         description='This board is great for just cruising around', image='', size=11, location='Oahu', ownerId=1)
+    surfboard3 = Surfboard(
+        description='Paddle Boarding? Gotta use this board', image='', size=10, location='Maui', ownerId=2)
+    surfboard4 = Surfboard(
+        description='Great for amateurs that want to grow their surfing skills', image='', size=9, location='Maui', ownerId=2)
+    surfboard5 = Surfboard(
+        description='You must be pretty good to be renting this board', image='', size=8, location='Big Island', ownerId=3)
+    surfboard6 = Surfboard(
+        description='How do you not have a board this size yet?', image='', size=7, location='Big Island', ownerId=3)
+    surfboard7 = Surfboard(
+        description='Testing the seed, need to change late.', image='', size=10, location='Kaui', ownerId=4)
+    surfboard8 = Surfboard(
+        description='Testing the seed, need to change late.', image='', size=6, location='Kaui', ownerId=4)
+    surfboard9 = Surfboard(
+        description='Testing the seed, need to change late.', image='', size=8, location='Molokai', ownerId=5)
+    surfboard10 = Surfboard(
+        description='Testing the seed, need to change late.', image='', size=11, location='Molokai', ownerId=5)
+    surfboard11 = Surfboard(
+        description='Testing the seed, need to change late.', image='', size=6, location='Lanai', ownerId=6)
+    surfboard12 = Surfboard(
+        description='Testing the seed, need to change late.', image='', size=7, location='Lanai', ownerId=6)
 
     db.session.add(surfboard1)
     db.session.add(surfboard2)
+    db.session.add(surfboard3)
+    db.session.add(surfboard4)
+    db.session.add(surfboard5)
+    db.session.add(surfboard6)
+    db.session.add(surfboard7)
+    db.session.add(surfboard8)
+    db.session.add(surfboard9)
+    db.session.add(surfboard10)
+    db.session.add(surfboard11)
+    db.session.add(surfboard12)
 
     db.session.commit()
 

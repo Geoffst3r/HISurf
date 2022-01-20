@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
+import SurfboardListings from './components/SurfboardListings';
 // import UsersList from './components/UsersList';
 // import User from './components/User';
 import { authenticate } from './store/session';
@@ -30,7 +31,10 @@ function App() {
           <h1>My Home Page</h1>
         </Route>
         <Route path='/surfboards/'>
-          <SideBar />
+          <div className='main-page'>
+            <SideBar />
+            <SurfboardListings />
+          </div>
         </Route>
       </Switch>
     </BrowserRouter>

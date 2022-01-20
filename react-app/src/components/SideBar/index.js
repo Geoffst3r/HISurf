@@ -20,7 +20,7 @@ const SideBar = () => {
                         {listings.map(listing => (
                             <NavLink className='listing'  key={listing.description} to={`/surfboards/${listing.id}`}>
                                 <p>{listing.location}</p>
-                                <p>{listing.size}"</p>
+                                <p>{listing.size}'</p>
                             </NavLink>
                         ))}
                     </ul> : <p className='no-listings-message'>You haven't posted any listings</p>}
@@ -43,6 +43,7 @@ const SideBar = () => {
                     <p className='listings-title'>Listings</p>
                     <p className='no-user-message'>Log in to view your listings</p>
                 </div>
+                <div className='split'></div>
                 <div className='rentals-container'>
                     <p className='rentals-title'>Rentals</p>
                     <p className='no-user-message'>Log in to view your rentals</p>

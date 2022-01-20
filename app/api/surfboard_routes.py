@@ -1,7 +1,6 @@
-import json
 from sqlite3 import IntegrityError
 from flask import Blueprint, jsonify, request
-from app.models import db, User, Surfboard
+from app.models import db, Surfboard
 
 surfboard_routes = Blueprint('surfboards', __name__)
 

@@ -39,6 +39,14 @@ def post_new_listing():
         print(e)
         return jsonify('Database entry error')
 
+@surfboard_routes.route('/<int:surfboardId>/')
+def get_single_listing(surfboardId):
+    listing = Surfboard.query.filter(Surfboard.id == surfboardId).first()
+    if listing:
+        return listing.to_dict()
+    else:
+        return jsonify("Listing does not exist")
+
 @surfboard_routes.route('/<int:surfboardId>/', methods=["PUT"])
 def edit_listing(surfboardId):
     listing = Surfboard.query.filter(Surfboard.id == surfboardId).first()

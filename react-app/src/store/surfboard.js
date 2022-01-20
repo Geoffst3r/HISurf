@@ -1,5 +1,6 @@
 // constants
 const GET_LISTINGS = 'surfboards/GET_LISTINGS';
+const GET_LISTING = 'surfboards/GET_LISTING';
 const NEW_LISTING = 'surfboards/NEW_LISTING';
 const UPDATE_LISTING = 'surfboards/UPDATE_LISTING';
 const DELETE_LISTING = 'surfboards/DELETE_LISTING';
@@ -8,6 +9,11 @@ const get_Listings = (listings) => ({
   type: GET_LISTINGS,
   listings
 });
+
+const get_Listing = (listing) => ({
+    type: GET_LISTING,
+    listing
+})
 
 const new_Listing = (listing) => ({
   type: NEW_LISTING,
@@ -33,15 +39,22 @@ export const getListings = () => async (dispatch) => {
     };
 };
 
+export const getListing = (surfboardId) => async (dispatch) => {
+    const res = await fetch(`/api/surfboards/`);
+    if (res.ok) {
+        const listings = await res.json();
+        const listing = listings.filter(ind => ind.id === parseInt(surfboardId));
+        dispatch(get_Listing(listing));
+        return listing;
+    };
+}
+
 export const filterListings = (island, size) => async (dispatch) => {
     const res = await fetch('/api/surfboards/');
     if (res.ok) {
         let listings = await res.json();
-        console.log('all listings', listings)
         if (island) listings = listings.filter(listing => listing.location === island)
-        console.log('island filter', listings)
         if (size) listings = listings.filter(listing => listing.size === size)
-        console.log('size filter', listings)
         dispatch(get_Listings(listings));
         return listings;
     };
@@ -109,6 +122,8 @@ const surfboardReducer = (state = {}, action) => {
                 newState[listing.id] = listing;
             });
             return newState;
+        case GET_LISTING:
+            return action.listing;
         case NEW_LISTING:
             newState = Object.assign({}, state);
             newState[action.listing.id] = action.listing;

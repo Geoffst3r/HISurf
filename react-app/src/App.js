@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
 import SurfboardListings from './components/SurfboardListings';
+import ListingsPage from './components/ListingsPage';
 // import UsersList from './components/UsersList';
 // import User from './components/User';
 import { authenticate } from './store/session';
@@ -30,10 +31,16 @@ function App() {
         <Route path='/' exact={true}>
           <h1>My Home Page</h1>
         </Route>
-        <Route path='/surfboards/'>
+        <Route path='/surfboards/' exact={true}>
           <div className='main-page'>
             <SideBar />
             <SurfboardListings />
+          </div>
+        </Route>
+        <Route path='/surfboards/:surfboardId/'>
+          <div className='listings-page'>
+            <SideBar />
+            <ListingsPage />
           </div>
         </Route>
       </Switch>

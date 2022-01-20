@@ -37,6 +37,9 @@ function ProfileButton() {
             {showMenu && (
                 <ul className="profile-dropdown">
                     <li>
+                        <button className="add-listing">New Listing</button>
+                    </li>
+                    <li>
                         <button className="logout-profile-button" onClick={log_out}>Log Out</button>
                     </li>
                 </ul>

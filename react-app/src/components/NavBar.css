@@ -41,32 +41,37 @@ nav ul:not(.profile-dropdown) {
     cursor: pointer;
 }
 .profile-dropdown{
+    justify-content: flex-end;
     width: fit-content;
     text-decoration: none;
     list-style-type: none;
     background-color: rgb(20, 20, 20);
     position: absolute;
-    transform: translate(-30px, 4px);
+    transform: translate(-50px, 4px);
     margin: 0;
     padding: 0;
     z-index: 99;
 }
+.profile-dropdown > li{
+    display: flex;
+    justify-content: flex-end;
+}
 .profile-dropdown:after{
     content: "";
     position: absolute;
-    transform: translate(40px, -45px);
+    transform: translate(60px, -80px);
     border-top: none;
     border-right: 10px solid transparent;
     border-left: 10px solid transparent;
     border-bottom: 10px solid rgb(20, 20, 20);
 }
-.logout-profile-button{
+.logout-profile-button, .add-listing{
     color: white;
     background-color: transparent;
-    background-repeat: no-repeat;
     border: none;
     cursor: pointer;
-    overflow: hidden;
-    outline: none;
     padding: 10px;
+}
+.add-listing{
+    border-bottom: 1px solid white;
 }

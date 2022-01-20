@@ -1,25 +1,31 @@
-// import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import './form.css';
+import { newListing, deleteListing } from '../../store/surfboard'
 
-// const ChannelForm = () => {
-//   const history = useHistory();
-//   const dispatch = useDispatch();
-//   const [errors, setErrors] = useState([]);
+const SurfboardForm = ({ callSetter, inputBoard }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [location, setLocation] = useState('');
+  const [size, setSize] = useState(0);
+  const [description, setDescription] = useState('');
+  const [errors, setErrors] = useState([]);
+  const sessionUser = useSelector(state => state.session.user);
 
-//   const onCreate = async (e) => {
-//     e.preventDefault();
-//     setErrors([]);
-//     const requestChannel = { title, serverId };
+  const onCreate = async (e) => {
+    e.preventDefault();
+    setErrors([]);
+    const requestSurfboard = { location, size, description, 'ownerId': sessionUser.id };
 
-//     let newChannel = await dispatch(addChannel(requestChannel))
-//       .catch(async (res) => {
-//         const data = await res.json();
-//         if (data && data.errors) return setErrors(data.errors);
-//       });
-//     callSetter();
-//     return history.push(`/channels/${serverId}/${newChannel['id']}`)
-//   };
+    let newSurfboard = await dispatch(newListing(requestSurfboard))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) return setErrors(data.errors);
+      });
+    callSetter();
+    return history.push(`/surfboards/${newSurfboard['id']}/`)
+  };
 
 //   const onEdit = async (e) => {
 //     e.preventDefault();
@@ -34,33 +40,57 @@
 //     return
 //   };
 
-//   const updateTitle = (e) => {
-//     setTitle(e.target.value);
-//   };
+  const updateLocation = (e) => {
+    setLocation(e.target.value);
+  };
 
-//   return (
-//     <>
-//       <form autoComplete="off" onSubmit={inputChannel ? onEdit : onCreate} className='channel-form'>
-//         <div className='channel-error-box'>
-//           {errors.length > 0 && errors.map((error, ind) => (
-//             <div key={ind}>{error}</div>
-//           ))}
-//         </div>
-//         <div className='LabelAndInputContainer'>
-//           <label htmlFor='title'>Title</label>
-//           <input
-//             name='title'
-//             type='text'
-//             value={title}
-//             onChange={updateTitle}
-//             required
-//             autoComplete="off"
-//           />
-//         </div>
-//         <button className='channel-button' type='submit'>{text}</button>
-//       </form>
-//     </>
-//   );
-// };
+  const updateSize = (e) => {
+    setSize(parseInt(e.target.value));
+  };
 
-// export default ChannelForm;
+  const updateDescription = (e) => {
+    setDescription(e.target.value);
+  };
+
+  return (
+    <>
+      <form onSubmit={onCreate} className='surfboard-form'>
+        <div className='surfboard-error-box'>
+          {errors.length > 0 && errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <select value={location} onChange={updateLocation}>
+            <option value=''>--Island--</option>
+            <option value='Oahu'>Oahu</option>
+            <option value='Maui'>Maui</option>
+            <option value='Big Island'>Big Island</option>
+            <option value='Kaui'>Kauai</option>
+            <option value='Molokai'>Molokai</option>
+            <option value='Lanai'>Lanai</option>
+        </select>
+        <select value={size} onChange={updateSize}>
+            <option value=''>--Size--</option>
+            <option value='6'>6'</option>
+            <option value='7'>7'</option>
+            <option value='8'>8'</option>
+            <option value='9'>9'</option>
+            <option value='10'>10'</option>
+            <option value='11'>11'</option>
+        </select>
+        <textarea
+            placeholder='Description'
+            name='description'
+            type='text'
+            value={description}
+            onChange={updateDescription}
+            required
+            autoComplete="off"
+        />
+        <button className='surfboard-button' type='submit'>Post Listing</button>
+      </form>
+    </>
+  );
+};
+
+export default SurfboardForm;

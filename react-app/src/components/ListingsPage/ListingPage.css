@@ -1,0 +1,48 @@
+.surfboard-listing{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: #e1d9c7;
+    height: 200px;
+}
+.imgANDinfo{
+    display: flex;
+    flex-direction: row;
+}
+.surfboard-img{
+    padding: 10px;
+}
+.surfboard-img > i{
+    color: black;
+}
+.surfboard-img > p{
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    text-decoration: none;
+    color: black;
+}
+.surfboard-location{
+    font-size: 30px;
+    font-family: sans-serif;
+    color: black;
+    margin-left: 20px;
+}
+.surfboard-size{
+    font-size: 18px;
+    color: black;
+    margin-left: 20px;
+}
+.surfboard-description{
+    margin-left: 20px;
+    font-size: 16px;
+    color: black;
+}
+.surfboard-info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

@@ -33,6 +33,20 @@ export const getListings = () => async (dispatch) => {
     };
 };
 
+export const filterListings = (island, size) => async (dispatch) => {
+    const res = await fetch('/api/surfboards/');
+    if (res.ok) {
+        let listings = await res.json();
+        console.log('all listings', listings)
+        if (island) listings = listings.filter(listing => listing.location === island)
+        console.log('island filter', listings)
+        if (size) listings = listings.filter(listing => listing.size === size)
+        console.log('size filter', listings)
+        dispatch(get_Listings(listings));
+        return listings;
+    };
+}
+
 export const newListing = (inputSurfboard) => async (dispatch) => {
     const {description, image, size, location, ownerId} = inputSurfboard;
     const res = await fetch('/api/surfboards/', {

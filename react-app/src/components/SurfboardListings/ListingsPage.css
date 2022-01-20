@@ -1,5 +1,10 @@
 .surfboards-list-page{
     width: 80vw;
+    overflow-y: scroll;
+    margin-bottom: 60px;
+}
+.surfboards-list-page::-webkit-scrollbar {
+    display: none;
 }
 .filters{
     display: flex;

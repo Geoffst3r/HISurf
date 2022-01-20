@@ -16,15 +16,19 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const onCreate = async (e) => {
     e.preventDefault();
     setErrors([]);
-    const requestSurfboard = { location, size, description, 'ownerId': sessionUser.id };
 
-    let newSurfboard = await dispatch(newListing(requestSurfboard))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) return setErrors(data.errors);
-      });
-    callSetter();
-    return history.push(`/surfboards/${newSurfboard['id']}/`)
+    if (location && size && description) {
+        const requestSurfboard = { location, size, description, 'ownerId': sessionUser.id };
+        let newSurfboard = await dispatch(newListing(requestSurfboard));
+        callSetter();
+        return history.push(`/surfboards/${newSurfboard['id']}/`)
+    } else {
+        const newErrors = [];
+        if (!location) newErrors.push('Please include location of the surfboard.')
+        if (!size) newErrors.push('Please include size of the surfboard.')
+        if (!description) newErrors.push('Please include a brief description of surfboard.')
+        return setErrors(newErrors);
+    }
   };
 
 //   const onEdit = async (e) => {

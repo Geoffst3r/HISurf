@@ -16,12 +16,13 @@ def get_all_listings():
 
 @surfboard_routes.route('/', methods=["POST"])
 def post_new_listing():
+    errors = []
     data = request.get_json(force=True)
     description = data['description']
     size = data['size']
     location = data['location']
-    if description == '' or size == '' or location == '':
-        return jsonify('bad data')
+    if location == '' or size == '' or description == '':
+        return jsonify('bad data'), 400
     try:
         new_listing = {
             'description': description,

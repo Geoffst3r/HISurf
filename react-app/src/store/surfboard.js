@@ -75,10 +75,8 @@ export const newListing = (inputSurfboard) => async (dispatch) => {
             return listing;
         }
     } else if (res.status < 500) {
-        const data = await res.json();
-        if (data.errors) {
-            return data.errors
-        }
+        const errors = await res.json();
+        return errors;
     } else {
         return ['An error occurred. Please try again.']
     }

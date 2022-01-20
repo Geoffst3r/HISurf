@@ -55,7 +55,7 @@ const Listings = () => {
                 <ul className='listings-list'>
                     {listings.map(listing => (
                         <li key={listing.id}>
-                            <NavLink className='individual-item' to={`/surfboards/${listing.id}`}>
+                            <NavLink className='individual-item' to={`/surfboards/${listing.id}/`}>
                                 {listing.image ? <img alt='' src={`${listing.image}`}></img> :
                                 <div className='listing-img'>
                                     <i className='fas fa-camera fa-3x'></i>

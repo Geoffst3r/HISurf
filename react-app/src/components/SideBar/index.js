@@ -18,7 +18,7 @@ const SideBar = () => {
                     <p className='listings-title'>Listings</p>
                     {listings.length > 0 ? <ul className='listings'>
                         {listings.map(listing => (
-                            <NavLink className='listing'  key={listing.description} to={`/surfboards/${listing.id}`}>
+                            <NavLink className='listing'  key={listing.id} to={`/surfboards/${listing.id}/`}>
                                 <p>{listing.location}</p>
                                 <p>{listing.size}'</p>
                             </NavLink>
@@ -30,7 +30,7 @@ const SideBar = () => {
                     <p className='rentals-title'>Rentals</p>
                     {rentals.length > 0 ? <ul className='rentals'>
                         {rentals.map(rental => (
-                            <NavLink className='rental' key={rental.surfboardId} to={`/surfboards/${rental.surfboardId}`}>{rental.date}</NavLink>
+                            <NavLink className='rental' key={rental.id} to={`/surfboards/${rental.surfboardId}/`}>{rental.date}</NavLink>
                         ))}
                     </ul> : <p className='no-listings-message'>You don't have any upcoming rentals booked</p>}
                 </div>

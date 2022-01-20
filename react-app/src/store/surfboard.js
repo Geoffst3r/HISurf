@@ -84,7 +84,7 @@ export const newListing = (inputSurfboard) => async (dispatch) => {
 
 export const updateListing = (inputListing) => async (dispatch) => {
     const {id, description, image, size, location, ownerId} = inputListing;
-    const res = await fetch(`/api/surfboards/${id}`, {
+    const res = await fetch(`/api/surfboards/${id}/`, {
         method: 'PUT',
         body: JSON.stringify({
             id, description, image, size, location, ownerId
@@ -100,7 +100,7 @@ export const updateListing = (inputListing) => async (dispatch) => {
 };
 
 export const deleteListing = (surfboardId) => async (dispatch) => {
-    const res = await fetch(`/api/surfboards/${surfboardId}`, {
+    const res = await fetch(`/api/surfboards/${surfboardId}/`, {
         method: 'DELETE'
     });
     if (res.ok) {
@@ -131,8 +131,6 @@ const surfboardReducer = (state = {}, action) => {
             newState[action.listing.id] = action.listing;
             return newState;
         case DELETE_LISTING:
-            newState = Object.assign({}, state);
-            delete newState[action.id];
             return newState;
         default:
             return state;

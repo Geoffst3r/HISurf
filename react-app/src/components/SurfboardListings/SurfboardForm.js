@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './form.css';
-import { newListing, deleteListing } from '../../store/surfboard'
+import { newListing } from '../../store/surfboard'
 
 const SurfboardForm = ({ callSetter, inputBoard }) => {
   const history = useHistory();

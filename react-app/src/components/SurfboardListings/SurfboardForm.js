@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { newListing } from '../../store/surfboard'
+import { getListing, newListing, updateListing } from '../../store/surfboard'
 import { authenticate } from '../../store/session';
 import './form.css';
 
 const SurfboardForm = ({ callSetter, inputBoard }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [location, setLocation] = useState('');
-  const [size, setSize] = useState(0);
-  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState(inputBoard ? inputBoard.location : '');
+  const [size, setSize] = useState(inputBoard ? inputBoard.size : 0);
+  const [description, setDescription] = useState(inputBoard ? inputBoard.description : '');
   const [errors, setErrors] = useState([]);
   const sessionUser = useSelector(state => state.session.user);
+  const surfboardId = inputBoard?.id
+  const text = inputBoard ? 'Edit Listing' : 'Post Listing';
 
   const onCreate = async (e) => {
     e.preventDefault();
@@ -21,8 +23,8 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
     if (location && size && description) {
         const requestSurfboard = { location, size, description, 'ownerId': sessionUser.id };
         let newSurfboard = await dispatch(newListing(requestSurfboard));
-        callSetter();
         dispatch(authenticate());
+        callSetter();
         return history.push(`/surfboards/${newSurfboard['id']}/`);
     } else {
         const newErrors = [];
@@ -33,18 +35,25 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
     }
   };
 
-//   const onEdit = async (e) => {
-//     e.preventDefault();
-//     setErrors([]);
-//     const requestChannel = { id: inputChannel.id, title, serverId };
-//     await dispatch(updateChannel(requestChannel))
-//       .catch(async (res) => {
-//         const data = await res.json();
-//         if (data && data.errors) return setErrors(data.errors);
-//       });
-//     callSetter();
-//     return
-//   };
+  const onEdit = async (e) => {
+    e.preventDefault();
+    setErrors([]);
+
+    if (location && size && description) {
+        const requestSurfboard = {'id': surfboardId, location, size, description, 'ownerId': sessionUser.id };
+        await dispatch(updateListing(requestSurfboard));
+        await dispatch(authenticate());
+        await dispatch(getListing(surfboardId));
+        callSetter();
+        return;
+    } else {
+        const newErrors = [];
+        if (!location) newErrors.push('Please include location of the surfboard.')
+        if (!size) newErrors.push('Please include size of the surfboard.')
+        if (!description) newErrors.push('Please include a brief description of surfboard.')
+        return setErrors(newErrors);
+    }
+  };
 
   const updateLocation = (e) => {
     setLocation(e.target.value);
@@ -60,7 +69,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
 
   return (
     <>
-      <form onSubmit={onCreate} className='surfboard-form'>
+      <form onSubmit={inputBoard ? onEdit : onCreate} className='surfboard-form'>
         <div className='surfboard-error-box'>
           {errors.length > 0 && errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -76,7 +85,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
             <option value='Lanai'>Lanai</option>
         </select>
         <select value={size} onChange={updateSize}>
-            <option value=''>--Size--</option>
+            <option value='0'>--Size--</option>
             <option value='6'>6'</option>
             <option value='7'>7'</option>
             <option value='8'>8'</option>
@@ -93,7 +102,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
             required
             autoComplete="off"
         />
-        <button className='surfboard-button' type='submit'>Post Listing</button>
+        <button className='surfboard-button' type='submit'>{text}</button>
       </form>
     </>
   );

@@ -4,17 +4,23 @@
     flex-direction: column;
     align-items: center;
 }
-.surfboard-form input, .surfboard-form select {
-    width: 200px;
+.surfboard-form input, .surfboard-form select, .surfboard-form textarea {
+    width: 300px;
     background-color: #1f1f1f;
     border: 1px solid #1f1f1f;
     border-radius: 3px;
     margin-bottom: 10px;
     padding: 5px;
-    color: #e1d9c7;
+    color: white;
+    font-size: 20px;
+}
+.surfboard-form textarea {
+    width: 290px;
+    resize: none;
+    height: 100px;
+    font-family: sans-serif;
 }
 .surfboard-button {
-    width: 200px;
    color: #e1d9c7;
    background-color: #6d668c;
    border: 1px solid #6d668c;
@@ -29,4 +35,8 @@
 .surfboard-button:active{
     background-color: #605980;
     border: 1px solid #695c5c;
+}
+.surfboard-error-box div{
+    font-family: sans-serif;
+    color: red;
 }

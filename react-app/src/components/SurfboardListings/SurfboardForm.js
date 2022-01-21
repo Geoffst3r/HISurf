@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './form.css';
 import { newListing } from '../../store/surfboard'
+import { authenticate } from '../../store/session';
+import './form.css';
 
 const SurfboardForm = ({ callSetter, inputBoard }) => {
   const history = useHistory();
@@ -21,7 +22,8 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
         const requestSurfboard = { location, size, description, 'ownerId': sessionUser.id };
         let newSurfboard = await dispatch(newListing(requestSurfboard));
         callSetter();
-        return history.push(`/surfboards/${newSurfboard['id']}/`)
+        dispatch(authenticate());
+        return history.push(`/surfboards/${newSurfboard['id']}/`);
     } else {
         const newErrors = [];
         if (!location) newErrors.push('Please include location of the surfboard.')

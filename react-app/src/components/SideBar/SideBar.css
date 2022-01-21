@@ -1,15 +1,15 @@
 .sidebar{
-    height: calc(100% - 500px);
+    height: calc(100% - 100px);
     width: 200px;
-    border: 1px solid black;
+    border: 1px solid #C5CEE0;
     border-radius: 50px;
     flex-shrink: 0;
-    margin: 425px 0 0 20px;
-    background-color: #e1d9c7;
+    margin: 25px 0 0 20px;
+    background-color: #FFFDFA;
 }
 .split{
     height: 4%;
-    background-color: red;
+    background-color: #C5CEE0;
 }
 .listings-container{
     display: flex;
@@ -40,11 +40,11 @@
     display: flex;
     flex-direction: row;
     text-decoration: none;
-    color: blue;
+    color: #657394;
     margin: 3px 0px;
 }
 .listing:hover{
-    background-color: #e1d9c7;
+    background-color: #C5CEE0;
 }
 .listing p{
     margin: 0px 10px;

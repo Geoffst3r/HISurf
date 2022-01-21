@@ -1,18 +1,21 @@
 .surfboard-form {
-    background-color: #2f2f2f;
+    background-color: #e1d9c7;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.surfboard-form input, .surfboard-form select, .surfboard-form textarea {
+.surfboard-form select, .surfboard-form textarea {
     width: 300px;
-    background-color: #1f1f1f;
-    border: 1px solid #1f1f1f;
+    background-color: #948A73;
+    border: 1px solid #948A73;
     border-radius: 3px;
     margin-bottom: 10px;
     padding: 5px;
-    color: white;
+    color: #FFFDFA;
     font-size: 20px;
+}
+.surfboard-form select::placeholder, .surfboard-form textarea::placeholder {
+    color: #C5CEE0;
 }
 .surfboard-form textarea {
     width: 290px;
@@ -21,22 +24,26 @@
     font-family: sans-serif;
 }
 .surfboard-button {
+    width: 300px;
    color: #e1d9c7;
-   background-color: #6d668c;
-   border: 1px solid #6d668c;
+   background-color: #657394;
+   border: 1px solid #657394;
    border-radius: 3px;
-   width: 100%;
    margin-top: 10px;
    padding: 5px;
-}
-.surfboard-button:hover{
-    cursor: pointer;
+   cursor: pointer;
 }
 .surfboard-button:active{
-    background-color: #605980;
-    border: 1px solid #695c5c;
+    background-color: #C5CEE0;
+    border: 1px solid #C5CEE0;
 }
-.surfboard-error-box div{
-    font-family: sans-serif;
+.error-box{
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.error{
     color: red;
 }

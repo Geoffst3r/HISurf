@@ -5,7 +5,7 @@
     border: 1px solid black;
     border-radius: 20px;
     text-decoration: none;
-    background-color: #e1d9c7;
+    background-color: #FFFDFA;
     height: 200px;
 }
 .imgANDinfo{
@@ -67,25 +67,24 @@
 }
 .edit-listing{
     color: black;
-    background-color: #e1d9c7;
+    background-color: #FFFDFA;
     border-radius: 10px;
     transition-duration: .3s;
     transition-property: background-color, box-shadow, color;
 }
 .edit-listing:hover{
-    background-color: white;
+    background-color: black;
     box-shadow: 0px 1px 12px 0px rgba(255, 255, 255, 0.096);
-    color: #5865f2;
+    color: #657394;
 }
 .delete-listing{
-    color: white;
+    color: #FFFDFA;
     background-color: rgb(138, 54, 54);
     border-radius: 10px;
     transition-duration: .3s;
-    transition-property: box-shadow, color, background-color;
+    transition-property: box-shadow, background-color;
 }
 .delete-listing:hover{
     box-shadow: 0 8px 15px rgba(253, 1, 1, 0.2);
-    color: #e1d9c7;
     background-color: rgb(248, 68, 68);
 }

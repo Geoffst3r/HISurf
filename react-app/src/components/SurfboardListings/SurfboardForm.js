@@ -70,9 +70,9 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   return (
     <>
       <form onSubmit={inputBoard ? onEdit : onCreate} className='surfboard-form'>
-        <div className='surfboard-error-box'>
+        <div className='error-box'>
           {errors.length > 0 && errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div key={ind} className='error'>--{error}</div>
           ))}
         </div>
         <select value={location} onChange={updateLocation}>

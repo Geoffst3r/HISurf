@@ -3,7 +3,7 @@ nav {
     height: 50px;
     display: flex;
     justify-content: space-between;
-    background-color: #e1d9c7;
+    background-color: #FFFDFA;
     align-items: center;
 }
 nav ul:not(.profile-dropdown) {
@@ -16,36 +16,45 @@ nav ul:not(.profile-dropdown) {
     cursor: pointer;
 }
 .appName{
-    color: blue;
+    color: #657394;
     font-family: sans-serif;
     font-weight: bold;
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 25px;
     border: none;
-    background-color: #e1d9c7;
+    background-color: #FFFDFA;
     padding: 5px;
     margin-right: 10px;
     cursor: pointer;
 }
 .NavButtons{
-    font-size: 11px;
+    font-size: 14px;
     font-family: sans-serif;
     font-weight: bold;
     text-decoration: none;
-    color: black;
+    color: #948A73;
     border: none;
-    border-radius: 30px;
-    background-color: #e1d9c7;
+    background-color: #FFFDFA;
     padding: 10px;
     margin-right: 20px;
     cursor: pointer;
+}
+.signupNav-button{
+    border: 1px solid #948A73;
+    border-radius: 10px;
+    transition-duration: .3s;
+    transition-property: background-color, color;
+}
+.signupNav-button:hover{
+    background-color: #948A73;
+    color: #FFFDFA;
 }
 .profile-dropdown{
     justify-content: flex-end;
     width: fit-content;
     text-decoration: none;
     list-style-type: none;
-    background-color: rgb(20, 20, 20);
+    background-color: #948A73;
     position: absolute;
     transform: translate(-50px, 4px);
     margin: 0;
@@ -59,19 +68,19 @@ nav ul:not(.profile-dropdown) {
 .profile-dropdown:after{
     content: "";
     position: absolute;
-    transform: translate(60px, -80px);
+    transform: translate(64px, -80px);
     border-top: none;
     border-right: 10px solid transparent;
     border-left: 10px solid transparent;
-    border-bottom: 10px solid rgb(20, 20, 20);
+    border-bottom: 10px solid #948A73;
 }
 .logout-profile-button, .add-listing{
-    color: white;
+    color: #FFFDFA;
     background-color: transparent;
     border: none;
     cursor: pointer;
     padding: 10px;
 }
 .add-listing{
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #FFFDFA;
 }

@@ -13,3 +13,11 @@ class Rental(db.Model):
 
     surfboard_relation = db.relationship("Surfboard", back_populates="rentals_relation")
     user_relation = db.relationship("User", back_populates="rentals_relation")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'date': self.date,
+            'surfboardId': self.surfboardId,
+            'userId': self.userId
+        }

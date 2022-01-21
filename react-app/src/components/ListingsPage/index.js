@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import SurfboardForm from '../SurfboardListings/SurfboardForm';
 import * as listingsActions from '../../store/surfboard';
+import * as rentalsActions from '../../store/rental';
 import { authenticate } from '../../store/session';
 import './ListingPage.css';
 
@@ -16,6 +17,7 @@ const Listing = () => {
     const [cogWheelClicked, setCogWheelClicked] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const listingObj = useSelector(state => state.surfboards);
+    const rentalsObj = useSelector(state => state.rentals);
     let listing;
     if (listingObj) listing = listingObj[0];
 
@@ -39,6 +41,7 @@ const Listing = () => {
 
     useEffect(() => {
         dispatch(listingsActions.getListing(surfboardId));
+        dispatch(rentalsActions.getRentals(surfboardId));
     }, [dispatch, surfboardId]);
 
     useEffect(() => {

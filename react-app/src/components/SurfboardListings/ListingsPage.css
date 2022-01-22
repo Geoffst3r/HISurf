@@ -45,6 +45,9 @@
     margin: 125px 0 0 20px;
     padding-right: 40px;
 }
+.listings-list > li{
+    height: 125px;
+}
 .individual-item{
     display: flex;
     flex-direction: row;
@@ -57,6 +60,12 @@
 .listing-img{
     padding: 10px;
     border-radius: 10px;
+    height: 100%;
+    width: 120px;
+}
+.listing-img > img{
+    height: 59px;
+    width: 100%;
 }
 .listing-img > i{
     color: black;

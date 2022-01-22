@@ -4,12 +4,21 @@ from app.models import db, Rental
 # Add rentals here if you want
 def seed_rentals():
     rental1 = Rental(
-        date='2022-01-20', surfboardId=1, userId=2)
+        date='2022-01-20', surfboardId=3, userId=1)
     rental2 = Rental(
-        date='2022-01-30', surfboardId=2, userId=2)
+        date='2022-01-30', surfboardId=4, userId=1)
+    rental3 = Rental(
+        date='2022-01-30', surfboardId=5, userId=1)
+    rental4 = Rental(
+        date='2022-01-30', surfboardId=6, userId=1)
+    rental5 = Rental(
+        date='2022-01-30', surfboardId=7, userId=1)
 
     db.session.add(rental1)
     db.session.add(rental2)
+    db.session.add(rental3)
+    db.session.add(rental4)
+    db.session.add(rental5)
 
     db.session.commit()
 

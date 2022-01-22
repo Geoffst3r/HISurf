@@ -1,7 +1,9 @@
 from sqlite3 import IntegrityError
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, Surfboard
+from app.forms import SurfboardForm
+from app.api.aws.config import upload_file_to_s3, allowed_file, get_unique_filename
 
 surfboard_routes = Blueprint('surfboards', __name__)
 
@@ -14,34 +16,67 @@ def get_all_listings():
     else:
         return jsonify('Surfboard Listings not found')
 
+# @surfboard_routes.route('/', methods=["POST"])
+# @login_required
+# def post_new_listing():
+#     data = request.get_json(force=True)
+#     description = data['description']
+#     size = data['size']
+#     location = data['location']
+#     if location == '' or size == '' or description == '':
+#         return jsonify('bad data'), 400
+#     image = None
+#     if 'image' in data:
+#         image = data['image']
+#     try:
+#         new_listing = {
+#             'description': description,
+#             'size': size,
+#             'location': location,
+#             'ownerId': data['ownerId']
+#         }
+#         if image:
+#             new_listing['image'] = image
+#         new_listing_db = Surfboard(**new_listing)
+#         db.session.add(new_listing_db)
+#         db.session.commit()
+#         return new_listing_db.to_dict()
+#     except IntegrityError as e:
+#         print(e)
+#         return jsonify('Database entry error')
 @surfboard_routes.route('/', methods=["POST"])
 @login_required
 def post_new_listing():
-    data = request.get_json(force=True)
-    description = data['description']
-    size = data['size']
-    location = data['location']
-    if location == '' or size == '' or description == '':
-        return jsonify('bad data'), 400
-    image = None
-    if 'image' in data:
-        image = data['image']
-    try:
-        new_listing = {
-            'description': description,
-            'size': size,
-            'location': location,
-            'ownerId': data['ownerId']
-        }
-        if image:
-            new_listing['image'] = image
-        new_listing_db = Surfboard(**new_listing)
-        db.session.add(new_listing_db)
+    form = SurfboardForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    image = form.data['image']
+
+    if image != 'null':
+        if not allowed_file(image.filename):
+            return {"errors": "file type not permitted"}, 400
+
+        image.filename = get_unique_filename(image.filename)
+
+        upload = upload_file_to_s3(image)
+
+        if "url" not in upload:
+            return upload, 400
+
+        url = upload["url"]
+    else:
+        url = ''
+    if form.validate_on_submit():
+        new_surfboard = Surfboard(
+            location=form.data['location'],
+            size=form.data['size'],
+            description=form.data['description'],
+            image=url,
+            ownerId=current_user.id)
+        db.session.add(new_surfboard)
         db.session.commit()
-        return new_listing_db.to_dict()
-    except IntegrityError as e:
-        print(e)
-        return jsonify('Database entry error')
+        return new_surfboard.to_dict()
+
 
 @surfboard_routes.route('/<int:surfboardId>/')
 @login_required

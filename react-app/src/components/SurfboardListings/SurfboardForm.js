@@ -18,36 +18,39 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const text = inputBoard ? 'Edit Listing' : 'Post Listing';
 
   const onCreate = async (e) => {
-    e.preventDefault();
-    setErrors([]);
+    e.preventDefault()
+    const formData = new FormData();
+    formData.append('location', location);
+    formData.append('size', size);
+    formData.append('description', description)
+    formData.append('image', image);
+    formData.append('ownerId', sessionUser.id);
+    await dispatch(newListing(formData));
+  }
 
-    if (location && size && description) {
-        const requestSurfboard = { location, size, description, 'ownerId': sessionUser.id };
-        if (image) {
-          const formData = new FormData();
-          formData.append("image", image);
-          const res = await fetch(`/api/images/`, {
-            method: "POST",
-            body: formData
-          });
-          if (res.ok) {
-            const url = await res.json();
-            console.log(url);
-            requestSurfboard['image'] = url;
-          } else console.log("error")
-        }
-        let newSurfboard = await dispatch(newListing(requestSurfboard));
-        dispatch(authenticate());
-        callSetter();
-        return history.push(`/surfboards/${newSurfboard['id']}/`);
-    } else {
-        const newErrors = [];
-        if (!location) newErrors.push('Please include location of the surfboard.')
-        if (!size) newErrors.push('Please include size of the surfboard.')
-        if (!description) newErrors.push('Please include a brief description of surfboard.')
-        return setErrors(newErrors);
-    }
-  };
+  // const onCreate = async (e) => {
+  //   e.preventDefault();
+  //   setErrors([]);
+
+  //   if (location && size && description) {
+  //       const requestSurfboard = { location, size, description, 'ownerId': sessionUser.id };
+  //       if (image) {
+  //         const url = addImage();
+  //         console.log(url);
+  //         requestSurfboard['image'] = url.url;
+  //       }
+  //       let newSurfboard = await dispatch(newListing(requestSurfboard));
+  //       dispatch(authenticate());
+  //       callSetter();
+  //       return history.push(`/surfboards/${newSurfboard['id']}/`);
+  //   } else {
+  //       const newErrors = [];
+  //       if (!location) newErrors.push('Please include location of the surfboard.')
+  //       if (!size) newErrors.push('Please include size of the surfboard.')
+  //       if (!description) newErrors.push('Please include a brief description of surfboard.')
+  //       return setErrors(newErrors);
+  //   }
+  // };
 
   const onEdit = async (e) => {
     e.preventDefault();

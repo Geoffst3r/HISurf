@@ -60,13 +60,10 @@ export const filterListings = (island, size) => async (dispatch) => {
     };
 }
 
-export const newListing = (inputSurfboard) => async (dispatch) => {
-    const {description, image, size, location, ownerId} = inputSurfboard;
+export const newListing = (formData) => async (dispatch) => {
     const res = await fetch('/api/surfboards/', {
         method: 'POST',
-        body: JSON.stringify({
-            description, 'image': image, size, location, ownerId
-        })
+        body: formData
     });
     if (res.ok) {
         const listing = await res.json();

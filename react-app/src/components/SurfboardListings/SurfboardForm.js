@@ -18,57 +18,51 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const text = inputBoard ? 'Edit Listing' : 'Post Listing';
 
   const onCreate = async (e) => {
-    e.preventDefault()
-    const formData = new FormData();
-    formData.append('location', location);
-    formData.append('size', size);
-    formData.append('description', description)
-    formData.append('image', image);
-    formData.append('ownerId', sessionUser.id);
-    await dispatch(newListing(formData));
-  }
+    e.preventDefault();
+    setErrors([]);
 
-  // const onCreate = async (e) => {
-  //   e.preventDefault();
-  //   setErrors([]);
-
-  //   if (location && size && description) {
-  //       const requestSurfboard = { location, size, description, 'ownerId': sessionUser.id };
-  //       if (image) {
-  //         const url = addImage();
-  //         console.log(url);
-  //         requestSurfboard['image'] = url.url;
-  //       }
-  //       let newSurfboard = await dispatch(newListing(requestSurfboard));
-  //       dispatch(authenticate());
-  //       callSetter();
-  //       return history.push(`/surfboards/${newSurfboard['id']}/`);
-  //   } else {
-  //       const newErrors = [];
-  //       if (!location) newErrors.push('Please include location of the surfboard.')
-  //       if (!size) newErrors.push('Please include size of the surfboard.')
-  //       if (!description) newErrors.push('Please include a brief description of surfboard.')
-  //       return setErrors(newErrors);
-  //   }
-  // };
+    if (location && size && description) {
+      const formData = new FormData();
+      formData.append('location', location);
+      formData.append('size', size);
+      formData.append('description', description)
+      formData.append('image', image);
+      formData.append('ownerId', sessionUser.id);
+      const newSurfboard = await dispatch(newListing(formData));
+      dispatch(authenticate());
+      callSetter();
+      return history.push(`/surfboards/${newSurfboard['id']}/`);
+    } else {
+      const newErrors = [];
+      if (!location) newErrors.push('Please include location of the surfboard.')
+      if (!size) newErrors.push('Please include size of the surfboard.')
+      if (!description) newErrors.push('Please include a brief description of surfboard.')
+      return setErrors(newErrors);
+    }
+  };
 
   const onEdit = async (e) => {
     e.preventDefault();
     setErrors([]);
 
     if (location && size && description) {
-        const requestSurfboard = {'id': surfboardId, location, size, description, image, 'ownerId': sessionUser.id };
-        await dispatch(updateListing(requestSurfboard));
-        await dispatch(authenticate());
-        await dispatch(getListing(surfboardId));
-        callSetter();
-        return;
+      const formData = new FormData();
+      formData.append('location', location);
+      formData.append('size', size);
+      formData.append('description', description)
+      formData.append('image', image);
+      formData.append('ownerId', sessionUser.id);
+      await dispatch(updateListing(formData, surfboardId));
+      await dispatch(authenticate());
+      await dispatch(getListing(surfboardId));
+      callSetter();
+      return;
     } else {
-        const newErrors = [];
-        if (!location) newErrors.push('Please include location of the surfboard.')
-        if (!size) newErrors.push('Please include size of the surfboard.')
-        if (!description) newErrors.push('Please include a brief description of surfboard.')
-        return setErrors(newErrors);
+      const newErrors = [];
+      if (!location) newErrors.push('Please include location of the surfboard.')
+      if (!size) newErrors.push('Please include size of the surfboard.')
+      if (!description) newErrors.push('Please include a brief description of surfboard.')
+      return setErrors(newErrors);
     }
   };
 

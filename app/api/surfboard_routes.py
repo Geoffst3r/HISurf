@@ -1,4 +1,3 @@
-from sqlite3 import IntegrityError
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Surfboard
@@ -16,34 +15,6 @@ def get_all_listings():
     else:
         return jsonify('Surfboard Listings not found')
 
-# @surfboard_routes.route('/', methods=["POST"])
-# @login_required
-# def post_new_listing():
-#     data = request.get_json(force=True)
-#     description = data['description']
-#     size = data['size']
-#     location = data['location']
-#     if location == '' or size == '' or description == '':
-#         return jsonify('bad data'), 400
-#     image = None
-#     if 'image' in data:
-#         image = data['image']
-#     try:
-#         new_listing = {
-#             'description': description,
-#             'size': size,
-#             'location': location,
-#             'ownerId': data['ownerId']
-#         }
-#         if image:
-#             new_listing['image'] = image
-#         new_listing_db = Surfboard(**new_listing)
-#         db.session.add(new_listing_db)
-#         db.session.commit()
-#         return new_listing_db.to_dict()
-#     except IntegrityError as e:
-#         print(e)
-#         return jsonify('Database entry error')
 @surfboard_routes.route('/', methods=["POST"])
 @login_required
 def post_new_listing():
@@ -76,6 +47,8 @@ def post_new_listing():
         db.session.add(new_surfboard)
         db.session.commit()
         return new_surfboard.to_dict()
+    else:
+        return jsonify('Database entry error');
 
 
 @surfboard_routes.route('/<int:surfboardId>/')
@@ -90,20 +63,36 @@ def get_single_listing(surfboardId):
 @surfboard_routes.route('/<int:surfboardId>/', methods=["PUT"])
 @login_required
 def edit_listing(surfboardId):
+    form = SurfboardForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     listing = Surfboard.query.filter(Surfboard.id == surfboardId).first()
     if not listing:
         return jsonify('Listing does not exist.')
-    data = request.get_json(force=True)
-    description = data['description']
-    size = data['size']
-    location = data['location']
-    if description == '' or size == '' or location == '':
+    description = form.data['description']
+    size = form.data['size']
+    location = form.data['location']
+    image = form.data['image']
+    if description == '' or location == '' or size == 0:
         return jsonify('bad data')
     listing.description = description
     listing.size = size
     listing.location = location
-    if 'image' in data and data['image'] != '':
-        listing['image'] = data['image']
+
+    if image != 'null':
+        if not allowed_file(image.filename):
+            return {"errors": "file type not permitted"}, 400
+
+        image.filename = get_unique_filename(image.filename)
+
+        upload = upload_file_to_s3(image)
+
+        if "url" not in upload:
+            return upload, 400
+
+        url = upload["url"]
+    else:
+        url = ''
+    listing.image = url
     db.session.commit()
     return listing.to_dict()
 

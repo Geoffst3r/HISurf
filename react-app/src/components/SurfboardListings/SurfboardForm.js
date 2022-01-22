@@ -26,8 +26,15 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
         if (image) {
           const formData = new FormData();
           formData.append("image", image);
-          requestSurfboard['image'] = formData;
-          console.log(requestSurfboard);
+          const res = await fetch(`/api/images/`, {
+            method: "POST",
+            body: formData
+          });
+          if (res.ok) {
+            const url = await res.json();
+            console.log(url);
+            requestSurfboard['image'] = url;
+          } else console.log("error")
         }
         let newSurfboard = await dispatch(newListing(requestSurfboard));
         dispatch(authenticate());

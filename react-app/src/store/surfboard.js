@@ -2,8 +2,6 @@
 const GET_LISTINGS = 'surfboards/GET_LISTINGS';
 const GET_LISTING = 'surfboards/GET_LISTING';
 const NEW_LISTING = 'surfboards/NEW_LISTING';
-const UPDATE_LISTING = 'surfboards/UPDATE_LISTING';
-const DELETE_LISTING = 'surfboards/DELETE_LISTING';
 
 const get_Listings = (listings) => ({
   type: GET_LISTINGS,
@@ -18,16 +16,6 @@ const get_Listing = (listing) => ({
 const new_Listing = (listing) => ({
   type: NEW_LISTING,
   listing
-});
-
-const update_Listing = (listing) => ({
-  type: UPDATE_LISTING,
-  listing
-});
-
-const delete_Listing = (id) => ({
-  type: DELETE_LISTING,
-  id
 });
 
 export const getListings = () => async (dispatch) => {
@@ -79,17 +67,13 @@ export const newListing = (formData) => async (dispatch) => {
     }
 };
 
-export const updateListing = (inputListing) => async (dispatch) => {
-    const {id, description, image, size, location, ownerId} = inputListing;
+export const updateListing = (formData, id) => async (dispatch) => {
     const res = await fetch(`/api/surfboards/${id}/`, {
         method: 'PUT',
-        body: JSON.stringify({
-            id, description, image, size, location, ownerId
-        })
+        body: formData
     });
     if (res.ok) {
         const listing = await res.json();
-        dispatch(update_Listing(listing));
         return listing;
     } else {
         return ['An error occurred. Please try again.']
@@ -102,7 +86,7 @@ export const deleteListing = (surfboardId) => async (dispatch) => {
     });
     if (res.ok) {
         const msg = await res.json();
-        if (msg === 'Success') dispatch(delete_Listing(surfboardId));
+        if (msg === 'Success') return;
         return ['Could not delete.']
     } else {
         return ['An error occurred. Please try again.']
@@ -122,12 +106,6 @@ const surfboardReducer = (state = {}, action) => {
         case NEW_LISTING:
             newState = Object.assign({}, state);
             newState[action.listing.id] = action.listing;
-            return newState;
-        case UPDATE_LISTING:
-            newState = Object.assign({}, state);
-            newState[action.listing.id] = action.listing;
-            return newState;
-        case DELETE_LISTING:
             return newState;
         default:
             return state;

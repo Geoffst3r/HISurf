@@ -2,7 +2,6 @@ from sqlite3 import IntegrityError
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, Surfboard
-from app.api.aws.config import upload_file_to_s3, allowed_file, get_unique_filename
 
 surfboard_routes = Blueprint('surfboards', __name__)
 
@@ -22,11 +21,11 @@ def post_new_listing():
     description = data['description']
     size = data['size']
     location = data['location']
-    image = None
-    if 'image' in request.files:
-        image = request.files['image']
     if location == '' or size == '' or description == '':
         return jsonify('bad data'), 400
+    image = None
+    if 'image' in data:
+        image = data['image']
     try:
         new_listing = {
             'description': description,
@@ -34,16 +33,9 @@ def post_new_listing():
             'location': location,
             'ownerId': data['ownerId']
         }
-        new_listing_db = Surfboard(**new_listing)
         if image:
-            if not allowed_file(image.filename):
-                return jsonify('File type not supported.'), 400
-            image.filename = get_unique_filename(image.filename, new_listing_db.id)
-            upload = upload_file_to_s3(image)
-            if "url" not in upload:
-                return upload, 400
-            url = upload['url']
-            new_listing_db['image'] = url
+            new_listing['image'] = image
+        new_listing_db = Surfboard(**new_listing)
         db.session.add(new_listing_db)
         db.session.commit()
         return new_listing_db.to_dict()

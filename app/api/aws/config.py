@@ -1,8 +1,9 @@
 import boto3
-import botocore
 import os
+import uuid
 
 BUCKET_NAME = os.environ.get("S3_BUCKET")
+UPLOAD_FOLDER = "uploads"
 S3_LOCATION = f"https://{BUCKET_NAME}.s3.amazonaws.com/"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
 
@@ -17,9 +18,10 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-def get_unique_filename(filename, surfboardId):
+def get_unique_filename(filename):
     ext = filename.rsplit(".", 1)[1].lower()
-    return f"{surfboardId}.{ext}"
+    unique = uuid.uuid4().hex
+    return f"{unique}.{ext}"
 
 
 def upload_file_to_s3(file, acl="public-read"):

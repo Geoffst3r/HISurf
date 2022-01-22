@@ -11,6 +11,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const [location, setLocation] = useState(inputBoard ? inputBoard.location : '');
   const [size, setSize] = useState(inputBoard ? inputBoard.size : 0);
   const [description, setDescription] = useState(inputBoard ? inputBoard.description : '');
+  const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([]);
   const sessionUser = useSelector(state => state.session.user);
   const surfboardId = inputBoard?.id
@@ -22,6 +23,12 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
 
     if (location && size && description) {
         const requestSurfboard = { location, size, description, 'ownerId': sessionUser.id };
+        if (image) {
+          const formData = new FormData();
+          formData.append("image", image);
+          requestSurfboard['image'] = formData;
+          console.log(requestSurfboard);
+        }
         let newSurfboard = await dispatch(newListing(requestSurfboard));
         dispatch(authenticate());
         callSetter();
@@ -40,7 +47,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
     setErrors([]);
 
     if (location && size && description) {
-        const requestSurfboard = {'id': surfboardId, location, size, description, 'ownerId': sessionUser.id };
+        const requestSurfboard = {'id': surfboardId, location, size, description, image, 'ownerId': sessionUser.id };
         await dispatch(updateListing(requestSurfboard));
         await dispatch(authenticate());
         await dispatch(getListing(surfboardId));
@@ -66,6 +73,10 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const updateDescription = (e) => {
     setDescription(e.target.value);
   };
+
+  const updateImage = (e) => {
+    setImage(e.target.files[0]);
+  }
 
   return (
     <>
@@ -102,6 +113,16 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
             required
             autoComplete="off"
         />
+        <div className='image-container'>
+          <div className='optional-tag'>(Optional)</div>
+          <label htmlFor='image'>Choose an image to upload (.png, .jpg, .jpeg):</label>
+          <input
+              type='file'
+              name='image'
+              accept='.png, .jpg, .jpeg'
+              onChange={updateImage}
+          />
+        </div>
         <button className='surfboard-button' type='submit'>{text}</button>
       </form>
     </>

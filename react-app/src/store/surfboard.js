@@ -65,7 +65,7 @@ export const newListing = (inputSurfboard) => async (dispatch) => {
     const res = await fetch('/api/surfboards/', {
         method: 'POST',
         body: JSON.stringify({
-            description, image, size, location, ownerId
+            description, 'image': image, size, location, ownerId
         })
     });
     if (res.ok) {

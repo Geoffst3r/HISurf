@@ -17,7 +17,7 @@ const Listing = () => {
     const [cogWheelClicked, setCogWheelClicked] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const listingObj = useSelector(state => state.surfboards);
-    const rentalsObj = useSelector(state => state.rentals);
+    // const rentalsObj = useSelector(state => state.rentals);
     let listing;
     if (listingObj) listing = listingObj[0];
 

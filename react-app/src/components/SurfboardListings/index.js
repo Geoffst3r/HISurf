@@ -56,7 +56,7 @@ const Listings = () => {
                     {listings.map(listing => (
                         <li key={listing.id}>
                             <NavLink className='individual-item' to={`/surfboards/${listing.id}/`}>
-                                {listing.image ? <img alt='' src={`${listing.image}`}></img> :
+                                {listing.image ? <div className='listing-img'><img alt='' src={`${listing.image}`} /></div>:
                                 <div className='listing-img'>
                                     <i className='fas fa-camera fa-3x'></i>
                                     <p>No Image</p>

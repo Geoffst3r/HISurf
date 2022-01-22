@@ -89,6 +89,7 @@ const rentalReducer = (state = {}, action) => {
     let newState = {};
     switch (action.type) {
         case GET_RENTALS:
+            if (action.rentals === 'Rentals not found') return newState;
             action.rentals.forEach(rental => {
                 newState[rental.id] = rental;
             });

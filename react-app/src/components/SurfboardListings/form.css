@@ -15,13 +15,32 @@
     font-size: 20px;
 }
 .surfboard-form select::placeholder, .surfboard-form textarea::placeholder {
-    color: #C5CEE0;
+    color: #FFFDFA;
 }
 .surfboard-form textarea {
     width: 290px;
     resize: none;
     height: 100px;
     font-family: sans-serif;
+}
+.image-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 60px;
+    background-color: #948A73;
+    border: 1px solid #948A73;
+    color: #FFFDFA;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding: 5px;
+}
+.image-container > label, .image-container > div{
+    font-family: sans-serif;
+    color: #FFFDFA;
+}
+.image-container > div{
+    font-size: 12px;
 }
 .surfboard-button {
     width: 300px;

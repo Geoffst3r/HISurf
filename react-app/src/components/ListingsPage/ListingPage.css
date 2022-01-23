@@ -15,6 +15,10 @@
 .surfboard-img{
     padding: 10px;
 }
+.surfboard-img > img{
+    width: 100px;
+    height: 100px;
+}
 .surfboard-img > i{
     color: black;
 }
@@ -87,4 +91,7 @@
 .delete-listing:hover{
     box-shadow: 0 8px 15px rgba(253, 1, 1, 0.2);
     background-color: rgb(248, 68, 68);
+}
+.scheduled-rental{
+    margin-left: 20px;
 }

@@ -52,13 +52,10 @@ export const newRental = (formData, surfboardId) => async (dispatch) => {
     }
 };
 
-export const updateRental = (inputRental) => async (dispatch) => {
-    const {id, date} = inputRental;
-    const res = await fetch(`/api/rentals/${id}/`, {
+export const updateRental = (formData, rentalId) => async (dispatch) => {
+    const res = await fetch(`/api/rentals/${rentalId}/`, {
         method: 'PUT',
-        body: JSON.stringify({
-            date
-        })
+        body: formData
     });
     if (res.ok) {
         const rental = await res.json();

@@ -29,26 +29,6 @@ def post_new_rental(surfboardId):
     db.session.commit()
     return new_rental.to_dict()
 
-# @rental_routes.route('/<int:surfboardId>/', methods=["POST"])
-# def post_new_rental(surfboardId):
-#     data = request.get_json(force=True)
-#     date = data['date']
-#     if date == '':
-#         return jsonify('bad data'), 400
-#     try:
-#         new_rental = {
-#             'date': date,
-#             'surfboardId': surfboardId,
-#             'userId': data['userId']
-#         }
-#         new_rental_db = Rental(**new_rental)
-#         db.session.add(new_rental_db)
-#         db.session.commit()
-#         return new_rental_db.to_dict()
-#     except IntegrityError as e:
-#         print(e)
-#         return jsonify('Database entry error')
-
 @rental_routes.route('/<int:rentalId>/', methods=["PUT"])
 def edit_rental(rentalId):
     rental = Rental.query.filter(Rental.id == rentalId).first()

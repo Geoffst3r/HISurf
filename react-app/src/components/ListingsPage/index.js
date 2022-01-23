@@ -21,6 +21,10 @@ const Listing = () => {
     const rentalsObj = useSelector(state => state.rentals);
     let listing;
     if (listingObj) listing = listingObj[0];
+    let userRentals;
+    if (sessionUser && rentalsObj) {
+        userRentals = Object.values(rentalsObj).filter(rental => rental.userId === sessionUser.id);
+    };
 
     const surfboardId = params.surfboardId;
     let owner_define;
@@ -99,14 +103,22 @@ const Listing = () => {
                     <div className='surfboard-description'>{listing.description}</div>
                 </div>
                 <div className='rental-box'>
-                    {owner_define ? <ul className='upcoming-rentals'>
+                    {owner_define ? Object.values(rentalsObj).length ? <ul className='upcoming-rentals'>
                         {Object.values(rentalsObj).map(rental =>
                             <li className='scheduled-rental'>
                                 {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
                                  ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                             </li>
-                        )}</ul> :
-                        <RentalForm />}
+                        )}
+                    </ul> : <p>No Listings to display</p> : <RentalForm />}
+                    {userRentals.length > 0 && <ul className='upcoming-user-rentals'>
+                        {userRentals.map(rental =>
+                            <li className='scheduled-rental'>
+                                {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
+                                 ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                            </li>
+                        )}
+                    </ul>}
                 </div>
             </div>
         )

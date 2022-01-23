@@ -16,6 +16,8 @@ const Listing = () => {
     const dispatch = useDispatch();
     const [showEditListingModal, setShowEditListingModal] = useState(false);
     const [cogWheelClicked, setCogWheelClicked] = useState(false);
+    const [individualCogWheelClicked, setIndividualCogWheelClicked] = useState(false);
+    const [individualRentalId, setIndividualRentalId] = useState(0);
     const sessionUser = useSelector(state => state.session.user);
     const listingObj = useSelector(state => state.surfboards);
     const rentalsObj = useSelector(state => state.rentals);
@@ -35,24 +37,81 @@ const Listing = () => {
     };
 
     const callGetListing = () => {
+        const editRental = document.getElementById(`rental-edit-${individualRentalId}`);
+        const deleteRental = document.getElementById(`rental-delete-${individualRentalId}`);
+        const cogWheel = document.getElementById(`cog-wheel-${individualRentalId}`);
+        editRental.className = 'edit-rental';
+        deleteRental.className = 'delete-rental';
+        cogWheel.className = 'mod-rental-button';
+        setIndividualRentalId(0);
+        setIndividualCogWheelClicked(false);
         dispatch(listingsActions.getListing(surfboardId));
     };
 
-    const onDelete = async (id) => {
-        await dispatch(rentalsActions.deleteRental(id));
-        dispatch(rentalsActions.getRentals(surfboardId));
-        dispatch(authenticate());
+    const onDelete = async () => {
+        const confirmed = window.confirm('Are you sure you want to remove this request? This action cannot be undone.');
+        if (confirmed) {
+            await dispatch(rentalsActions.deleteRental(individualRentalId));
+            dispatch(rentalsActions.getRentals(surfboardId));
+            dispatch(authenticate());
+        };
     };
 
     const handleDelete = async () => {
-        const confirmed = window.confirm('Are you sure you want to remove this listing? This action cannot be undone.')
+        const confirmed = window.confirm('Are you sure you want to remove this listing? This action cannot be undone.');
         if (confirmed) {
             await dispatch(listingsActions.deleteListing(surfboardId));
             dispatch(listingsActions.getListings());
             dispatch(authenticate());
             history.push(`/surfboards/`);
         };
-    }
+    };
+
+    const modRental = (id) => {
+        setIndividualRentalId(id);
+        const editRental = document.getElementById(`rental-edit-${id}`);
+        const deleteRental = document.getElementById(`rental-delete-${id}`);
+        const cogWheel = document.getElementById(`cog-wheel-${id}`);
+
+        if (cogWheel.className === 'mod-rental-button-persist') {
+            editRental.className = 'edit-rental';
+            deleteRental.className = 'delete-rental';
+            cogWheel.className = 'mod-rental-button';
+            setIndividualCogWheelClicked(false);
+        } else {
+            editRental.className = 'edit-rental-visible';
+            deleteRental.className = 'delete-rental-visible';
+            cogWheel.className = 'mod-rental-button-persist';
+            setIndividualCogWheelClicked(true);
+        };
+    };
+
+    useEffect(() => {
+        if (!individualCogWheelClicked && !individualRentalId) return;
+
+        const closeMenu = (e) => {
+            const editRental = document.getElementById(`rental-edit-${individualRentalId}`);
+            const editDateInput = document.querySelector(`.date-input-${individualRentalId}`);
+            const rentalButton = document.querySelector(`.rental-button-${individualRentalId}`);
+            const deleteRental = document.getElementById(`rental-delete-${individualRentalId}`);
+            const cogWheelButton = document.getElementById(`cog-wheel-${individualRentalId}`);
+            const cogWheel = document.getElementById(`cog-icon-${individualRentalId}`);
+
+            if (editDateInput && rentalButton && deleteRental && cogWheelButton &&
+                e.target !== editDateInput && e.target !== rentalButton &&
+                e.target !== deleteRental && e.target !== cogWheelButton && e.target !== cogWheel) {
+                editRental.className = 'edit-rental';
+                deleteRental.className = 'delete-rental';
+                cogWheelButton.className = 'mod-rental-button';
+                setIndividualCogWheelClicked(false);
+            }
+            return
+        };
+
+        document.addEventListener('click', closeMenu, false);
+
+        return () => document.removeEventListener("click", closeMenu);
+    }, [individualRentalId, individualCogWheelClicked]);
 
     useEffect(() => {
         dispatch(listingsActions.getListing(surfboardId));
@@ -76,9 +135,9 @@ const Listing = () => {
             <div className='listing-and-rental'>
                 <div className='surfboard-listing'>
                     {owner_define && <div className='modifications'>
-                        <button className='mod-channel-button' id={`cog-wheel`}
+                        <button className='mod-rental-button'
                         onClick={() => setCogWheelClicked(true)} hidden={owner_define === true ? false : true}>
-                        <i className='fas fa-cog' id={`cog-icon`}></i></button>
+                        <i className='fas fa-cog'></i></button>
                         {cogWheelClicked && <div className='edit-delete'>
                             <button className='edit-listing' onClick={() => setShowEditListingModal(true)}>
                                 Edit Listing
@@ -110,8 +169,8 @@ const Listing = () => {
                     {owner_define ? Object.values(rentalsObj).length ? <ul className='upcoming-rentals'>
                         {Object.values(rentalsObj).map(rental =>
                             <li className='scheduled-rental'>
-                                {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
-                                 ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                                    {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
+                                    ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                             </li>
                         )}
                     </ul> : <p>No Listings to display</p> : <RentalForm getListing={callGetListing} />}
@@ -119,11 +178,15 @@ const Listing = () => {
                         {userRentals.map(rental =>
                             <li key={rental.id} className='scheduled-rental'>
                                 <div className='individual-date'>
-                                    {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
-                                    ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                                    <div className='date'>
+                                        {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
+                                        ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                                    </div>
+                                    <button className='mod-rental-button' id={`cog-wheel-${rental.id}`}
+                                    onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-cog'/></button>
                                 </div>
-                                <div className='rental-form-edit'><RentalForm getListing={callGetListing} rental={rental} /></div>
-                                <button onClick={() => onDelete(rental.id)} className='delete-rental'>Delete Rental</button>
+                                <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm getListing={callGetListing} rental={rental} /></div>
+                                <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Delete Rental</button>
                             </li>
                         )}
                     </ul>}

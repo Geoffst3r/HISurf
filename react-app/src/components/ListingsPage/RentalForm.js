@@ -13,7 +13,6 @@ const RentalForm = ({ getListing, rental }) => {
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
-  const text = rental ? 'Edit Date' : 'Request Rental';
 
   const surfboardId = params?.surfboardId;
 
@@ -29,6 +28,7 @@ const RentalForm = ({ getListing, rental }) => {
       await dispatch(newRental(formData, surfboardId));
       await dispatch(authenticate());
       await dispatch(getRentals(surfboardId));
+      return setDate('');
     } else {
       return setError(['Please select a date for rental.']);
     }
@@ -44,6 +44,8 @@ const RentalForm = ({ getListing, rental }) => {
       await dispatch(updateRental(formData, rental.id));
       await dispatch(authenticate())
       await dispatch(getRentals(surfboardId));
+      getListing();
+      return setDate('');
     } else {
       return setError(['Please select a date for rental.']);
     }
@@ -64,6 +66,7 @@ const RentalForm = ({ getListing, rental }) => {
           <p className='error'>{error}</p>
         </div>}
         <input
+          className={rental ? `date-input-${rental.id}` : 'date-post'}
           type='date'
           name='rental-date'
           value={date}
@@ -71,7 +74,8 @@ const RentalForm = ({ getListing, rental }) => {
           min='2022-01-01'
           max='2022-12-31'
         />
-        {sessionUser ? <button className='rental-button' type='submit'>{text}</button> :
+        {sessionUser ? rental ? <button className={`rental-button-${rental.id}`} type='submit'>Edit Date</button> :
+        <button className='rental-button' type='submit'>Request Rental</button> :
         <button className='login-button-required' type='button' onClick={() => setShowModal(true)}>Log in to Rent</button>}
       </form>
       {showModal && <Modal onClose={() => setShowModal(false)}>

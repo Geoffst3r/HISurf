@@ -50,11 +50,22 @@
     flex-direction: column;
     width: 100%;
 }
-.mod-channel-button{
+.mod-rental-button{
     background-color: transparent;
     border: none;
     cursor: pointer;
     margin-top: 7px;
+    visibility: hidden;
+}
+.individual-date:hover .mod-rental-button{
+    visibility: visible;
+}
+.mod-rental-button-persist{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 7px;
+    color: white;
 }
 .modifications{
     display: flex;
@@ -97,9 +108,9 @@
     display: flex;
     flex-direction: column;
 }
-.rental-form-edit, .delete-rental{
+.edit-rental, .delete-rental{
     visibility: hidden;
 }
-.scheduled-rental:hover .rental-form-edit, .scheduled-rental:hover .delete-rental{
+.edit-rental-visible, .delete-rental-visible{
     visibility: visible;
 }

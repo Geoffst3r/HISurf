@@ -34,6 +34,16 @@ const Listing = () => {
         setShowEditListingModal(false);
     };
 
+    const callGetListing = () => {
+        dispatch(listingsActions.getListing(surfboardId));
+    };
+
+    const onDelete = async (id) => {
+        await dispatch(rentalsActions.deleteRental(id));
+        dispatch(rentalsActions.getRentals(surfboardId));
+        dispatch(authenticate());
+    };
+
     const handleDelete = async () => {
         const confirmed = window.confirm('Are you sure you want to remove this listing? This action cannot be undone.')
         if (confirmed) {
@@ -110,12 +120,16 @@ const Listing = () => {
                                  ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                             </li>
                         )}
-                    </ul> : <p>No Listings to display</p> : <RentalForm />}
-                    {userRentals.length > 0 && <ul className='upcoming-user-rentals'>
+                    </ul> : <p>No Listings to display</p> : <RentalForm getListing={callGetListing} />}
+                    {userRentals && userRentals.length > 0 && <ul className='upcoming-user-rentals'>
                         {userRentals.map(rental =>
-                            <li className='scheduled-rental'>
-                                {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
-                                 ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                            <li key={rental.id} className='scheduled-rental'>
+                                <div className='individual-date'>
+                                    {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
+                                    ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                                </div>
+                                <div className='rental-form-edit'><RentalForm getListing={callGetListing} rental={rental} /></div>
+                                <button onClick={() => onDelete(rental.id)} className='delete-rental'>Delete Rental</button>
                             </li>
                         )}
                     </ul>}

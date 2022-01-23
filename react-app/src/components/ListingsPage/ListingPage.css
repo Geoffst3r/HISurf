@@ -93,5 +93,13 @@
     background-color: rgb(248, 68, 68);
 }
 .scheduled-rental{
-    margin-left: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.rental-form-edit, .delete-rental{
+    visibility: hidden;
+}
+.scheduled-rental:hover .rental-form-edit, .scheduled-rental:hover .delete-rental{
+    visibility: visible;
 }

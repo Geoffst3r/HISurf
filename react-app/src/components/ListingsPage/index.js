@@ -63,13 +63,7 @@ const Listing = () => {
         if (!cogWheelClicked) return;
 
         const closeMenu = (e) => {
-            const editButton = document.querySelector('.edit-listing');
-            const deleteButton = document.querySelector('.delete-listing');
-
-            if (editButton && deleteButton && e.target !== deleteButton && e.target !== editButton) {
-                setCogWheelClicked(false);
-            }
-            return
+            return setCogWheelClicked(false);
         };
 
         document.addEventListener('click', closeMenu, false);

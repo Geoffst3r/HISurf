@@ -33,13 +33,10 @@ export const getRentals = (surfboardId) => async (dispatch) => {
     };
 };
 
-export const newRental = (inputRental) => async (dispatch) => {
-    const {date, surfboardId, userId} = inputRental;
+export const newRental = (formData, surfboardId) => async (dispatch) => {
     const res = await fetch(`/api/rentals/${surfboardId}/`, {
         method: 'POST',
-        body: JSON.stringify({
-            date, surfboardId, userId
-        })
+        body: formData
     });
     if (res.ok) {
         const rental = await res.json();

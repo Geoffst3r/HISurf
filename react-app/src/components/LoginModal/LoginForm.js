@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../store/session';
 import './LoginForm.css'
 
-const LoginForm = () => {
+const LoginForm = ({ callSetter }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,6 +15,7 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }
+    if (!data && callSetter) callSetter();
   };
 
   const updateEmail = (e) => {
@@ -27,6 +28,7 @@ const LoginForm = () => {
 
   const onDemo = async () => {
     await dispatch(login('demo@aa.io', 'password'));
+    if (callSetter) callSetter();
   };
 
   let errorMSGs = [];

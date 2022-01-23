@@ -16,6 +16,10 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const sessionUser = useSelector(state => state.session.user);
   const surfboardId = inputBoard?.id
   const text = inputBoard ? 'Edit Listing' : 'Post Listing';
+  let inputIMG;
+  if (inputBoard) {
+    inputIMG = inputBoard.image;
+  }
 
   const onCreate = async (e) => {
     e.preventDefault();
@@ -118,8 +122,10 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
             autoComplete="off"
         />
         <div className='image-container'>
+          {inputIMG && <img className='image-input' alt='' src={inputIMG}/>}
           <div className='optional-tag'>(Optional)</div>
-          <label htmlFor='image'>Choose an image to upload (.png, .jpg, .jpeg):</label>
+          {inputIMG ? <label htmlFor='image'>Update Image (.png, .jpg, .jpeg):</label> :
+          <label htmlFor='image'>Upload Image (.png, .jpg, .jpeg):</label>}
           <input
               type='file'
               name='image'

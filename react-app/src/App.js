@@ -26,21 +26,28 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
       <Switch>
         <Route path='/' exact={true}>
+          <NavBar />
           <h1>My Home Page</h1>
         </Route>
         <Route path='/surfboards/' exact={true}>
-          <div className='main-page'>
+          <div className='whole-page'>
             <SideBar />
-            <SurfboardListings />
+            <div className='main-page'>
+              <NavBar />
+              <SurfboardListings />
+            </div>
           </div>
         </Route>
         <Route path='/surfboards/:surfboardId/'>
-          <div className='listings-page'>
+          <div className='whole-page'>
             <SideBar />
-            <ListingsPage />
+            <div className='listings-page'>
+              <NavBar />
+              <ListingsPage />
+            </div>
           </div>
         </Route>
       </Switch>

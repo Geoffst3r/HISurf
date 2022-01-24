@@ -135,7 +135,7 @@ const Listing = () => {
             <div className='listing-and-rental'>
                 <div className='surfboard-listing'>
                     {owner_define && <div className='modifications'>
-                        <button className='mod-rental-button'
+                        <button className='mod-listing-button'
                         onClick={() => setCogWheelClicked(true)} hidden={owner_define === true ? false : true}>
                         <i className='fas fa-cog'></i></button>
                         {cogWheelClicked && <div className='edit-delete'>
@@ -168,7 +168,7 @@ const Listing = () => {
                 <div className='rental-box'>
                     {owner_define ? Object.values(rentalsObj).length ? <ul className='upcoming-rentals'>
                         {Object.values(rentalsObj).map(rental =>
-                            <li className='scheduled-rental'>
+                            <li key={rental.date} className='scheduled-rental'>
                                     {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
                                     ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                             </li>

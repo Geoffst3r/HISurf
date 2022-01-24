@@ -13,6 +13,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const [description, setDescription] = useState(inputBoard ? inputBoard.description : '');
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([]);
+  const [remove_IMG, setRemove_IMG] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
   const surfboardId = inputBoard?.id
   const text = inputBoard ? 'Edit Listing' : 'Post Listing';
@@ -84,7 +85,12 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
 
   const updateImage = (e) => {
     setImage(e.target.files[0]);
-  }
+  };
+
+  const removeIMG = () => {
+    setRemove_IMG(true);
+    return setImage('remove');
+  };
 
   return (
     <>
@@ -122,7 +128,10 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
             autoComplete="off"
         />
         <div className='image-container'>
-          {inputIMG && <img className='image-input' alt='' src={inputIMG}/>}
+          {inputIMG && !remove_IMG && <div className='edit-listing-mod'>
+            <img className='image-input' alt='' src={inputIMG} />
+            <button type='button' className='remove-image-edit-form' onClick={removeIMG}>Remove Image</button>
+          </div>}
           <div className='optional-tag'>(Optional)</div>
           {inputIMG ? <label htmlFor='image'>Update Image (.png, .jpg, .jpeg):</label> :
           <label htmlFor='image'>Upload Image (.png, .jpg, .jpeg):</label>}

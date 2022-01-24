@@ -43,8 +43,6 @@ const SignUpForm = () => {
 
   if (errors) errors.forEach(error => errorMSGs.push(error.split(' : ')[1]));
 
-  console.log(errorMSGs);
-
   return (
     <form onSubmit={onSignUp} className='signup-form'>
       <div className='error-box'>

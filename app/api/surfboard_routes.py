@@ -78,7 +78,11 @@ def edit_listing(surfboardId):
     listing.size = size
     listing.location = location
 
-    if image != 'null':
+    if image == 'null':
+        url = listing.image
+    elif image == 'remove':
+        url = ''
+    elif image != 'null':
         if not allowed_file(image.filename):
             return {"errors": "file type not permitted"}, 400
 

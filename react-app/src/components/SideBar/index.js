@@ -30,7 +30,10 @@ const SideBar = () => {
                     <p className='rentals-title'>Rentals</p>
                     {rentals.length > 0 ? <ul className='rentals'>
                         {rentals.map(rental => (
-                            <NavLink className='rental' key={rental.id} to={`/surfboards/${rental.surfboardId}/`}>{rental.date}</NavLink>
+                            <NavLink className='rental' key={rental.id} to={`/surfboards/${rental.surfboardId}/`}>
+                                {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
+                                ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                            </NavLink>
                         ))}
                     </ul> : <p className='no-listings-message'>You don't have any upcoming rentals booked</p>}
                 </div>

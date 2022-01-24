@@ -61,13 +61,8 @@ const Listings = () => {
                                     <i className='fas fa-camera fa-3x'></i>
                                     <p>No Image</p>
                                 </div>}
-                                <div className='listing-info'>
-                                    <div className='locationANDsize'>
-                                        <div className='listing-location'>{listing.location}</div>
-                                        <div className='listing-size'>{listing.size}' Board</div>
-                                    </div>
-                                    <div className='listing-description'>{listing.description}</div>
-                                </div>
+                                <div className='listing-location'>{listing.location}</div>
+                                <div className='listing-size'>{listing.size}' Board</div>
                             </NavLink>
                         </li>
                     ))}

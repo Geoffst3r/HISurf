@@ -50,6 +50,12 @@
     flex-direction: column;
     width: 100%;
 }
+.mod-listing-button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 7px;
+}
 .mod-rental-button{
     background-color: transparent;
     border: none;

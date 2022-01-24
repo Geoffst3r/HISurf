@@ -1,52 +1,48 @@
 .sidebar{
-    height: calc(100% - 100px);
+    height: 100%;
     width: 200px;
-    border: 1px solid #C5CEE0;
-    border-radius: 50px;
+    border-right: 1px solid black;
     flex-shrink: 0;
-    margin: 25px 0 0 20px;
     background-color: #FFFDFA;
-}
-.split{
-    height: 4%;
-    background-color: #C5CEE0;
 }
 .listings-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 48%;
+    height: 50%;
 }
 .rentals-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 48%;
+    height: 50%;
 }
 .listings-title, .rentals-title{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     border-bottom: 1px solid black;
     margin-bottom: 15px;
 }
-.listings{
+.listings, .rentals{
     display: flex;
     flex-direction: column;
     width: 200px;
     margin: 0;
     padding: 0;
+    overflow-y: visible;
 }
-.listing{
+.listing, .rental{
     display: flex;
+    justify-content: center;
     flex-direction: row;
     text-decoration: none;
     color: #657394;
     margin: 3px 0px;
 }
-.listing:hover{
+.listing:hover, .rental:hover{
     background-color: #C5CEE0;
 }
-.listing p{
+.listing p, .rental{
     margin: 0px 10px;
-    padding: 0;
+    padding: 5px 0px;
 }

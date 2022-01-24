@@ -42,11 +42,12 @@ export const newRental = (formData, surfboardId) => async (dispatch) => {
         const rental = await res.json();
         if (rental !== 'bad data') {
             dispatch(new_Rental(rental));
-            return rental;
         }
     } else if (res.status < 500) {
-        const errors = await res.json();
-        return errors;
+        const data = await res.json();
+        if (data.errors) {
+          return data.errors;
+        }
     } else {
         return ['An error occurred. Please try again.']
     }
@@ -60,7 +61,11 @@ export const updateRental = (formData, rentalId) => async (dispatch) => {
     if (res.ok) {
         const rental = await res.json();
         dispatch(update_Rental(rental));
-        return rental;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+          return data.errors;
+        }
     } else {
         return ['An error occurred. Please try again.']
     }

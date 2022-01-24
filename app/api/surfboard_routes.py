@@ -48,7 +48,7 @@ def post_new_listing():
         db.session.commit()
         return new_surfboard.to_dict()
     else:
-        return jsonify('Database entry error');
+        return jsonify('Database entry error')
 
 
 @surfboard_routes.route('/<int:surfboardId>/')

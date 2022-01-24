@@ -10,44 +10,50 @@ const RentalForm = ({ getListing, rental }) => {
   const params = useParams();
   const dispatch = useDispatch();
   const [date, setDate] = useState('');
-  const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [errors, setErrors] = useState([]);
   const sessionUser = useSelector(state => state.session.user);
 
   const surfboardId = params?.surfboardId;
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setErrors([]);
 
     if (date && sessionUser) {
       const formData = new FormData();
       formData.append('date', date);
       formData.append('surfboardId', surfboardId);
       formData.append('userId', sessionUser.id);
-      await dispatch(newRental(formData, surfboardId));
-      await dispatch(authenticate());
-      await dispatch(getRentals(surfboardId));
-      return setDate('');
-    } else {
-      return setError(['Please select a date for rental.']);
-    }
+      const data = await dispatch(newRental(formData, surfboardId));
+      console.log(data);
+      if (data) {
+        return setErrors(data);
+      } else {
+        await dispatch(authenticate());
+        await dispatch(getRentals(surfboardId));
+        return setDate('');
+      };
+    };
   };
 
   const onEdit = async (e) => {
     e.preventDefault();
-    setError('');
+    setErrors([]);
 
-    if (date) {
+    if (date && sessionUser) {
       const formData = new FormData();
       formData.append('date', date);
-      await dispatch(updateRental(formData, rental.id));
-      await dispatch(authenticate())
-      await dispatch(getRentals(surfboardId));
-      getListing();
-      return setDate('');
-    } else {
-      return setError(['Please select a date for rental.']);
+      formData.append('surfboardId', surfboardId);
+      formData.append('userId', sessionUser.id);
+      const data = await dispatch(updateRental(formData, rental.id));
+      if (data) {
+        return setErrors(data);
+      } else {
+        await dispatch(authenticate());
+        await dispatch(getRentals(surfboardId));
+        return setDate('');
+      };
     }
   };
 
@@ -59,11 +65,16 @@ const RentalForm = ({ getListing, rental }) => {
     setDate(e.target.value);
   };
 
+  let errorMSGs = [];
+  if (errors.length) errors.forEach(error => errorMSGs.push(error.split(' : ')[1]));
+
   return (
     <>
       <form onSubmit={rental ? onEdit : onSubmit} className='rental-form'>
-        {error && <div className='error-box'>
-          <p className='error'>{error}</p>
+        {errors && <div className='error-box'>
+          {errorMSGs.map((error, ind) => (
+            <div key={ind} className='error'>--{error}</div>
+          ))}
         </div>}
         <input
           className={rental ? `date-input-${rental.id}` : 'date-post'}

@@ -5,8 +5,7 @@ import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
 import SurfboardListings from './components/SurfboardListings';
 import ListingsPage from './components/ListingsPage';
-// import UsersList from './components/UsersList';
-// import User from './components/User';
+import SplashPage from './components/SplashPage';
 import { authenticate } from './store/session';
 
 function App() {
@@ -26,11 +25,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <NavBar /> */}
       <Switch>
         <Route path='/' exact={true}>
-          <NavBar />
-          <h1>My Home Page</h1>
+          <SplashPage />
         </Route>
         <Route path='/surfboards/' exact={true}>
           <div className='whole-page'>

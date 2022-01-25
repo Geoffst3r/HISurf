@@ -5,17 +5,15 @@
     flex-shrink: 0;
     background-color: #FFFDFA;
 }
-.listings-container{
+.listings-container, .rentals-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 50%;
+    overflow-y: scroll;
 }
-.rentals-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 50%;
+.listings-container::-webkit-scrollbar, .rentals-container::-webkit-scrollbar{
+    display: none;
 }
 .listings-title, .rentals-title{
     font-size: 20px;

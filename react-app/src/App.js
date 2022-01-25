@@ -39,7 +39,7 @@ function App() {
           </div>
         </Route>
         <Route path='/surfboards/:surfboardId/'>
-          <div className='whole-page'>
+          <div className='individual-page'>
             <SideBar />
             <div className='listings-page'>
               <NavBar />

@@ -1,7 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import Carousel from '../Carousel';
 import * as listingsActions from '../../store/surfboard';
 import './ListingsPage.css';
 
@@ -52,21 +52,7 @@ const Listings = () => {
                     </div>
                     <button className='filter-set' onClick={() => filter()}>Filter</button>
                 </div>
-                <ul className='listings-list'>
-                    {listings.map(listing => (
-                        <li key={listing.id}>
-                            <NavLink className='individual-item' to={`/surfboards/${listing.id}/`}>
-                                {listing.image ? <div className='listing-img'><img alt='' src={`${listing.image}`} /></div>:
-                                <div className='listing-img'>
-                                    <i className='fas fa-camera fa-3x'></i>
-                                    <p>No Image</p>
-                                </div>}
-                                <div className='listing-location'>{listing.location}</div>
-                                <div className='listing-size'>{listing.size}' Board</div>
-                            </NavLink>
-                        </li>
-                    ))}
-                </ul>
+                <Carousel listingsObj={listingsObj} />
             </div>
         )
     } else {
@@ -103,7 +89,7 @@ const Listings = () => {
             </div>
         )
     }
-}
+};
 
 
 export default Listings;

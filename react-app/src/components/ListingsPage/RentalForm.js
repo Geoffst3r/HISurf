@@ -26,7 +26,6 @@ const RentalForm = ({ getListing, rental }) => {
       formData.append('surfboardId', surfboardId);
       formData.append('userId', sessionUser.id);
       const data = await dispatch(newRental(formData, surfboardId));
-      console.log(data);
       if (data) {
         return setErrors(data);
       } else {

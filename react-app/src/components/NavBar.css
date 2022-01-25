@@ -16,11 +16,12 @@ nav ul {
     cursor: pointer;
 }
 .appName{
-    color: #657394;
+    color: #FFFDFA;
     font-family: sans-serif;
     font-weight: bold;
     margin-left: 50px;
     font-size: 30px;
+    font-style: italic;
     border: none;
     background-color: transparent;
     padding: 5px;

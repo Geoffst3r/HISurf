@@ -5,12 +5,11 @@
 }
 .surfboards-list-page{
     width: 100%;
-    margin-bottom: 75px;
-    height: calc(100vh - 75px);
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .filters{
     display: flex;

@@ -152,18 +152,22 @@ const Listing = () => {
                             </Modal>
                         )}
                     </div>}
-                    <div className='imgANDinfo'>
-                        {listing.image ? <div className='surfboard-img'><img alt='' src={`${listing.image}`} /></div> :
+                    <div className='img-and-info'>
                         <div className='surfboard-img'>
+                            {listing.image ? <img alt='' src={`${listing.image}`} /> :
+                            <>
                             <i className='fas fa-camera fa-3x'></i>
                             <p>No Image</p>
-                        </div>}
+                            </>}
+                        </div>
                         <div className='surfboard-info'>
-                            <div className='surfboard-location'>{listing.location}</div>
-                            <div className='surfboard-size'>{listing.size}' Board</div>
+                            <div className='island-and-info'>
+                                <div className='surfboard-location'>{listing.location}</div>
+                                <div className='surfboard-size'>{listing.size}' Board</div>
+                            </div>
+                            <div className='surfboard-description'>{listing.description}</div>
                         </div>
                     </div>
-                    <div className='surfboard-description'>{listing.description}</div>
                 </div>
                 <div className='rental-box'>
                     {owner_define ? Object.values(rentalsObj).length ? <ul className='upcoming-rentals'>
@@ -173,7 +177,7 @@ const Listing = () => {
                                     ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                             </li>
                         )}
-                    </ul> : <p>No Listings to display</p> : <RentalForm getListing={callGetListing} />}
+                    </ul> : <p>No Upcoming Rentals</p> : <RentalForm getListing={callGetListing} />}
                     {userRentals && userRentals.length > 0 && <ul className='upcoming-user-rentals'>
                         {userRentals.map(rental =>
                             <li key={rental.id} className='scheduled-rental'>

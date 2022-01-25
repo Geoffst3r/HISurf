@@ -48,7 +48,7 @@ const NavBar = () => {
   return (
     <nav>
       <NavLink to='/surfboards/'>
-          <button className='appName'>HI Surf</button>
+          <button className='appName'>🏄</button>
       </NavLink>
       <ul>
         {sessionLinks}

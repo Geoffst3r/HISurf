@@ -1,67 +1,76 @@
+.listing-and-rental{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
 .surfboard-listing{
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 20px;
     text-decoration: none;
-    background-color: #FFFDFA;
-    height: fit-content;
+    margin-left: 10px;
 }
-.listing-and-rental{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: fit-content;
-    width: 500px;
-}
-.img-and-info{
+.surfboard-info{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
-.surfboard-img{
-    padding: 10px;
-    height: fit-content;
-    width: 300px;
-}
-.surfboard-img > img{
-    width: 300px;
-    height: 400px;
-}
-.surfboard-img > i{
+.surfboard-size{
+    font-size: 18px;
     color: black;
-}
-.surfboard-img > p{
     margin: 0;
     padding: 0;
-    font-size: 12px;
-    text-decoration: none;
-    color: black;
+    align-self: flex-end;
 }
 .surfboard-location{
     font-size: 30px;
     font-family: sans-serif;
     color: black;
-    margin-left: 20px;
+    margin: 0;
+    padding: 0;
 }
-.surfboard-size{
-    font-size: 18px;
+.surfboard-img{
+    background-color: #FFFDFA;
+    padding: 10px;
+    border-radius: 10px;
+    height: 80vh;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.surfboard-img > img{
+    width: 100%;
+    height: 100%;
+}
+.surfboard-img > i{
     color: black;
-    margin-left: 20px;
 }
-.surfboard-description{
-    margin-left: 20px;
-    font-size: 16px;
-    color: black;
-}
-.surfboard-info{
+.no-image-container{
+    height: 100%;
+    width: 100%;
+    background-image: url('https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image.jpg');
+    background-size: 100% 100%;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
-.island-and-info{
-    display: flex;
-    flex-direction: row;
+.no-image-container > p{
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #FFFDFA;
+}
+.no-image-container > i{
+    color: #FFFDFA;
+}
+.rental-box{
+    height: 100%;
+    width: 300px;
+    margin: 225px 0 0 50px;
 }
 .mod-listing-button{
     background-color: transparent;
@@ -89,7 +98,7 @@
 .modifications{
     display: flex;
     flex-direction: row;
-    height: 60px;
+    height: 30px;
     align-items: flex-start;
 }
 .edit-listing, .delete-listing{

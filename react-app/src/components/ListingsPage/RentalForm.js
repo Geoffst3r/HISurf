@@ -5,6 +5,7 @@ import { getRentals, newRental, updateRental } from '../../store/rental';
 import { authenticate } from '../../store/session';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginModal/LoginForm';
+import './form.css'
 
 const RentalForm = ({ getListing, rental }) => {
   const params = useParams();
@@ -70,9 +71,9 @@ const RentalForm = ({ getListing, rental }) => {
   return (
     <>
       <form onSubmit={rental ? onEdit : onSubmit} className='rental-form'>
-        {errors && <div className='error-box'>
+        {errorMSGs.length > 0 && <div className='rental-error-box'>
           {errorMSGs.map((error, ind) => (
-            <div key={ind} className='error'>--{error}</div>
+            <div key={ind} className='rental-error'>-{error}</div>
           ))}
         </div>}
         <input

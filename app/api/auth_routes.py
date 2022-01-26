@@ -29,7 +29,10 @@ def authenticate():
         'size': surfboard.size, 'location': surfboard.location} for surfboard in surfboards}
         rentals = Rental.query.filter(Rental.userId == current_user.id).all()
         rentals_list = {rental.id: {'id': rental.id, 'surfboardId': rental.surfboardId,
-         'date': rental.date} for rental in rentals}
+        'date': rental.date,
+        'size': Surfboard.query.filter(Surfboard.id == rental.surfboardId).first().size,
+        'location': Surfboard.query.filter(Surfboard.id == rental.surfboardId).first().location}
+        for rental in rentals}
         res_user = {'id': current_user.id, 'username': current_user.username, 'listings': surfboards_list,
         'rentals': rentals_list}
         return jsonify(res_user)
@@ -52,9 +55,12 @@ def login():
         surfboards = Surfboard.query.filter(Surfboard.ownerId == user.id).all()
         surfboards_list = {surfboard.id: {'id': surfboard.id, 'description': surfboard.description,
         'size': surfboard.size, 'location': surfboard.location} for surfboard in surfboards}
-        rentals = Rental.query.filter(Rental.userId == user.id).all()
+        rentals = Rental.query.join(Surfboard).filter(Rental.userId == user.id).all()
         rentals_list = {rental.id: {'id': rental.id, 'surfboardId': rental.surfboardId,
-        'date': rental.date} for rental in rentals}
+        'date': rental.date,
+        'size': Surfboard.query.filter(Surfboard.id == rental.surfboardId).first().size,
+        'location': Surfboard.query.filter(Surfboard.id == rental.surfboardId).first().location}
+        for rental in rentals}
         res_user = {'id': user.id, 'username': user.username, 'listings': surfboards_list,
         'rentals': rentals_list}
         return jsonify(res_user)

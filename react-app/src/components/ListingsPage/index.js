@@ -36,18 +36,6 @@ const Listing = () => {
         setShowEditListingModal(false);
     };
 
-    const callGetListing = () => {
-        const editRental = document.getElementById(`rental-edit-${individualRentalId}`);
-        const deleteRental = document.getElementById(`rental-delete-${individualRentalId}`);
-        const cogWheel = document.getElementById(`cog-wheel-${individualRentalId}`);
-        editRental.className = 'edit-rental';
-        deleteRental.className = 'delete-rental';
-        cogWheel.className = 'mod-rental-button';
-        setIndividualRentalId(0);
-        setIndividualCogWheelClicked(false);
-        dispatch(listingsActions.getListing(surfboardId));
-    };
-
     const onDelete = async () => {
         const confirmed = window.confirm('Are you sure you want to remove this request? This action cannot be undone.');
         if (confirmed) {
@@ -165,6 +153,8 @@ const Listing = () => {
                     </div>
                 </div>
                 <div className='rental-box'>
+                    <div className='surfboard-description'>{listing.description}</div>
+                    {owner_define && <p className='rentals-header'>Upcoming Rentals</p>}
                     {owner_define ? Object.values(rentalsObj).length ? <ul className='upcoming-rentals'>
                         {Object.values(rentalsObj).map(rental =>
                             <li key={rental.date} className='scheduled-rental'>
@@ -172,7 +162,7 @@ const Listing = () => {
                                     ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                             </li>
                         )}
-                    </ul> : <p>No Upcoming Rentals</p> : <RentalForm getListing={callGetListing} />}
+                    </ul> : <p>No Upcoming Rentals</p> : <RentalForm />}
                     {userRentals && userRentals.length > 0 && <ul className='upcoming-user-rentals'>
                         {userRentals.map(rental =>
                             <li key={rental.id} className='scheduled-rental'>
@@ -184,7 +174,7 @@ const Listing = () => {
                                     <button className='mod-rental-button' id={`cog-wheel-${rental.id}`}
                                     onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-cog'/></button>
                                 </div>
-                                <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm getListing={callGetListing} rental={rental} /></div>
+                                <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} /></div>
                                 <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Delete Rental</button>
                             </li>
                         )}

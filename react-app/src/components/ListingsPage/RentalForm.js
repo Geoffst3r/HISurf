@@ -7,7 +7,7 @@ import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginModal/LoginForm';
 import './form.css'
 
-const RentalForm = ({ getListing, rental }) => {
+const RentalForm = ({ rental }) => {
   const params = useParams();
   const dispatch = useDispatch();
   const [date, setDate] = useState('');
@@ -16,6 +16,8 @@ const RentalForm = ({ getListing, rental }) => {
   const sessionUser = useSelector(state => state.session.user);
 
   const surfboardId = params?.surfboardId;
+  const today = new Date();
+  const minDate = `2022-${today.getMonth() + 1}-${today.getDate() + 1}`;
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -82,7 +84,7 @@ const RentalForm = ({ getListing, rental }) => {
           name='rental-date'
           value={date}
           onChange={updateDate}
-          min='2022-01-01'
+          min={minDate}
           max='2022-12-31'
         />
         {sessionUser ? rental ? <button className={`rental-button-${rental.id}`} type='submit'>Edit Date</button> :

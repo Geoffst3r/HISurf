@@ -25,14 +25,21 @@ const SideBar = () => {
                         ))}
                     </ul> : <p className='no-listings-message'>You haven't posted any listings</p>}
                 </div>
-                <div className='split'></div>
                 <div className='rentals-container'>
                     <p className='rentals-title'>Rentals</p>
                     {rentals.length > 0 ? <ul className='rentals'>
                         {rentals.map(rental => (
                             <NavLink className='rental' key={rental.id} to={`/surfboards/${rental.surfboardId}/`}>
-                                {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
-                                ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                                <div className='rental-info'>
+                                    <div className='board-info'>
+                                        <div className='board-location'>{rental.location}</div>
+                                        <div className='board-size'>{rental.size}'</div>
+                                    </div>
+                                    <div className='rental-date'>
+                                        {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
+                                        ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                                    </div>
+                                </div>
                             </NavLink>
                         ))}
                     </ul> : <p className='no-listings-message'>You don't have any upcoming rentals booked</p>}

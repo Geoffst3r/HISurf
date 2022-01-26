@@ -37,11 +37,14 @@ const LoginForm = ({ callSetter }) => {
   return (
     <>
       <form className='login-form' onSubmit={onLogin}>
-        <div className='error-box'>
-          {errorMSGs.map((error, ind) => (
-            <div key={ind} className='error'>--{error}</div>
-          ))}
-        </div>
+        {errors.length > 0 && <div className='login-error-info'>
+          <i className='fas fa-times-circle fa-2x' />
+          <div className='login-error-box'>
+            {errorMSGs.map((error, ind) => (
+              <div key={ind} className='login-error'>-{error}</div>
+            ))}
+          </div>
+        </div>}
         <input
           name='email'
           type='text'

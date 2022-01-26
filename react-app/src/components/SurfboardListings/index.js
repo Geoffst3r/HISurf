@@ -57,7 +57,7 @@ const Listings = () => {
         )
     } else {
         return (
-            <div className='surfboards-list-page'>
+            <div className='all-listings-page'>
                 <div className='filters'>
                     <div className='island-filter'>
                         <p>Island:</p>

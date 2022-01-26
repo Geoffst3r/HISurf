@@ -9,12 +9,12 @@ const Carousel = ({ listingsObj }) => {
     let carouselListings = [];
     if (listingsObj) {
         listings = Object.values(listingsObj);
-        maxIndex = Math.ceil(listings.length/5 - 1);
+        maxIndex = Math.ceil(listings.length/12 - 1);
     };
 
     const getCarouselListings = () => {
         if (listings) {
-            for (let i = index*5; i < (index+1)*5; i++) {
+            for (let i = index*12; i < (index+1)*12; i++) {
                 if (listings[i]) carouselListings.push(listings[i]);
             };
         };

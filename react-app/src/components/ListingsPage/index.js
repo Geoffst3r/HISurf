@@ -152,21 +152,16 @@ const Listing = () => {
                             </Modal>
                         )}
                     </div>}
-                    <div className='img-and-info'>
-                        <div className='surfboard-img'>
-                            {listing.image ? <img alt='' src={`${listing.image}`} /> :
-                            <>
-                            <i className='fas fa-camera fa-3x'></i>
+                    <div className='surfboard-info'>
+                        <div className='surfboard-location'>{listing.location}</div>
+                        <div className='surfboard-size'>{listing.size}' Board</div>
+                    </div>
+                    <div className='surfboard-img'>
+                        {listing.image ? <img alt='' src={`${listing.image}`} /> :
+                        <div className='no-image-container'>
+                            <i className='fas fa-camera fa-5x'></i>
                             <p>No Image</p>
-                            </>}
-                        </div>
-                        <div className='surfboard-info'>
-                            <div className='island-and-info'>
-                                <div className='surfboard-location'>{listing.location}</div>
-                                <div className='surfboard-size'>{listing.size}' Board</div>
-                            </div>
-                            <div className='surfboard-description'>{listing.description}</div>
-                        </div>
+                        </div>}
                     </div>
                 </div>
                 <div className='rental-box'>

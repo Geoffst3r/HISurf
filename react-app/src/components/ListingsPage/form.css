@@ -1,3 +1,7 @@
+.rental-form{
+    display: flex;
+    flex-direction: column;
+}
 .rental-form input{
     background-color: transparent;
     border: none;

@@ -1,8 +1,18 @@
 from flask_wtf import FlaskForm
 from wtforms import DateField, IntegerField
 from wtforms.validators import DataRequired, ValidationError
+from datetime import date
 from app.models import Rental
 
+def future_date(form, field):
+    today = date.today()
+    dateString = today.strftime("%Y%m%d")
+    dateNum = int(dateString) + 1
+
+    inputDate = "".join(str(field.data).split("-"))
+    inputDateNum = int(inputDate)
+    if inputDateNum < dateNum:
+        raise ValidationError('Reservation date must be in the future.')
 
 def approved_rental(form, field):
     # Checking if password matches
@@ -18,6 +28,6 @@ def approved_rental(form, field):
         raise ValidationError('This board is already being rented on this day.')
 
 class RentalForm(FlaskForm):
-    date = DateField('date', validators=[DataRequired(), approved_rental])
+    date = DateField('date', validators=[DataRequired(), future_date, approved_rental])
     surfboardId = IntegerField('surfboardId')
     userId = IntegerField('userId')

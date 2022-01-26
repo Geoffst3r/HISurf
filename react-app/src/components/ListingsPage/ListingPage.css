@@ -68,9 +68,26 @@
     color: #FFFDFA;
 }
 .rental-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
     width: 300px;
-    margin: 225px 0 0 50px;
+    margin: 200px 0 0 50px;
+    overflow-y: scroll;
+}
+.rental-box::-webkit-scrollbar {
+    display: none;
+}
+.surfboard-description{
+    font-family: monospace;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.rentals-header{
+    font-family: sans-serif;
+    font-size: 16px;
+    color: #657394;
 }
 .mod-listing-button{
     background-color: transparent;

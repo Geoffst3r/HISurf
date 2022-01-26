@@ -95,44 +95,55 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   return (
     <>
       <form onSubmit={inputBoard ? onEdit : onCreate} className='surfboard-form'>
-        <div className='error-box'>
-          {errors.length > 0 && errors.map((error, ind) => (
-            <div key={ind} className='error'>--{error}</div>
-          ))}
+        {errors.length > 0 && <div className='listing-error-info'>
+          <i className='fas fa-times-circle fa-2x' />
+          <div className='listing-error-box'>
+            {errors.map((error, ind) => (
+              <div key={ind} className='listing-error'>-{error}</div>
+            ))}
+          </div>
+        </div>}
+        <div className='island-container'>
+          <div className='required-tag'><span className='required-star'>*</span> Required</div>
+          <select value={location} onChange={updateLocation}>
+              <option value=''>-Island-</option>
+              <option value='Oahu'>Oahu</option>
+              <option value='Maui'>Maui</option>
+              <option value='Big Island'>Big Island</option>
+              <option value='Kaui'>Kauai</option>
+              <option value='Molokai'>Molokai</option>
+              <option value='Lanai'>Lanai</option>
+          </select>
         </div>
-        <select value={location} onChange={updateLocation}>
-            <option value=''>--Island--</option>
-            <option value='Oahu'>Oahu</option>
-            <option value='Maui'>Maui</option>
-            <option value='Big Island'>Big Island</option>
-            <option value='Kaui'>Kauai</option>
-            <option value='Molokai'>Molokai</option>
-            <option value='Lanai'>Lanai</option>
-        </select>
-        <select value={size} onChange={updateSize}>
-            <option value='0'>--Size--</option>
-            <option value='6'>6'</option>
-            <option value='7'>7'</option>
-            <option value='8'>8'</option>
-            <option value='9'>9'</option>
-            <option value='10'>10'</option>
-            <option value='11'>11'</option>
-        </select>
-        <textarea
-            placeholder='Description'
-            name='description'
-            type='text'
-            value={description}
-            onChange={updateDescription}
-            required
-            autoComplete="off"
-        />
+        <div className='size-container'>
+          <div className='required-tag'><span className='required-star'>*</span> Required</div>
+          <select value={size} onChange={updateSize}>
+              <option value='0'>-Size-</option>
+              <option value='6'>6'</option>
+              <option value='7'>7'</option>
+              <option value='8'>8'</option>
+              <option value='9'>9'</option>
+              <option value='10'>10'</option>
+              <option value='11'>11'</option>
+          </select>
+        </div>
+        <div className='description-container'>
+          <div className='required-tag'><span className='required-star'>*</span> Required</div>
+          <textarea
+              placeholder='Description'
+              name='description'
+              type='text'
+              value={description}
+              onChange={updateDescription}
+              required
+              autoComplete="off"
+          />
+        </div>
         <div className='image-container'>
           {inputIMG && !remove_IMG && <div className='edit-listing-mod'>
             <img className='image-input' alt='' src={inputIMG} />
             <button type='button' className='remove-image-edit-form' onClick={removeIMG}>Remove Image</button>
           </div>}
-          <div className='optional-tag'>(Optional)</div>
           {inputIMG ? <label htmlFor='image'>Update Image (.png, .jpg, .jpeg):</label> :
           <label htmlFor='image'>Upload Image (.png, .jpg, .jpeg):</label>}
           <input

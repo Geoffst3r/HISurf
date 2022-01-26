@@ -1,72 +1,87 @@
 .surfboard-form {
-    background-color: #e1d9c7;
+    background-color: #657394;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
 }
-.surfboard-form select, .surfboard-form textarea {
+.required-tag{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+.required-star{
+    color: orange;
+}
+.surfboard-form select{
     width: 300px;
-    background-color: #948A73;
-    border: 1px solid #948A73;
-    border-radius: 3px;
-    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    font-family: monospace;
+    font-size: 20px;
+    border: none;
+    color: #FFFDFA;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+}
+.surfboard-form textarea {
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 10px;
     padding: 5px;
     color: #FFFDFA;
     font-size: 20px;
-}
-.surfboard-form select::placeholder, .surfboard-form textarea::placeholder {
-    color: #FFFDFA;
-}
-.surfboard-form textarea {
-    width: 290px;
     resize: none;
-    height: 100px;
+    height: 200px;
     font-family: sans-serif;
 }
 .image-container{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 100px;
-    background-color: #948A73;
-    border: 1px solid #948A73;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.6);
     color: #FFFDFA;
-    margin-bottom: 10px;
-    border-radius: 3px;
+    border-radius: 10px;
     padding: 5px;
 }
 .image-container > label, .image-container > div{
     font-family: sans-serif;
     color: #FFFDFA;
-}
-.image-container > div{
     font-size: 12px;
 }
 .surfboard-button {
-    width: 300px;
-   color: #e1d9c7;
-   background-color: #657394;
-   border: 1px solid #657394;
-   border-radius: 3px;
-   margin-top: 10px;
-   padding: 5px;
-   cursor: pointer;
+    font-size: 20px;
+    width: 150px;
+    color: #657394;
+    background-color: #FFFDFA;
+    border: 1px solid #FFFDFA;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    transition-duration: .3s;
+    transition-property: color, background-color;
+}
+.surfboard-button:hover{
+    background-color: blue;
+    color: #FFFDFA;
 }
 .surfboard-button:active{
     background-color: #C5CEE0;
     border: 1px solid #C5CEE0;
 }
-.error-box{
-    width: 100%;
-    margin-bottom: 10px;
+.listing-error-info{
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    flex-direction: row;
 }
-.error{
-    color: red;
+.listing-error-info > i{
+    color: orange;
 }
-.image-input{
-    height: 50px;
-    width: 50px;
+.listing-error-box{
+    font-family: sans-serif;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    gap: 10px;
+    color: orange;
 }

@@ -1,59 +1,70 @@
 .login-form {
-    background-color: #e1d9c7;
+    background-color: #657394;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .login-form input {
-    width: 300px;
-    background-color: #948A73;
-    border: 1px solid #948A73;
-    border-radius: 3px;
-    margin-bottom: 10px;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    margin-bottom: 20px;
     padding: 5px;
     color: #FFFDFA;
+    text-align: center;
+    font-size: 20px;
 }
-.login-form input::placeholder {
-    color: #C5CEE0;
+.login-form input:focus{
+    outline-color: #FFFDFA;
+    outline-style: double;
 }
 .login-button {
-    width: 300px;
-   color: #e1d9c7;
-   background-color: #657394;
-   border: 1px solid #657394;
-   border-radius: 3px;
-   margin-top: 10px;
-   padding: 5px;
-   cursor: pointer;
+    font-size: 20px;
+    width: 150px;
+    color: #657394;
+    background-color: #FFFDFA;
+    border: 1px solid #FFFDFA;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    transition-duration: .3s;
+    transition-property: color, background-color;
+}
+.login-button:hover{
+    background-color: blue;
+    color: #FFFDFA;
 }
 .login-button:active{
     background-color: #C5CEE0;
     border: 1px solid #C5CEE0;
 }
-.error-box{
-    width: 100%;
-    margin-bottom: 10px;
+.login-error-info{
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    flex-direction: row;
 }
-.error{
-    color: red;
+.login-error-info > i{
+    color: orange;
+}
+.login-error-box{
+    font-family: sans-serif;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    gap: 10px;
+    color: orange;
 }
 .demo-user{
     font-family: sans-serif;
     font-size: 20px;
     background-color: transparent;
-    border: 1px solid #657394;
+    border: none;
     padding: 5px;
-    border-radius: 10px;
     cursor: pointer;
-    transform: translate(100px, 30px);
-    color: #657394;
+    transform: translate(50%, 50%);
+    color: #FFFDFA;
     transition-duration: .3s;
     transition-property: color, background-color;
 }
 .demo-user:hover{
-    color: #FFFDFA;
-    background-color: #657394;
+    text-decoration: underline;
 }

@@ -1,42 +1,55 @@
 .signup-form {
-    background-color: #e1d9c7;
+    background-color: #657394;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .signup-form input {
-    width: 300px;
-    background-color: #948A73;
-    border: 1px solid #948A73;
-    border-radius: 3px;
-    margin-bottom: 10px;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    margin-bottom: 20px;
     padding: 5px;
     color: #FFFDFA;
+    text-align: center;
+    font-size: 20px;
 }
-.signup-form input::placeholder {
-    color: #C5CEE0;
+.signup-form input:focus{
+    outline-color: #FFFDFA;
+    outline-style: double;
 }
 .signup-button {
-    width: 300px;
-   color: #e1d9c7;
-   background-color: #657394;
-   border: 1px solid #657394;
-   border-radius: 3px;
-   margin-top: 10px;
-   padding: 5px;
-   cursor: pointer;
+    font-size: 20px;
+    width: 150px;
+    color: #657394;
+    background-color: #FFFDFA;
+    border: 1px solid #FFFDFA;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    transition-duration: .3s;
+    transition-property: color, background-color;
+}
+.signup-button:hover{
+    background-color: blue;
+    color: #FFFDFA;
 }
 .signup-button:active{
     background-color: #C5CEE0;
     border: 1px solid #C5CEE0;
 }
-.error-box{
-    width: 100%;
-    margin-bottom: 10px;
+.signup-error-info{
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    flex-direction: row;
 }
-.error{
-    color: red;
+.signup-error-info > i{
+    color: orange;
+}
+.signup-error-box{
+    font-family: sans-serif;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    gap: 10px;
+    color: orange;
 }

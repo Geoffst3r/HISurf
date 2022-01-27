@@ -39,13 +39,6 @@
     background-color: #C5CEE0;
     border: 1px solid #C5CEE0;
 }
-.login-error-info{
-    display: flex;
-    flex-direction: row;
-}
-.login-error-info > i{
-    color: orange;
-}
 .login-error-box{
     font-family: sans-serif;
     margin-bottom: 10px;
@@ -55,15 +48,13 @@
 }
 .demo-user{
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     background-color: transparent;
     border: none;
     padding: 5px;
     cursor: pointer;
-    transform: translate(50%, 50%);
+    transform: translate(0, 100%);
     color: #FFFDFA;
-    transition-duration: .3s;
-    transition-property: color, background-color;
 }
 .demo-user:hover{
     text-decoration: underline;

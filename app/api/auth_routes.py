@@ -1,10 +1,12 @@
 from flask import Blueprint, jsonify, session, request
+from flask_login import current_user, login_user, logout_user
+from datetime import date
 from app.models import User, Surfboard, Rental, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
-from flask_login import current_user, login_user, logout_user
 
 auth_routes = Blueprint('auth', __name__)
+today = date.today()
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -27,7 +29,7 @@ def authenticate():
         surfboards = Surfboard.query.filter(Surfboard.ownerId == current_user.id).all()
         surfboards_list = {surfboard.id: {'id': surfboard.id, 'description': surfboard.description,
         'size': surfboard.size, 'location': surfboard.location} for surfboard in surfboards}
-        rentals = Rental.query.filter(Rental.userId == current_user.id).all()
+        rentals = Rental.query.filter(Rental.userId == current_user.id, Rental.date >= today).all()
         rentals_list = {rental.id: {'id': rental.id, 'surfboardId': rental.surfboardId,
         'date': rental.date,
         'size': Surfboard.query.filter(Surfboard.id == rental.surfboardId).first().size,
@@ -55,7 +57,7 @@ def login():
         surfboards = Surfboard.query.filter(Surfboard.ownerId == user.id).all()
         surfboards_list = {surfboard.id: {'id': surfboard.id, 'description': surfboard.description,
         'size': surfboard.size, 'location': surfboard.location} for surfboard in surfboards}
-        rentals = Rental.query.join(Surfboard).filter(Rental.userId == user.id).all()
+        rentals = Rental.query.join(Surfboard).filter(Rental.userId == user.id, Rental.date >= today).all()
         rentals_list = {rental.id: {'id': rental.id, 'surfboardId': rental.surfboardId,
         'date': rental.date,
         'size': Surfboard.query.filter(Surfboard.id == rental.surfboardId).first().size,

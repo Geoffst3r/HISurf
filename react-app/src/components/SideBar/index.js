@@ -9,7 +9,10 @@ const SideBar = () => {
     let listings;
     let rentals;
     if (listingsObj) listings = Object.values(listingsObj);
-    if (rentalsObj) rentals = Object.values(rentalsObj);
+    if (rentalsObj) {
+        let rentalsArr = Object.values(rentalsObj);
+        rentals = rentalsArr.sort((a, b) => new Date(a.date) - new Date(b.date));
+    };
 
     if (user) {
         return (

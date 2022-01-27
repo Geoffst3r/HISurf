@@ -25,7 +25,8 @@ const Listing = () => {
     if (listingObj) listing = listingObj[0];
     let userRentals;
     if (sessionUser && rentalsObj) {
-        userRentals = Object.values(rentalsObj).filter(rental => rental.userId === sessionUser.id);
+        let rentalsArr = Object.values(rentalsObj).filter(rental => rental.userId === sessionUser.id);
+        userRentals = rentalsArr.sort((a, b) => new Date(a.date) - new Date(b.date));
     };
 
     const surfboardId = params.surfboardId;
@@ -156,7 +157,8 @@ const Listing = () => {
                     <div className='surfboard-description'>{listing.description}</div>
                     {owner_define && <p className='rentals-header'>Upcoming Rentals</p>}
                     {owner_define ? Object.values(rentalsObj).length ? <ul className='upcoming-rentals'>
-                        {Object.values(rentalsObj).map(rental =>
+                        {Object.values(rentalsObj).sort((a, b) => new Date(a.date) - new Date(b.date))
+                        .map(rental =>
                             <li key={rental.date} className='scheduled-rental'>
                                     {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
                                     ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}

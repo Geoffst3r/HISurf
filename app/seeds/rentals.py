@@ -8,29 +8,29 @@ def seed_rentals():
     rental2 = Rental(
         date='2022-01-30', surfboardId=4, userId=1)
     rental3 = Rental(
-        date='2022-01-30', surfboardId=5, userId=1)
+        date='2022-01-31', surfboardId=6, userId=1)
     rental4 = Rental(
-        date='2022-01-30', surfboardId=6, userId=1)
+        date='2022-02-01', surfboardId=8, userId=1)
     rental5 = Rental(
-        date='2022-01-30', surfboardId=7, userId=1)
+        date='2022-02-12', surfboardId=7, userId=1)
     rental6 = Rental(
-        date='2022-01-20', surfboardId=1, userId=2)
+        date='2022-01-30', surfboardId=1, userId=2)
     rental7 = Rental(
-        date='2022-01-30', surfboardId=2, userId=2)
+        date='2022-02-18', surfboardId=2, userId=2)
     rental8 = Rental(
-        date='2022-01-30', surfboardId=10, userId=2)
+        date='2022-02-05', surfboardId=10, userId=2)
     rental9 = Rental(
-        date='2022-01-30', surfboardId=11, userId=2)
+        date='2022-02-06', surfboardId=11, userId=2)
     rental10 = Rental(
-        date='2022-01-30', surfboardId=12, userId=2)
+        date='2022-02-09', surfboardId=12, userId=2)
     rental11 = Rental(
-        date='2022-01-30', surfboardId=1, userId=3)
+        date='2022-02-01', surfboardId=1, userId=3)
     rental12 = Rental(
-        date='2022-01-30', surfboardId=2, userId=3)
+        date='2022-02-16', surfboardId=2, userId=3)
     rental13 = Rental(
-        date='2022-01-30', surfboardId=12, userId=3)
+        date='2022-02-26', surfboardId=3, userId=3)
     rental14 = Rental(
-        date='2022-01-30', surfboardId=11, userId=3)
+        date='2022-03-05', surfboardId=11, userId=3)
     rental15 = Rental(
         date='2022-01-30', surfboardId=10, userId=3)
 

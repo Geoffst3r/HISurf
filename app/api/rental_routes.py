@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user
+from datetime import date
 from app.models import db, Rental
 from app.forms import RentalForm
 from app.api.auth_routes import validation_errors_to_error_messages
@@ -8,7 +9,8 @@ rental_routes = Blueprint('rentals', __name__)
 
 @rental_routes.route('/<int:surfboardId>/')
 def get_all_rentals(surfboardId):
-    rentals = db.session.query(Rental).filter(Rental.surfboardId == surfboardId).all()
+    today = date.today()
+    rentals = db.session.query(Rental).filter(Rental.surfboardId == surfboardId, Rental.date >= today).all()
     if rentals:
         rentals_list = [rental.to_dict() for rental in rentals]
         return jsonify(rentals_list)

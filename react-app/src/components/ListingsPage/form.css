@@ -54,3 +54,12 @@
     cursor: pointer;
     border: none;
 }
+.login-button-required{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #FFFDFA;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+}

@@ -81,7 +81,7 @@ const RentalForm = ({ rental }) => {
       <form onSubmit={rental ? onEdit : onSubmit} className='rental-form'>
         {errorMSGs.length > 0 && <div className='rental-error-box'>
           {errorMSGs.map((error, ind) => (
-            <div key={ind} className='rental-error'>-{error}</div>
+            <div key={ind} className='rental-error'><i className='fas fa-times-circle' /> {error}</div>
           ))}
         </div>}
         <input

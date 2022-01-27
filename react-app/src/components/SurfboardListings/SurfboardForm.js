@@ -95,13 +95,11 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   return (
     <>
       <form onSubmit={inputBoard ? onEdit : onCreate} className='surfboard-form'>
-        {errors.length > 0 && <div className='listing-error-info'>
-          <i className='fas fa-times-circle fa-2x' />
-          <div className='listing-error-box'>
+        {errors.length > 0 &&
+        <div className='listing-error-box'>
             {errors.map((error, ind) => (
-              <div key={ind} className='listing-error'>-{error}</div>
+              <div key={ind} className='listing-error'><i className='fas fa-times-circle' /> {error}</div>
             ))}
-          </div>
         </div>}
         <div className='island-container'>
           <div className='required-tag'><span className='required-star'>*</span> Required</div>
@@ -139,7 +137,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
               autoComplete="off"
           />
         </div>
-        <div className='image-container'>
+        <div className={inputIMG ? 'existing-image-container' : 'image-container'}>
           {inputIMG && !remove_IMG && <div className='edit-listing-mod'>
             <img className='image-input' alt='' src={inputIMG} />
             <button type='button' className='remove-image-edit-form' onClick={removeIMG}>Remove Image</button>

@@ -45,13 +45,11 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={onSignUp} className='signup-form' autoComplete='off'>
-      {errors.length > 0 && <div className='signup-error-info'>
-        <i className='fas fa-times-circle fa-2x' />
+      {errors.length > 0 &&
         <div className='signup-error-box'>
           {errorMSGs.map((error, ind) => (
-            <div key={ind} className='signup-error'>-{error}</div>
+            <div key={ind} className='signup-error'><i className='fas fa-times-circle' /> {error}</div>
           ))}
-        </div>
       </div>}
       <input
         type='text'

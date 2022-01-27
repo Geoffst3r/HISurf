@@ -39,13 +39,6 @@
     background-color: #C5CEE0;
     border: 1px solid #C5CEE0;
 }
-.signup-error-info{
-    display: flex;
-    flex-direction: row;
-}
-.signup-error-info > i{
-    color: orange;
-}
 .signup-error-box{
     font-family: sans-serif;
     margin-bottom: 10px;

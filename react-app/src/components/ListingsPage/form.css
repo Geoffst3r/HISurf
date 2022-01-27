@@ -2,7 +2,55 @@
     display: flex;
     flex-direction: column;
 }
-.rental-form input{
+.date-post{
     background-color: transparent;
+    border: none;
+    width: 100%;
+    font-size: 20px;
+}
+.date-input::-webkit-datetime-edit-year-field {
+    color: white;
+}
+.date-input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+.date-input{
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 10px;
+    padding: 0px 5px;
+    width: 95%;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 5px;
+}
+.rental-button{
+    margin: 10px 0px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #657394;
+    color: #FFFDFA;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition-duration: .2s;
+    transition-property: box-shadow, color, background-color, transform;
+}
+.rental-button:hover{
+    box-shadow: -5px 5px 5px black;
+    color: #657394;
+    background-color: #FFFDFA;
+    transform: translate(5px, -5px);
+}
+.rental-button:active{
+    transform: translate(0px, 5px);
+}
+.edit-rental-button{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #657394;
+    color: #FFFDFA;
+    font-size: 15px;
+    cursor: pointer;
     border: none;
 }

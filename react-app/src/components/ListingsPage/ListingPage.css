@@ -73,11 +73,7 @@
     align-items: center;
     height: 100%;
     width: 300px;
-    margin: 200px 0 0 50px;
-    overflow-y: scroll;
-}
-.rental-box::-webkit-scrollbar {
-    display: none;
+    padding: 200px 0px 0px 50px;
 }
 .surfboard-description{
     font-family: monospace;
@@ -101,16 +97,25 @@
     cursor: pointer;
     margin-top: 7px;
     visibility: hidden;
+    color: #FFFDFA;
+}
+.individual-date{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 .individual-date:hover .mod-rental-button{
     visibility: visible;
+}
+.mod-rental-button, .mod-rental-button-persist{
+    transform: translate(10px, -5px);
 }
 .mod-rental-button-persist{
     background-color: transparent;
     border: none;
     cursor: pointer;
     margin-top: 7px;
-    color: white;
+    color: orange;
 }
 .modifications{
     display: flex;
@@ -149,7 +154,6 @@
     background-color: rgb(248, 68, 68);
 }
 .scheduled-rental{
-    padding: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -158,4 +162,55 @@
 }
 .edit-rental-visible, .delete-rental-visible{
     visibility: visible;
+}
+.mods{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.upcoming-user-rentals{
+    height: 60%;
+    padding: 0px 10px;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+}
+.upcoming-user-rentals::-webkit-scrollbar {
+    display: none;
+}
+.date{
+    font-size: 20px;
+    color: #FFFDFA;
+}
+.edit-rental-button{
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+    color: black;
+    background-color: #657394;
+    border-radius: 10px;
+    transition-duration: .3s;
+    transition-property: background-color, box-shadow, color;
+}
+.edit-rental-button:hover{
+    background-color: black;
+    box-shadow: 0px 1px 12px 0px rgba(255, 255, 255, 0.096);
+    color: #657394;
+}
+.delete-rental, .delete-rental-visible{
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: none;
+    color: #FFFDFA;
+    background-color: rgb(138, 54, 54);
+    border-radius: 10px;
+    transition-duration: .3s;
+    transition-property: box-shadow, background-color;
+}
+.delete-rental-visible:hover{
+    box-shadow: 0 8px 15px rgba(253, 1, 1, 0.2);
+    background-color: rgb(248, 68, 68);
 }

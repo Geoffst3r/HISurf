@@ -174,8 +174,10 @@ const Listing = () => {
                                     <button className='mod-rental-button' id={`cog-wheel-${rental.id}`}
                                     onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-cog'/></button>
                                 </div>
-                                <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} /></div>
-                                <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Delete Rental</button>
+                                <div className='mods'>
+                                    <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} /></div>
+                                    <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Delete Rental</button>
+                                </div>
                             </li>
                         )}
                     </ul>}

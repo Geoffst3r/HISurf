@@ -188,8 +188,7 @@ const Listing = () => {
         )
     } else {
         return (
-            <>
-            </>
+            <h1 className='no-listing-message'>Listing Does Not Exist</h1>
         )
     }
 }

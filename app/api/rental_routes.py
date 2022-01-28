@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import current_user
+from flask_login import current_user, login_required
 from datetime import date
 from app.models import db, Rental
 from app.forms import RentalForm
@@ -18,6 +18,7 @@ def get_all_rentals(surfboardId):
         return jsonify('Rentals not found')
 
 @rental_routes.route('/<int:surfboardId>/', methods=["POST"])
+@login_required
 def post_new_rental(surfboardId):
     form = RentalForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -34,6 +35,7 @@ def post_new_rental(surfboardId):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @rental_routes.route('/<int:rentalId>/', methods=["PUT"])
+@login_required
 def edit_rental(rentalId):
     rental = Rental.query.filter(Rental.id == rentalId).first()
     form = RentalForm()

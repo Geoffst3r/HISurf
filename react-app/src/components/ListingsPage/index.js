@@ -46,6 +46,17 @@ const Listing = () => {
         };
     };
 
+    const closeModMenu = () => {
+        const editRental = document.getElementById(`rental-edit-${individualRentalId}`);
+        const deleteRental = document.getElementById(`rental-delete-${individualRentalId}`);
+        const cogWheel = document.getElementById(`cog-wheel-${individualRentalId}`);
+        editRental.className = 'edit-rental';
+        deleteRental.className = 'delete-rental';
+        cogWheel.className = 'mod-rental-button';
+        setIndividualCogWheelClicked(false);
+        return setIndividualRentalId();
+    }
+
     const handleDelete = async () => {
         const confirmed = window.confirm('Are you sure you want to remove this listing? This action cannot be undone.');
         if (confirmed) {
@@ -177,7 +188,7 @@ const Listing = () => {
                                     onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-cog'/></button>
                                 </div>
                                 <div className='mods'>
-                                    <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} /></div>
+                                    <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} callMenuClose={closeModMenu} /></div>
                                     <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Delete Rental</button>
                                 </div>
                             </li>

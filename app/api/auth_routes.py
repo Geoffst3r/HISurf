@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_user, logout_user
 from datetime import date
 from app.models import User, Surfboard, Rental, db

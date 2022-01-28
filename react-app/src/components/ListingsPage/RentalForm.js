@@ -7,7 +7,7 @@ import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginModal/LoginForm';
 import './form.css'
 
-const RentalForm = ({ rental }) => {
+const RentalForm = ({ rental, callMenuClose }) => {
   const params = useParams();
   const dispatch = useDispatch();
   const [date, setDate] = useState('');
@@ -58,6 +58,7 @@ const RentalForm = ({ rental }) => {
       if (data) {
         return setErrors(data);
       } else {
+        callMenuClose();
         await dispatch(authenticate());
         await dispatch(getRentals(surfboardId));
         return setDate('');

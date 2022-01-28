@@ -101,6 +101,7 @@ def edit_listing(surfboardId):
     return listing.to_dict()
 
 @surfboard_routes.route('/<int:surfboardId>/', methods=["DELETE"])
+@login_required
 def delete_listing(surfboardId):
     listing = Surfboard.query.filter(Surfboard.id == surfboardId).first()
     if listing:

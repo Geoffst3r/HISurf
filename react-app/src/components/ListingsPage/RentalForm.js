@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getRentals, newRental, updateRental } from '../../store/rental';
@@ -76,6 +76,10 @@ const RentalForm = ({ rental, callMenuClose }) => {
 
   let errorMSGs = [];
   if (errors.length) errors.forEach(error => errorMSGs.push(error.split(' : ')[1]));
+
+  useEffect(() => {
+    setErrors([])
+  }, [dispatch, surfboardId])
 
   return (
     <>

@@ -16,14 +16,14 @@
     justify-content: space-between;
 }
 .surfboard-size{
-    font-size: 18px;
+    font-size: 25px;
     color: black;
     margin: 0;
     padding: 0;
     align-self: flex-end;
 }
 .surfboard-location{
-    font-size: 30px;
+    font-size: 36px;
     font-family: sans-serif;
     color: black;
     margin: 0;
@@ -72,17 +72,17 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    width: 300px;
+    width: 400px;
     padding: 200px 0px 0px 50px;
 }
 .surfboard-description{
     font-family: monospace;
-    font-size: 20px;
+    font-size: 25px;
     margin-bottom: 20px;
 }
 .rentals-header{
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     color: #657394;
 }
@@ -216,11 +216,11 @@
     background-color: rgb(248, 68, 68);
 }
 .upcoming-rentals{
-    padding: 10px;
+    padding: 20px;
 }
 .scheduled-rental{
     font-family: sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 20px;
     color: #FFFDFA;
 }

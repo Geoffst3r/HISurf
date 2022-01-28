@@ -38,7 +38,7 @@ function App() {
             </div>
           </div>
         </Route>
-        <Route path='/surfboards/:surfboardId/'>
+        <Route path='/surfboards/:surfboardId/' exact={true}>
           <div className='individual-page'>
             <SideBar />
             <div className='listings-page'>
@@ -46,6 +46,9 @@ function App() {
               <ListingsPage />
             </div>
           </div>
+        </Route>
+        <Route>
+          <h1>Page Not Found</h1>
         </Route>
       </Switch>
     </BrowserRouter>

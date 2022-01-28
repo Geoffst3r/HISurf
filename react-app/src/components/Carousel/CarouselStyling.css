@@ -55,6 +55,8 @@
 .listing-img > img{
     height: 175px;
     width: 100%;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
+    background-size: 100% 100%;
 }
 .listing-img > i{
     color: black;

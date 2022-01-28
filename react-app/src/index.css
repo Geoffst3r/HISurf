@@ -8,7 +8,7 @@ body{
     width: 100vw;
     height: 100vh;
     position: fixed;
-    background-image: url('https://hi-surf-dev.s3.us-west-1.amazonaws.com/Background_IMG.jpg');
+    background-image: url('./Background_IMG.jpg');
     background-size: 100% 100%;
 }
 .individual-page{
@@ -17,7 +17,7 @@ body{
     width: 100vw;
     height: 100vh;
     position: fixed;
-    background-image: url('https://hi-surf-dev.s3.us-west-1.amazonaws.com/BackgroundIMG.jpg');
+    background-image: url('./BackgroundIMG.jpg');
     background-size: 100% 100%;
 }
 .main-page, .listings-page{

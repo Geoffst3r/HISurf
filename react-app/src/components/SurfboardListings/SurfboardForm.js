@@ -13,15 +13,12 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const [description, setDescription] = useState(inputBoard ? inputBoard.description : '');
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState('');
+  const [inputIMG, setInputIMG] = useState(inputBoard ? inputBoard.image : '');
   const [errors, setErrors] = useState([]);
   const [remove_IMG, setRemove_IMG] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
   const surfboardId = inputBoard?.id
   const text = inputBoard ? 'Edit Listing' : 'Post Listing';
-  let inputIMG;
-  if (inputBoard && !preview) {
-    inputIMG = inputBoard.image;
-  }
 
   const onCreate = async (e) => {
     e.preventDefault();
@@ -90,15 +87,15 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   };
 
   const removeIMG = () => {
+    if (preview) {
+      setPreview('');
+      setImage(null);
+      const imageStore = document.querySelector('.image-store');
+      return imageStore.value = '';
+    }
     setRemove_IMG(true);
+    setInputIMG('');
     return setImage('remove');
-  };
-
-  const removePreview = () => {
-    setPreview('');
-    setImage(null);
-    const imageStore = document.querySelector('.image-store');
-    return imageStore.value = '';
   };
 
   return (
@@ -146,7 +143,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
               autoComplete="off"
           />
         </div>
-        <div className={inputIMG ? 'existing-image-container' : 'image-container'}>
+        <div className={(inputIMG || preview) ? 'existing-image-container' : 'image-container'}>
           {inputIMG ? <label htmlFor='image'>Update Image (.png, .jpg, .jpeg):</label> :
           <label htmlFor='image'>Upload Image (.png, .jpg, .jpeg):</label>}
           <input
@@ -156,13 +153,13 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
             accept='.png, .jpg, .jpeg'
             onChange={updateImage}
           />
-          {inputIMG && !remove_IMG && <div className='edit-listing-mod'>
+          {inputIMG && !preview && !remove_IMG && <div className='edit-listing-mod'>
             <img className='image-input' alt='' src={inputIMG} />
             <button type='button' className='remove-image-edit-form' onClick={removeIMG}>Remove Image</button>
           </div>}
           {preview && <div className='edit-listing-mod'>
             <img className='image-input' alt='' src={preview} />
-            <button type='button' className='remove-image-edit-form' onClick={removePreview}>Remove Image</button>
+            <button type='button' className='remove-image-edit-form' onClick={removeIMG}>Remove Image</button>
           </div>}
         </div>
         <button className='surfboard-button' type='submit'>{text}</button>

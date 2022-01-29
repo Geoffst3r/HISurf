@@ -137,7 +137,7 @@ const Listing = () => {
                     {owner_define && <div className='modifications'>
                         <button className='mod-listing-button'
                         onClick={() => setCogWheelClicked(true)} hidden={owner_define === true ? false : true}>
-                        <i className='fas fa-cog'></i></button>
+                        <i className='fas fa-edit'></i></button>
                         {cogWheelClicked && <div className='edit-delete'>
                             <button className='edit-listing' onClick={() => setShowEditListingModal(true)}>
                                 Edit Listing
@@ -185,11 +185,11 @@ const Listing = () => {
                                         ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                                     </div>
                                     <button className='mod-rental-button' id={`cog-wheel-${rental.id}`}
-                                    onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-cog'/></button>
+                                    onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-edit'/></button>
                                 </div>
                                 <div className='mods'>
                                     <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} callMenuClose={closeModMenu} /></div>
-                                    <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Delete Rental</button>
+                                    <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Cancel Reservation</button>
                                 </div>
                             </li>
                         )}

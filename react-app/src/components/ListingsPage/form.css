@@ -7,9 +7,7 @@
     border: none;
     width: 100%;
     font-size: 20px;
-}
-.date-input::-webkit-datetime-edit-year-field {
-    color: white;
+    color: gray;
 }
 .date-input::-webkit-calendar-picker-indicator {
     filter: invert(1);
@@ -21,7 +19,7 @@
     padding: 0px 5px;
     width: 95%;
     font-size: 16px;
-    color: white;
+    color: gray;
     margin-bottom: 5px;
 }
 .rental-button{
@@ -69,4 +67,14 @@
     margin-left: 5px;
     gap: 10px;
     color: red;
+}
+.edit-rental-label{
+    font-family: monospace;
+    font-size: 14px;
+    color: lightgray;
+}
+.rental-label{
+    font-family: sans-serif;
+    font-size: 16px;
+    color: black;
 }

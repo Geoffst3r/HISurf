@@ -16,6 +16,7 @@ const RentalForm = ({ rental, callMenuClose }) => {
   const sessionUser = useSelector(state => state.session.user);
 
   const surfboardId = params?.surfboardId;
+  const inputLabelText = rental ? 'Modify Reservation Date?' : 'What day would you like to rent this board?';
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -89,6 +90,7 @@ const RentalForm = ({ rental, callMenuClose }) => {
             <div key={ind} className='rental-error'><i className='fas fa-times-circle' /> {error}</div>
           ))}
         </div>}
+        <label className={rental ? 'edit-rental-label' : 'rental-label'} htmlFor='rental-date'>{inputLabelText}</label>
         <input
           className={rental ? `date-input-${rental.id} date-input` : 'date-post'}
           type='date'
@@ -98,7 +100,7 @@ const RentalForm = ({ rental, callMenuClose }) => {
           min='2022-01-01'
           max='2022-12-31'
         />
-        {sessionUser ? rental ? <button className={`rental-button-${rental.id} edit-rental-button`} type='submit'>Edit Date</button> :
+        {sessionUser ? rental ? <button className={`rental-button-${rental.id} edit-rental-button`} type='submit'>Confirm Reservation Change</button> :
         <button className='rental-button' type='submit'>Reserve</button> :
         <button className='login-button-required' type='button' onClick={() => setShowModal(true)}>Log in to Rent</button>}
       </form>

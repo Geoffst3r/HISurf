@@ -12,13 +12,14 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const [size, setSize] = useState(inputBoard ? inputBoard.size : 0);
   const [description, setDescription] = useState(inputBoard ? inputBoard.description : '');
   const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState('');
   const [errors, setErrors] = useState([]);
   const [remove_IMG, setRemove_IMG] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
   const surfboardId = inputBoard?.id
   const text = inputBoard ? 'Edit Listing' : 'Post Listing';
   let inputIMG;
-  if (inputBoard) {
+  if (inputBoard && !preview) {
     inputIMG = inputBoard.image;
   }
 
@@ -85,11 +86,19 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
 
   const updateImage = (e) => {
     setImage(e.target.files[0]);
+    setPreview(URL.createObjectURL(e.target.files[0]));
   };
 
   const removeIMG = () => {
     setRemove_IMG(true);
     return setImage('remove');
+  };
+
+  const removePreview = () => {
+    setPreview('');
+    setImage(null);
+    const imageStore = document.querySelector('.image-store');
+    return imageStore.value = '';
   };
 
   return (
@@ -138,18 +147,23 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
           />
         </div>
         <div className={inputIMG ? 'existing-image-container' : 'image-container'}>
+          {inputIMG ? <label htmlFor='image'>Update Image (.png, .jpg, .jpeg):</label> :
+          <label htmlFor='image'>Upload Image (.png, .jpg, .jpeg):</label>}
+          <input
+            className='image-store'
+            type='file'
+            name='image'
+            accept='.png, .jpg, .jpeg'
+            onChange={updateImage}
+          />
           {inputIMG && !remove_IMG && <div className='edit-listing-mod'>
             <img className='image-input' alt='' src={inputIMG} />
             <button type='button' className='remove-image-edit-form' onClick={removeIMG}>Remove Image</button>
           </div>}
-          {inputIMG ? <label htmlFor='image'>Update Image (.png, .jpg, .jpeg):</label> :
-          <label htmlFor='image'>Upload Image (.png, .jpg, .jpeg):</label>}
-          <input
-              type='file'
-              name='image'
-              accept='.png, .jpg, .jpeg'
-              onChange={updateImage}
-          />
+          {preview && <div className='edit-listing-mod'>
+            <img className='image-input' alt='' src={preview} />
+            <button type='button' className='remove-image-edit-form' onClick={removePreview}>Remove Image</button>
+          </div>}
         </div>
         <button className='surfboard-button' type='submit'>{text}</button>
       </form>

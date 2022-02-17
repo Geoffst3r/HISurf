@@ -39,6 +39,10 @@
     transition-duration: 0.3s;
     transition-property: transform, box-shadow;
 }
+.individual-item > div > img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
 .individual-item:hover{
     transform: translate(0px, -40px);
     box-shadow: 0 40px 50px lightgray;
@@ -67,6 +71,10 @@
     font-size: 12px;
     text-decoration: none;
     color: black;
+}
+.no-img{
+    background-image: url('https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image.jpg');
+    background-size: 100% 100%;
 }
 .listing-location{
     font-size: 20px;

@@ -1,9 +1,8 @@
 .sidebar{
     height: 100%;
     width: 250px;
-    border-right: 1px solid black;
     flex-shrink: 0;
-    background-color: #FFFDFA;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 .listings-container, .rentals-container{
     display: flex;
@@ -12,9 +11,11 @@
     height: 50%;
 }
 .listings-title, .rentals-title{
+    font-family: sans-serif;
     font-size: 20px;
     font-weight: bold;
-    border-bottom: 1px solid black;
+    color: white;
+    border-bottom: 1px solid white;
     margin-bottom: 15px;
 }
 .listings, .rentals{
@@ -35,11 +36,11 @@
     justify-content: center;
     flex-direction: row;
     text-decoration: none;
-    color: #657394;
+    color: #295fdd;
 }
 .rental{
     text-decoration: none;
-    color: #657394;
+    color: #295fdd;
 }
 .listing:hover, .rental:hover{
     background-color: #C5CEE0;
@@ -55,4 +56,8 @@
 }
 .rental-date{
     margin-left: 45px;
+}
+.no-user-message, .no-listings-message {
+    color: white;
+    font-family: sans-serif;
 }

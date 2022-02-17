@@ -1,20 +1,30 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './CarouselStyling.css';
 
 const Carousel = ({ listingsObj }) => {
     const [index, setIndex] = useState(0);
+    const [mQuery, setMQuery] = useState(window.innerWidth);
     let listings, maxIndex;
     let carouselListings = [];
+    let carouselLength;
+    if (mQuery > 1750) carouselLength = 11;
+    else if (mQuery > 1500) carouselLength = 8;
+    else if (mQuery > 1250) carouselLength = 7;
+    else if (mQuery > 1000) carouselLength = 5;
+    else if (mQuery > 750) carouselLength = 3;
+    else if (mQuery > 600) carouselLength = 2;
+    else carouselLength = 1;
+
     if (listingsObj) {
         listings = Object.values(listingsObj);
-        maxIndex = Math.ceil(listings.length/12 - 1);
+        maxIndex = Math.ceil(listings.length/carouselLength - 1);
     };
 
     const getCarouselListings = () => {
         if (listings) {
-            for (let i = index*12; i < (index+1)*12; i++) {
+            for (let i = index*carouselLength; i < (index+1)*carouselLength; i++) {
                 if (listings[i]) carouselListings.push(listings[i]);
             };
         };
@@ -28,6 +38,14 @@ const Carousel = ({ listingsObj }) => {
         setIndex(index + 1);
     };
 
+    useEffect(() => {
+        const checkWindow = () => {
+            setMQuery(window.innerWidth);
+        };
+        window.addEventListener('resize', checkWindow);
+        return () => window.removeEventListener('resize', checkWindow)
+    }, []);
+
     getCarouselListings(index);
 
     if (carouselListings) {
@@ -38,11 +56,10 @@ const Carousel = ({ listingsObj }) => {
                     {carouselListings.map(listing => (
                         <li key={listing.id}>
                             <NavLink className='individual-item' to={`/surfboards/${listing.id}/`}>
-                                {listing.image ? <div className='listing-img'><img alt='' src={`${listing.image}`} /></div>:
                                 <div className='listing-img'>
-                                    <i className='fas fa-camera fa-3x'></i>
-                                    <p>No Image</p>
-                                </div>}
+                                    {listing.image ? <img alt='' src={`${listing.image}`} />:
+                                    <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image.jpg' />}
+                                </div>
                                 <div className='listing-location'>{listing.location}</div>
                                 <div className='listing-size'>{listing.size}' Board</div>
                             </NavLink>

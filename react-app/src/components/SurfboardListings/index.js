@@ -44,7 +44,7 @@ const Listings = () => {
                         <option value='10'>10'</option>
                         <option value='11'>11'</option>
                     </select>
-                    <button className='filter-set' onClick={() => filter()}>Filter</button>
+                    <button className='filter-set' onClick={() => filter()}>Search</button>
                 </div>
                 <Carousel listingsObj={listingsObj} />
             </div>
@@ -71,9 +71,9 @@ const Listings = () => {
                         <option value='10'>10'</option>
                         <option value='11'>11'</option>
                     </select>
-                    <button className='filter-set' onClick={() => filter()}>Filter</button>
+                    <button className='filter-set' onClick={() => filter()}>Search</button>
                 </div>
-                <p className='no-listings'>No listings to display</p>
+                <p className='no-listings'>No listings</p>
             </div>
         )
     }

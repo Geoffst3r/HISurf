@@ -17,6 +17,8 @@
     padding: 50px;
     border-radius: 50px;
     margin-bottom: 150px;
+    align-items: center;
+    justify-content: center;
 }
 .splash_text, .description, .built{
     font-family: sans-serif;
@@ -37,7 +39,6 @@
     padding: 15px;
     border-radius: 5px;
     cursor: pointer;
-    align-self: center;
     transition-duration: .5s;
     transition-property: color, background-color;
 }
@@ -49,7 +50,6 @@
     margin-top: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     gap: 10px;
 }

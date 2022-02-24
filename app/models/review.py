@@ -14,3 +14,12 @@ class Review(db.Model):
 
     surfboard_relation = db.relationship("Surfboard", back_populates="reviews_relation")
     user_relation = db.relationship("User", back_populates="reviews_relation")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'rating': self.rating,
+            'description': self.description,
+            'surfboardId': self.surfboardId,
+            'userId': self.userId
+        }

@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .surfboards import seed_surfboards, undo_surfboards
 from .rentals import seed_rentals, undo_rentals
+from .reviews import seed_reviews, undo_reviews
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -15,6 +16,7 @@ def seed():
     # Add other seed functions here
     seed_surfboards()
     seed_rentals()
+    seed_reviews()
 
 
 # Creates the `flask seed undo` command
@@ -24,3 +26,4 @@ def undo():
     # Add other undo functions here
     undo_surfboards()
     undo_rentals()
+    undo_reviews()

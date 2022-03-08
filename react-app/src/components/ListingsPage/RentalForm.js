@@ -5,7 +5,7 @@ import { getRentals, newRental, updateRental } from '../../store/rental';
 import { authenticate } from '../../store/session';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginModal/LoginForm';
-import './form.css'
+import './RentalForm.css';
 
 const RentalForm = ({ rental, callMenuClose }) => {
   const params = useParams();

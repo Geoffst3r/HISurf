@@ -9,6 +9,7 @@ import * as rentalsActions from '../../store/rental';
 import * as reviewActions from '../../store/review';
 import { authenticate } from '../../store/session';
 import RentalForm from './RentalForm';
+import ReviewForm from './ReviewForm';
 import './ListingPage.css';
 
 const Listing = () => {
@@ -138,8 +139,8 @@ const Listing = () => {
                 <div className='surfboard-listing'>
                     {owner_define && <div className='modifications'>
                         <button className='mod-listing-button'
-                        onClick={() => setCogWheelClicked(true)} hidden={owner_define === true ? false : true}>
-                        <i className='fas fa-edit'></i></button>
+                            onClick={() => setCogWheelClicked(true)} hidden={owner_define === true ? false : true}>
+                            <i className='fas fa-edit'></i></button>
                         {cogWheelClicked && <div className='edit-delete'>
                             <button className='edit-listing' onClick={() => setShowEditListingModal(true)}>
                                 Edit Listing
@@ -160,10 +161,10 @@ const Listing = () => {
                     </div>
                     <div className='surfboard-img'>
                         {listing.image ? <img alt='' src={`${listing.image}`} /> :
-                        <div className='no-image-container'>
-                            <i className='fas fa-camera fa-5x'></i>
-                            <p>No Image</p>
-                        </div>}
+                            <div className='no-image-container'>
+                                <i className='fas fa-camera fa-5x'></i>
+                                <p>No Image</p>
+                            </div>}
                     </div>
                 </div>
                 <div className='rental-box'>
@@ -171,12 +172,12 @@ const Listing = () => {
                     {owner_define && <p className='rentals-header'>Upcoming Rentals</p>}
                     {owner_define ? Object.values(rentalsObj).length ? <ul className='upcoming-rentals'>
                         {Object.values(rentalsObj).sort((a, b) => new Date(a.date) - new Date(b.date))
-                        .map(rental =>
-                            <li key={rental.date} className='scheduled-rental'>
+                            .map(rental =>
+                                <li key={rental.date} className='scheduled-rental'>
                                     {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
                                     ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
-                            </li>
-                        )}
+                                </li>
+                            )}
                     </ul> : <p>No Upcoming Rentals</p> : <RentalForm />}
                     {userRentals && userRentals.length > 0 && <ul className='upcoming-user-rentals'>
                         {userRentals.map(rental =>
@@ -187,7 +188,7 @@ const Listing = () => {
                                         ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                                     </div>
                                     <button className='mod-rental-button' id={`cog-wheel-${rental.id}`}
-                                    onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-edit'/></button>
+                                        onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-edit' /></button>
                                 </div>
                                 <div className='mods'>
                                     <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} callMenuClose={closeModMenu} /></div>
@@ -196,6 +197,10 @@ const Listing = () => {
                             </li>
                         )}
                     </ul>}
+                </div>
+                <div className='review-box'>
+                    {sessionUser ? <ReviewForm surfboardId={surfboardId} sessionUser={sessionUser} /> :
+                        'Log in to submit a Review of this surfboard'}
                 </div>
             </div>
         )

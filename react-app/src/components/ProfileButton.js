@@ -86,10 +86,10 @@ function ProfileButton() {
                 {showMenu &&
                     <ul className="profile-dropdown">
                         <li>
-                            <button className="new-listing user-menu-button" onClick={() => setShowListingModal(true)}>New Listing</button>
+                            <button className="new-listing NavButtons" onClick={() => setShowListingModal(true)}>New Listing</button>
                         </li>
                         <li>
-                            <p className='listings-title'>Listings</p>
+                            <p className='title'>Your Listings</p>
                             {listings.length > 0 ? <ul className='listings'>
                                 {listings.map(listing => (
                                     <NavLink className='listing' key={listing.id} to={`/surfboards/${listing.id}/`}>
@@ -100,7 +100,7 @@ function ProfileButton() {
                             </ul> : <p className='no-listings-message'>You haven't posted any listings</p>}
                         </li>
                         <li>
-                            <p className='rentals-title'>Rentals</p>
+                            <p className='title'>Renting</p>
                             {rentals.length > 0 ? <ul className='rentals'>
                                 {rentals.map(rental => (
                                     <NavLink className='rental' key={rental.id} to={`/surfboards/${rental.surfboardId}/`}>
@@ -119,7 +119,7 @@ function ProfileButton() {
                             </ul> : <p className='no-listings-message'>You don't have any upcoming rentals booked</p>}
                         </li>
                         <li>
-                            <button className="logout user-menu-button" onClick={logout}>Log Out</button>
+                            <button className="logout NavButtons" onClick={logout}>Log Out</button>
                         </li>
                     </ul>}
                 {showListingModal && (

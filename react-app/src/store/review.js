@@ -5,23 +5,23 @@ const UPDATE_REVIEW = 'surfboards/UPDATE_REVIEW';
 const DELETE_REVIEW = 'surfboards/DELETE_REVIEW';
 
 const get_Reviews = (reviews) => ({
-  type: GET_REVIEWS,
-  reviews
+    type: GET_REVIEWS,
+    reviews
 });
 
 const new_Review = (review) => ({
-  type: NEW_REVIEW,
-  review
+    type: NEW_REVIEW,
+    review
 });
 
 const update_Review = (review) => ({
-  type: UPDATE_REVIEW,
-  review
+    type: UPDATE_REVIEW,
+    review
 });
 
 const delete_Review = (id) => ({
-  type: DELETE_REVIEW,
-  id
+    type: DELETE_REVIEW,
+    id
 });
 
 export const getReviews = (surfboardId) => async (dispatch) => {
@@ -45,7 +45,7 @@ export const newReview = (formData, surfboardId) => async (dispatch) => {
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
-          return data.errors;
+            return data.errors;
         }
     } else {
         return ['An error occurred. Please try again.']
@@ -63,7 +63,7 @@ export const updateReview = (formData, reviewId) => async (dispatch) => {
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
-          return data.errors;
+            return data.errors;
         }
     } else {
         return ['An error occurred. Please try again.']
@@ -87,7 +87,7 @@ const reviewReducer = (state = {}, action) => {
     let newState = {};
     switch (action.type) {
         case GET_REVIEWS:
-            if (action.rentals === 'No Reviews Found') return newState;
+            if (action.reviews === 'No Reviews Found') return newState;
             action.reviews.forEach(review => {
                 newState[review.id] = review;
             });
@@ -103,6 +103,6 @@ const reviewReducer = (state = {}, action) => {
         default:
             return state;
     }
-  };
+};
 
-  export default reviewReducer;
+export default reviewReducer;

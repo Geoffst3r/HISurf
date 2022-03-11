@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './SideBar.css';
+// import './SideBar.css';
 
 const SideBar = () => {
     const user = useSelector(state => state.session.user);
@@ -21,7 +21,7 @@ const SideBar = () => {
                     <p className='listings-title'>Listings</p>
                     {listings.length > 0 ? <ul className='listings'>
                         {listings.map(listing => (
-                            <NavLink className='listing'  key={listing.id} to={`/surfboards/${listing.id}/`}>
+                            <NavLink className='listing' key={listing.id} to={`/surfboards/${listing.id}/`}>
                                 <p>{listing.location}</p>
                                 <p>{listing.size}'</p>
                             </NavLink>

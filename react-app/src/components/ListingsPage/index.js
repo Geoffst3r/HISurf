@@ -117,7 +117,7 @@ const Listing = () => {
     useEffect(() => {
         dispatch(listingsActions.getListing(surfboardId));
         dispatch(rentalsActions.getRentals(surfboardId));
-        dispatch(reviewActions.getReviews(surfboardId));
+        // dispatch(reviewActions.getReviews(surfboardId));
     }, [dispatch, surfboardId]);
 
     useEffect(() => {

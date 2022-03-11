@@ -6,6 +6,7 @@ import { Modal } from '../context/Modal';
 import { logout } from '../store/session';
 import LoginModal from './LoginModal';
 import SignUpModal from './SignupModal';
+import ProfileButton from './ProfileButton';
 import './NavBar.css'
 
 const NavBar = () => {
@@ -18,7 +19,7 @@ const NavBar = () => {
   };
 
   const callSetter = () => {
-      setShowListingModal(false);
+    setShowListingModal(false);
   };
 
   let sessionLinks;
@@ -26,10 +27,10 @@ const NavBar = () => {
     sessionLinks = (
       <>
         <li>
-            <button className="add-listing" onClick={() => setShowListingModal(true)}>+New Listing</button>
+          <button className="add-listing" onClick={() => setShowListingModal(true)}>+New Listing</button>
         </li>
         <li>
-            <button className="logout-profile-button" onClick={log_out}>Log Out</button>
+          <button className="logout-profile-button" onClick={log_out}>Log Out</button>
         </li>
       </>
     )
@@ -45,19 +46,32 @@ const NavBar = () => {
       </>
     )
   }
+  // return (
+  //   <nav>
+  //     <NavLink to='/surfboards/'>
+  //       <button className='appName'>🏄 HI Surf</button>
+  //     </NavLink>
+  //     <ul>
+  //       {sessionLinks}
+  //     </ul>
+  //     {showListingModal && (
+  //       <Modal onClose={() => setShowListingModal(false)}>
+  //         <SurfboardForm callSetter={callSetter} />
+  //       </Modal>
+  //     )}
+  //   </nav>
+  // );
   return (
     <nav>
       <NavLink to='/surfboards/'>
-          <button className='appName'>🏄 HI Surf</button>
+        <button className='appName'>🏄 HI Surf</button>
       </NavLink>
-      <ul>
-        {sessionLinks}
-      </ul>
-      {showListingModal && (
-          <Modal onClose={() => setShowListingModal(false)}>
-              <SurfboardForm callSetter={callSetter} />
-          </Modal>
-      )}
+      <ProfileButton />
+      {/* {showListingModal && (
+        <Modal onClose={() => setShowListingModal(false)}>
+          <SurfboardForm callSetter={callSetter} />
+        </Modal>
+      )} */}
     </nav>
   );
 }

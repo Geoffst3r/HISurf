@@ -26,11 +26,6 @@ const LoginForm = ({ callSetter }) => {
     setPassword(e.target.value);
   };
 
-  const onDemo = async () => {
-    await dispatch(login('demo@aa.io', 'password'));
-    if (callSetter) callSetter();
-  };
-
   let errorMSGs = [];
   if (errors) errors.forEach(error => errorMSGs.push(error.split(' : ')[1]));
 
@@ -42,7 +37,7 @@ const LoginForm = ({ callSetter }) => {
             {errorMSGs.map((error, ind) => (
               <div key={ind} className='login-error'><i className='fas fa-times-circle' /> {error}</div>
             ))}
-        </div>}
+          </div>}
         <input
           name='email'
           type='text'
@@ -61,7 +56,6 @@ const LoginForm = ({ callSetter }) => {
         />
         <button className='login-button' type='submit'>Login</button>
       </form>
-      <button className='demo-user' onClick={() => onDemo()}>Demo User</button>
     </>
   );
 };

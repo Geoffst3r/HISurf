@@ -7,13 +7,15 @@
 .filters{
     margin-top: 50px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: auto;
     align-self: center;
     gap: 20px;
+    background-color: #003347;
+    border-radius: 30px;
 }
 .filters select{
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: transparent;
     font-family: monospace;
     font-size: 20px;
     border: none;
@@ -21,17 +23,26 @@
     padding: 10px;
     border-radius: 20px;
     text-align: center;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.filters select:hover{
+    background-color: gray;
+    opacity: 0.9;
 }
 .filter-set{
     font-size: 20px;
     font-family: monospace;
     color: #FFFDFA;
     border: none;
-    background-color: transparent;
+    background-color: #006994;
+    opacity: 0.8;
     cursor: pointer;
+    border-radius: 100%;
+    padding: 0 15px 0 15px;
 }
 .filter-set:hover{
-    text-decoration: underline;
+    opacity: 1;
 }
 .no-listings{
     font-family: sans-serif;

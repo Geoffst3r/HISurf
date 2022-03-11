@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { signUp } from '../../store/session';
 import './SignupForm.css';
 
-const SignUpForm = () => {
+const SignUpForm = ({ callSetter }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -20,6 +20,7 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+      if (!data && callSetter) callSetter();
     } else {
       setErrors(['confirm : Passwords do not match.'])
     }
@@ -50,7 +51,7 @@ const SignUpForm = () => {
           {errorMSGs.map((error, ind) => (
             <div key={ind} className='signup-error'><i className='fas fa-times-circle' /> {error}</div>
           ))}
-      </div>}
+        </div>}
       <input
         type='text'
         name='username'

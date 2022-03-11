@@ -10,25 +10,25 @@
     flex-direction: row;
     width: auto;
     align-self: center;
-    gap: 20px;
-    background-color: #003347;
+    background-color: white;
     border-radius: 30px;
+    padding: 10px 10px 10px 0;
+    gap: 10px;
 }
 .filters select{
     background-color: transparent;
     font-family: monospace;
     font-size: 20px;
     border: none;
-    color: #FFFDFA;
-    padding: 10px;
-    border-radius: 20px;
+    outline: none;
+    color: black;
     text-align: center;
-    padding: 10px 20px;
     cursor: pointer;
 }
-.filters select:hover{
-    background-color: gray;
-    opacity: 0.9;
+#size-select {
+    border-left: 1px solid gray;
+    margin-right: 10px;
+    padding-left: 10px;
 }
 .filter-set{
     font-size: 20px;
@@ -39,7 +39,7 @@
     opacity: 0.8;
     cursor: pointer;
     border-radius: 100%;
-    padding: 0 15px 0 15px;
+    padding: 7px 10px;
 }
 .filter-set:hover{
     opacity: 1;

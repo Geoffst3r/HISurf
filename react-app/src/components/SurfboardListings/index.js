@@ -71,7 +71,7 @@ const Listings = () => {
                         <option value='10'>10'</option>
                         <option value='11'>11'</option>
                     </select>
-                    <button className='filter-set' onClick={() => filter()}>Search</button>
+                    <button className='filter-set' onClick={() => filter()}><i className='fa fa-search'></i></button>
                 </div>
                 <p className='no-listings'>No listings</p>
             </div>

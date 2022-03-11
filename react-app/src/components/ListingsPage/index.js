@@ -6,7 +6,7 @@ import { Modal } from '../../context/Modal';
 import SurfboardForm from '../SurfboardListings/SurfboardForm';
 import * as listingsActions from '../../store/surfboard';
 import * as rentalsActions from '../../store/rental';
-import * as reviewActions from '../../store/review';
+// import * as reviewActions from '../../store/review';
 import { authenticate } from '../../store/session';
 import RentalForm from './RentalForm';
 import './ListingPage.css';

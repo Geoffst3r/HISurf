@@ -5,6 +5,7 @@ nav {
     justify-content: space-between;
     background-color: transparent;
     align-items: center;
+    margin-top: 10px;
 }
 nav ul {
     text-decoration: none;

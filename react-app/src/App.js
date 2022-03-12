@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import SurfboardListings from './components/SurfboardListings';
 import ListingsPage from './components/ListingsPage';
 import SplashPage from './components/SplashPage';
+import Footer from './components/Footer';
 import { authenticate } from './store/session';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <div className='main-page'>
               <NavBar />
               <SurfboardListings />
+              <Footer />
             </div>
           </div>
         </Route>
@@ -41,6 +43,7 @@ function App() {
             <div className='listings-page'>
               <NavBar />
               <ListingsPage />
+              <Footer />
             </div>
           </div>
         </Route>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Carousel from '../Carousel';
 import * as listingsActions from '../../store/surfboard';
 import './ListingsPage.css';
@@ -8,12 +8,21 @@ import './ListingsPage.css';
 const Listings = () => {
     const dispatch = useDispatch();
     const listingsObj = useSelector(state => state.surfboards);
+    const [mQuery, setMQuery] = useState(window.innerWidth);
     let listings;
     if (listingsObj) listings = Object.values(listingsObj);
 
     useEffect(() => {
         dispatch(listingsActions.getListings());
     }, [dispatch]);
+
+    useEffect(() => {
+        const checkWindow = () => {
+            setMQuery(window.innerWidth);
+        };
+        window.addEventListener('resize', checkWindow);
+        return () => window.removeEventListener('resize', checkWindow)
+    }, []);
 
     const filter = async () => {
         const islandVal = document.getElementById('island-select').value;
@@ -46,7 +55,7 @@ const Listings = () => {
                     </select>
                     <button className='filter-set' onClick={() => filter()}><i className='fa fa-search'></i></button>
                 </div>
-                <Carousel listings={listings} />
+                <Carousel listings={listings} mQuery={mQuery} />
             </div>
         )
     } else {

@@ -1,60 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './CarouselStyling.css';
 
-const Carousel = ({ listings }) => {
+const Carousel = ({ listings, mQuery }) => {
     const [index, setIndex] = useState(0);
-    const [mQuery, setMQuery] = useState(window.innerWidth);
-    const [verticalListing, setVerticalListing] = useState(false);
     let carouselListings = [];
     let carouselLength;
-    if (mQuery > 2250) carouselLength = 9;
-    else if (mQuery > 2000) carouselLength = 8;
-    else if (mQuery > 1700) carouselLength = 7;
-    else if (mQuery > 1450) carouselLength = 6;
-    else if (mQuery > 1250) carouselLength = 5;
-    else if (mQuery > 1050) carouselLength = 4;
-    else {
-        carouselLength = 0;
-        setVerticalListing(true);
-    }
-    // else if (mQuery > 800) carouselLength = 3;
-    // else if (mQuery > 600) carouselLength = 2;
-    // else carouselLength = 1;
 
-    let maxIndex;
-    if (listings && !verticalListing) {
-        maxIndex = Math.ceil(listings.length / carouselLength - 1);
-    };
-
-    const getCarouselListings = () => {
-        if (listings) {
-            for (let i = index * carouselLength; i < (index + 1) * carouselLength; i++) {
-                if (listings[i]) carouselListings.push(listings[i]);
-            };
-        };
-    };
-
-    const leftArrow = () => {
-        setIndex(index - 1);
-    };
-
-    const rightArrow = () => {
-        setIndex(index + 1);
-    };
-
-    useEffect(() => {
-        const checkWindow = () => {
-            setMQuery(window.innerWidth);
-        };
-        window.addEventListener('resize', checkWindow);
-        return () => window.removeEventListener('resize', checkWindow)
-    }, []);
-
-    if (!verticalListing) getCarouselListings(index);
-
-    if (verticalListing && listings.length) {
+    if (mQuery <= 1050) {
         return (
             <div className='vertical-listings'>
                 <ul className='vertical-list'>
@@ -74,7 +28,38 @@ const Carousel = ({ listings }) => {
                 </ul>
             </div>
         )
-    } else if (!verticalListing && listings.length) {
+    } else {
+        if (mQuery > 2250) carouselLength = 9;
+        else if (mQuery > 2000) carouselLength = 8;
+        else if (mQuery > 1700) carouselLength = 7;
+        else if (mQuery > 1450) carouselLength = 6;
+        else if (mQuery > 1250) carouselLength = 5;
+        else carouselLength = 4;
+    }
+    let maxIndex;
+    if (listings) {
+        maxIndex = Math.ceil(listings.length / carouselLength - 1);
+    };
+
+    const getCarouselListings = () => {
+        if (listings) {
+            for (let i = index * carouselLength; i < (index + 1) * carouselLength; i++) {
+                if (listings[i]) carouselListings.push(listings[i]);
+            };
+        };
+    };
+
+    const leftArrow = () => {
+        setIndex(index - 1);
+    };
+
+    const rightArrow = () => {
+        setIndex(index + 1);
+    };
+
+    getCarouselListings(index);
+
+    if (listings.length) {
         return (
             <div className='carousel-container'>
                 {index > 0 && <button onClick={leftArrow}><i className='fas fa-arrow-left fa-2x' /></button>}

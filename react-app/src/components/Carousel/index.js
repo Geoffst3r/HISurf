@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './CarouselStyling.css';
 
-const Carousel = ({ listingsObj }) => {
+const Carousel = ({ listings }) => {
     const [index, setIndex] = useState(0);
     const [mQuery, setMQuery] = useState(window.innerWidth);
-    let listings, maxIndex;
+    const [verticalListing, setVerticalListing] = useState(false);
     let carouselListings = [];
     let carouselLength;
     if (mQuery > 2250) carouselLength = 9;
@@ -15,12 +15,16 @@ const Carousel = ({ listingsObj }) => {
     else if (mQuery > 1450) carouselLength = 6;
     else if (mQuery > 1250) carouselLength = 5;
     else if (mQuery > 1050) carouselLength = 4;
-    else if (mQuery > 800) carouselLength = 3;
-    else if (mQuery > 600) carouselLength = 2;
-    else carouselLength = 1;
+    else {
+        carouselLength = 0;
+        setVerticalListing(true);
+    }
+    // else if (mQuery > 800) carouselLength = 3;
+    // else if (mQuery > 600) carouselLength = 2;
+    // else carouselLength = 1;
 
-    if (listingsObj) {
-        listings = Object.values(listingsObj);
+    let maxIndex;
+    if (listings && !verticalListing) {
         maxIndex = Math.ceil(listings.length / carouselLength - 1);
     };
 
@@ -48,9 +52,29 @@ const Carousel = ({ listingsObj }) => {
         return () => window.removeEventListener('resize', checkWindow)
     }, []);
 
-    getCarouselListings(index);
+    if (!verticalListing) getCarouselListings(index);
 
-    if (carouselListings) {
+    if (verticalListing && listings.length) {
+        return (
+            <div className='vertical-listings'>
+                <ul className='vertical-list'>
+                    {listings.map(listing => (
+                        <li key={listing.id}>
+                            <NavLink className='individual-listing' to={`/surfboards/${listing.id}/`}>
+                                <div className='listing-img-vertical'>
+                                    {listing.image ? <img alt='' src={`${listing.image}`} /> :
+                                        <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image.jpg' />}
+                                </div>
+                                <div className='listing-location-vertical'>{listing.location}</div>
+                                <div className='listing-size-vertical'>{listing.size}' Board</div>
+                                <div className='listing-description-vertical'>{listing.description}</div>
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )
+    } else if (!verticalListing && listings.length) {
         return (
             <div className='carousel-container'>
                 {index > 0 && <button onClick={leftArrow}><i className='fas fa-arrow-left fa-2x' /></button>}

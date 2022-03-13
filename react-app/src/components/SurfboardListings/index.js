@@ -46,7 +46,7 @@ const Listings = () => {
                     </select>
                     <button className='filter-set' onClick={() => filter()}><i className='fa fa-search'></i></button>
                 </div>
-                <Carousel listingsObj={listingsObj} />
+                <Carousel listings={listings} />
             </div>
         )
     } else {

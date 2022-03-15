@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import './CarouselStyling.css';
 
-const Carousel = ({ listings, mQuery }) => {
+const Carousel = ({ listings, mQuery, filtered }) => {
     const [index, setIndex] = useState(0);
 
     let carouselLength;
     let carouselListings = [];
-    if (mQuery <= 1050) {
+    if (mQuery <= 1050 || filtered) {
         return (
             <div className='vertical-listings'>
                 <ul className='vertical-list'>

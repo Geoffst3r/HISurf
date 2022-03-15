@@ -147,11 +147,11 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
           />
           {inputIMG && !preview && !remove_IMG && <div className='edit-listing-mod'>
             <img className='image-input' alt='' src={inputIMG} />
-            <button type='button' className='remove-image-edit-form' onClick={removeIMG}>Remove Image</button>
+            <button type='button' className='remove-image-edit-form' onClick={removeIMG}>X</button>
           </div>}
           {preview && <div className='edit-listing-mod'>
             <img className='image-input' alt='' src={preview} />
-            <button type='button' className='remove-image-edit-form' onClick={removeIMG}>Remove Image</button>
+            <button type='button' className='remove-image-edit-form' onClick={removeIMG}>X</button>
           </div>}
         </div>
         <button className='surfboard-button' type='submit'>{text}</button>

@@ -74,18 +74,24 @@
     margin-top: 10px;
 }
 .edit-listing-mod > img{
-    height: 150px;
-    width: 100px;
+    height: 10vh;
+    width: 5vh;
 }
 .remove-image-edit-form{
-    background-color: red;
-    color: #FFFDFA;
+    color: red;
+    opacity: 0.7;
+    background-color: transparent;
     border: none;
-    border-radius: 20px;
-    padding: 10px;
     font-size: 14px;
     cursor: pointer;
-    margin-left: 10px;
+    position: relative;
+    bottom: 8.5vh;
+    transition-duration: .3s;
+    transition-property: opacity, font-size;
+}
+.remove-image-edit-form:hover {
+    opacity: 1;
+    font-size: 18px;
 }
 .surfboard-button {
     margin-top: 30px;

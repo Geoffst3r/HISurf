@@ -8,12 +8,17 @@ import './ListingsPage.css';
 const Listings = () => {
     const dispatch = useDispatch();
     const listingsObj = useSelector(state => state.surfboards);
+    const [loaded, setLoaded] = useState(false);
     const [mQuery, setMQuery] = useState(window.innerWidth);
+    const [filtered, setFiltered] = useState(false);
     let listings;
     if (listingsObj) listings = Object.values(listingsObj);
 
     useEffect(() => {
-        dispatch(listingsActions.getListings());
+        (async () => {
+            await dispatch(listingsActions.getListings());
+            setLoaded(true);
+        })();
     }, [dispatch]);
 
     useEffect(() => {
@@ -25,11 +30,20 @@ const Listings = () => {
     }, []);
 
     const filter = async () => {
+        setLoaded(false);
         const islandVal = document.getElementById('island-select').value;
         const sizeVal = document.getElementById('size-select').value;
         await dispatch(listingsActions.filterListings(islandVal, parseInt(sizeVal)));
-        return;
+        if (!islandVal && !sizeVal) setFiltered(false);
+        else setFiltered(true);
+        return setLoaded(true);
     };
+
+    if (!loaded) {
+        return (
+            <div id='loading'>Loading Listings...</div>
+        )
+    }
 
     if (listings.length) {
         return (
@@ -55,7 +69,7 @@ const Listings = () => {
                     </select>
                     <button className='filter-set' onClick={() => filter()}><i className='fa fa-search'></i></button>
                 </div>
-                <Carousel listings={listings} mQuery={mQuery} />
+                <Carousel listings={listings} mQuery={mQuery} filtered={filtered} />
             </div>
         )
     } else {

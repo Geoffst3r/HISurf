@@ -34,9 +34,9 @@ function App() {
             <div className='main-page'>
               <NavBar />
               <SurfboardListings />
-              <Footer />
             </div>
           </div>
+          <Footer />
         </Route>
         <Route path='/surfboards/:surfboardId/' exact={true}>
           <div className='individual-page'>

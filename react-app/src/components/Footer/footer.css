@@ -9,10 +9,6 @@
     position: fixed;
     bottom: 0;
 }
-.fullsize {
-    position: absolute;
-    bottom: 0;
-}
 .links {
     display: flex;
     flex-direction: row;

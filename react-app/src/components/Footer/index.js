@@ -1,7 +1,18 @@
+import { useState, useEffect } from 'react';
 import './footer.css';
 
 
-const Footer = ({ mQuery }) => {
+const Footer = () => {
+    const [mQuery, setMQuery] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const checkWindow = () => {
+            setMQuery(window.innerWidth);
+        };
+        window.addEventListener('resize', checkWindow);
+        return () => window.removeEventListener('resize', checkWindow)
+    }, []);
+
     return (
         <div className={mQuery > 1050 ? 'footer fullsize' : 'footer'}>
             <div className='links'>

@@ -4,25 +4,25 @@ from app.models import db, Surfboard
 # Add surfboards here if you want
 def seed_surfboards():
     surfboard1 = Surfboard(
-        description='This board is great for catching barrels. If you want to have fun, or even learn the basics on doing so, RENT THIS BOARD!', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(1).jpg",
+        description='This board is great for catching barrels. If you want to have fun, or even learn the basics on doing so, RENT THIS BOARD!', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(1)-crop.jpg",
         size=6, location='Oahu', ownerId=1)
     surfboard5 = Surfboard(
-        description='This board is great for just cruising around. Yeah, I know you want to just chill. Look at you, I know you\'re stressed, take a load off.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(2).jpg",
+        description='This board is great for just cruising around. Yeah, I know you want to just chill. Look at you, I know you\'re stressed, take a load off.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(2)-crop.jpg",
         size=11, location='Oahu', ownerId=1)
     surfboard3 = Surfboard(
         description='Paddle Boarding? Gotta use this board. Paddle not included, sorry brudduh-ski.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(3).jpg",
         size=10, location='Maui', ownerId=2)
     surfboard4 = Surfboard(
-        description='Great for amateurs that want to grow their surfing skills. Hang loose one stay da kine.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(4).jpg",
+        description='Great for amateurs that want to grow their surfing skills. Hang loose one stay da kine.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(4)-crop.jpg",
         size=9, location='Maui', ownerId=2)
     surfboard12 = Surfboard(
-        description='You must be pretty good to be renting this board. Ho bruh, if you like rent this one board here you must know em already cuz.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(5).jpg",
+        description='You must be pretty good to be renting this board. Ho bruh, if you like rent this one board here you must know em already cuz.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(5)-crop.jpg",
         size=8, location='Big Island', ownerId=3)
     surfboard6 = Surfboard(
-        description='How do you not have a board this size yet? This board is a good way to grow the skills.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(6).jpg",
+        description='How do you not have a board this size yet? This board is a good way to grow the skills.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(6)-crop.jpg",
         size=7, location='Big Island', ownerId=3)
     surfboard7 = Surfboard(
-        description='First listing, I want to make some extra mula. Rent this board to help a brother out.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(7).jpg",
+        description='First listing, I want to make some extra mula. Rent this board to help a brother out.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(7)-crop.jpg",
         size=10, location='Kaui', ownerId=4)
     surfboard8 = Surfboard(
         description='Kauai is the island to be for surfing. And this is the board YOU NEED in order to enjoy surfing around here.', image='', size=6, location='Kaui', ownerId=4)
@@ -35,22 +35,22 @@ def seed_surfboards():
     surfboard9 = Surfboard(
         description='Pay me in beer.', image='', size=7, location='Lanai', ownerId=6)
     surfboard13 = Surfboard(
-        description='If you plan to go surfing on the East shore, this is the board for you. Get some shaved-ice while you\'re there.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(8).jpg",
+        description='If you plan to go surfing on the East shore, this is the board for you. Get some shaved-ice while you\'re there.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(8)-crop.jpg",
         size=8, location='Oahu', ownerId=1)
     surfboard14 = Surfboard(
-        description='Not really even sure where you would go surfing around here, but this is for you whackos.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(9).jpg",
+        description='Not really even sure where you would go surfing around here, but this is for you whackos.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(9)-crop.jpg",
         size=6, location='Maui', ownerId=2)
     surfboard15 = Surfboard(
-        description='The description was needed for this one, so ya know...', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(10).jpg",
+        description='The description was needed for this one, so ya know...', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(10)-crop.jpg",
         size=11, location='Big Island', ownerId=3)
     surfboard16 = Surfboard(
-        description='Got another board to sell because this site be booming cuz make BANK.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(12).jpg",
+        description='Got another board to sell because this site be booming cuz make BANK.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(12)-crop.jpg",
         size=8, location='Kaui', ownerId=4)
     surfboard17 = Surfboard(
         description='Let\'s go surfing together, we can double down.', image="",
         size=8, location='Molokai', ownerId=5)
     surfboard18 = Surfboard(
-        description='Yeah, this board is da shiii.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(11).jpg",
+        description='Yeah, this board is da shiii.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(11)-crop.jpg",
         size=8, location='Lanai', ownerId=6)
 
     db.session.add(surfboard1)

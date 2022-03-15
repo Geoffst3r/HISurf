@@ -10,7 +10,6 @@ import { authenticate } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
-  const [mQuery, setMQuery] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,14 +18,6 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
-
-  useEffect(() => {
-    const checkWindow = () => {
-      setMQuery(window.innerWidth);
-    };
-    window.addEventListener('resize', checkWindow);
-    return () => window.removeEventListener('resize', checkWindow)
-  }, []);
 
   if (!loaded) {
     return null;
@@ -43,7 +34,7 @@ function App() {
             <div className='main-page'>
               <NavBar />
               <SurfboardListings />
-              <Footer mQuery={mQuery} />
+              <Footer />
             </div>
           </div>
         </Route>

@@ -34,12 +34,12 @@ const Carousel = ({ listings, mQuery }) => {
             </div>
         )
     } else {
-        if (mQuery > 2250) carouselLength = 9;
-        else if (mQuery > 2000) carouselLength = 8;
-        else if (mQuery > 1700) carouselLength = 7;
-        else if (mQuery > 1450) carouselLength = 6;
-        else if (mQuery > 1250) carouselLength = 5;
-        else carouselLength = 4;
+        if (mQuery > 2250) carouselLength = 10;
+        else if (mQuery > 2000) carouselLength = 9;
+        else if (mQuery > 1700) carouselLength = 8;
+        else if (mQuery > 1450) carouselLength = 7;
+        else if (mQuery > 1250) carouselLength = 6;
+        else carouselLength = 5;
 
         if (listings) {
             for (let i = index * carouselLength; i < (index + 1) * carouselLength; i++) {

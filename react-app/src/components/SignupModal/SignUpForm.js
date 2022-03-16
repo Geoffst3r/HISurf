@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { signUp } from '../../store/session';
 import './SignupForm.css';
 
-const SignUpForm = () => {
+const SignUpForm = ({ callSetter }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -20,6 +20,7 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+      if (!data && callSetter) callSetter();
     } else {
       setErrors(['confirm : Passwords do not match.'])
     }
@@ -44,44 +45,51 @@ const SignUpForm = () => {
   if (errors) errors.forEach(error => errorMSGs.push(error.split(' : ')[1]));
 
   return (
-    <form onSubmit={onSignUp} className='signup-form' autoComplete='off'>
-      {errors.length > 0 &&
-        <div className='signup-error-box'>
-          {errorMSGs.map((error, ind) => (
+    <>
+      <p className='signupForm-title'>Sign up</p>
+      <p className='signupForm-welcome-message'>Welcome to HI Surf</p>
+      <div className='signup-error-box'>
+        {errors.length > 0 &&
+          errorMSGs.map((error, ind) => (
             <div key={ind} className='signup-error'><i className='fas fa-times-circle' /> {error}</div>
-          ))}
-      </div>}
-      <input
-        type='text'
-        name='username'
-        placeholder='Username'
-        onChange={updateUsername}
-        value={username}
-      />
-      <input
-        type='text'
-        name='email'
-        placeholder='Email'
-        onChange={updateEmail}
-        value={email}
-      />
-      <input
-        type='password'
-        name='password'
-        placeholder='Password'
-        onChange={updatePassword}
-        value={password}
-      />
-      <input
-        type='password'
-        name='repeat_password'
-        placeholder='Confirm Password'
-        onChange={updateRepeatPassword}
-        value={repeatPassword}
-        required={true}
-      />
-      <button type='submit' className='signup-button'>Sign Up</button>
-    </form>
+          ))
+        }
+      </div>
+      <form onSubmit={onSignUp} className='signup-form' autoComplete='off'>
+        <input
+          className='signupForm-username'
+          type='text'
+          name='username'
+          placeholder='Username'
+          onChange={updateUsername}
+          value={username}
+        />
+        <input
+          type='text'
+          name='email'
+          placeholder='Email'
+          onChange={updateEmail}
+          value={email}
+        />
+        <input
+          type='password'
+          name='password'
+          placeholder='Password'
+          onChange={updatePassword}
+          value={password}
+        />
+        <input
+          className='signupForm-confirm-password'
+          type='password'
+          name='repeat_password'
+          placeholder='Confirm Password'
+          onChange={updateRepeatPassword}
+          value={repeatPassword}
+          required={true}
+        />
+        <button type='submit' className='signup-button'>Continue</button>
+      </form>
+    </>
   );
 };
 

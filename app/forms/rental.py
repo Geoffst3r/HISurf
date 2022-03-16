@@ -1,12 +1,14 @@
 from flask_wtf import FlaskForm
 from wtforms import DateField, IntegerField
 from wtforms.validators import DataRequired, ValidationError
-from datetime import date
+from datetime import datetime, timezone
+import pytz
 from app.models import Rental
 
 def future_date(form, field):
-    today = date.today()
-    dateString = today.strftime("%Y%m%d")
+    utc_dt = datetime.now(timezone.utc)
+    HST = pytz.timezone('US/Hawaii')
+    dateString = ''.join(utc_dt.astimezone(HST).isoformat().split('T')[0].split('-'))
     dateNum = int(dateString) + 1
 
     inputDate = "".join(str(field.data).split("-"))

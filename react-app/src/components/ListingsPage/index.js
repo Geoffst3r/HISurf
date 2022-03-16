@@ -6,7 +6,7 @@ import { Modal } from '../../context/Modal';
 import SurfboardForm from '../SurfboardListings/SurfboardForm';
 import * as listingsActions from '../../store/surfboard';
 import * as rentalsActions from '../../store/rental';
-import * as reviewActions from '../../store/review';
+// import * as reviewActions from '../../store/review';
 import { authenticate } from '../../store/session';
 import RentalForm from './RentalForm';
 import './ListingPage.css';
@@ -19,6 +19,7 @@ const Listing = () => {
     const [cogWheelClicked, setCogWheelClicked] = useState(false);
     const [individualCogWheelClicked, setIndividualCogWheelClicked] = useState(false);
     const [individualRentalId, setIndividualRentalId] = useState(0);
+    const [loaded, setLoaded] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const listingObj = useSelector(state => state.surfboards);
     const rentalsObj = useSelector(state => state.rentals);
@@ -115,9 +116,12 @@ const Listing = () => {
     }, [individualRentalId, individualCogWheelClicked]);
 
     useEffect(() => {
-        dispatch(listingsActions.getListing(surfboardId));
-        dispatch(rentalsActions.getRentals(surfboardId));
-        dispatch(reviewActions.getReviews(surfboardId));
+        (async () => {
+            await dispatch(listingsActions.getListing(surfboardId));
+            await dispatch(rentalsActions.getRentals(surfboardId));
+            // dispatch(reviewActions.getReviews(surfboardId));
+            setLoaded(true);
+        })();
     }, [dispatch, surfboardId]);
 
     useEffect(() => {
@@ -130,72 +134,90 @@ const Listing = () => {
         document.addEventListener('click', closeMenu, false);
 
         return () => document.removeEventListener("click", closeMenu);
-    })
+    });
+
+    if (!loaded) {
+        return (
+            <div id='loading'>Loading...</div>
+        )
+    }
 
     if (listing) {
         return (
-            <div className='listing-and-rental'>
-                <div className='surfboard-listing'>
-                    {owner_define && <div className='modifications'>
-                        <button className='mod-listing-button'
-                        onClick={() => setCogWheelClicked(true)} hidden={owner_define === true ? false : true}>
-                        <i className='fas fa-edit'></i></button>
-                        {cogWheelClicked && <div className='edit-delete'>
-                            <button className='edit-listing' onClick={() => setShowEditListingModal(true)}>
-                                Edit Listing
-                            </button>
-                            <button className='delete-listing' onClick={() => handleDelete()}>
-                                Delete Listing
-                            </button>
-                        </div>}
-                        {showEditListingModal && (
-                            <Modal onClose={() => setShowEditListingModal(false)}>
-                                <SurfboardForm inputBoard={listing} callSetter={callSetter} />
-                            </Modal>
-                        )}
-                    </div>}
-                    <div className='surfboard-info'>
-                        <div className='surfboard-location'>{listing.location}</div>
-                        <div className='surfboard-size'>{listing.size}' Board</div>
-                    </div>
-                    <div className='surfboard-img'>
-                        {listing.image ? <img alt='' src={`${listing.image}`} /> :
+            <div className='whole-listing-stack'>
+                <div className='surfboard-img'>
+                    {listing.image ? <img alt='' src={`${listing.image}`} /> :
                         <div className='no-image-container'>
                             <i className='fas fa-camera fa-5x'></i>
                             <p>No Image</p>
                         </div>}
-                    </div>
                 </div>
-                <div className='rental-box'>
-                    <div className='surfboard-description'>{listing.description}</div>
-                    {owner_define && <p className='rentals-header'>Upcoming Rentals</p>}
-                    {owner_define ? Object.values(rentalsObj).length ? <ul className='upcoming-rentals'>
-                        {Object.values(rentalsObj).sort((a, b) => new Date(a.date) - new Date(b.date))
-                        .map(rental =>
-                            <li key={rental.date} className='scheduled-rental'>
-                                    {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
-                                    ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
-                            </li>
-                        )}
-                    </ul> : <p>No Upcoming Rentals</p> : <RentalForm />}
-                    {userRentals && userRentals.length > 0 && <ul className='upcoming-user-rentals'>
-                        {userRentals.map(rental =>
-                            <li key={rental.id} className='scheduled-rental'>
-                                <div className='individual-date'>
-                                    <div className='date'>
-                                        {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
-                                        ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
-                                    </div>
-                                    <button className='mod-rental-button' id={`cog-wheel-${rental.id}`}
-                                    onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-edit'/></button>
-                                </div>
-                                <div className='mods'>
-                                    <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} callMenuClose={closeModMenu} /></div>
-                                    <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Cancel Reservation</button>
-                                </div>
-                            </li>
-                        )}
-                    </ul>}
+                <div className='info-and-functionality-stack'>
+                    <div className='surfboard-info-stack'>
+                        {owner_define && <div className='modifications'>
+                            {cogWheelClicked && <div className='edit-delete'>
+                                <button className='edit-listing' onClick={() => setShowEditListingModal(true)}>
+                                    Edit Listing
+                                </button>
+                                <button className='delete-listing' onClick={() => handleDelete()}>
+                                    Delete Listing
+                                </button>
+                            </div>}
+                            <button className='mod-listing-button'
+                                onClick={() => setCogWheelClicked(true)} hidden={owner_define === true ? false : true}>
+                                <i className='fas fa-cog fa-2x'></i></button>
+                            {showEditListingModal && (
+                                <Modal onClose={() => setShowEditListingModal(false)}>
+                                    <SurfboardForm inputBoard={listing} callSetter={callSetter} />
+                                </Modal>
+                            )}
+                        </div>}
+                        <div className='surfboard-info'>
+                            <p className='surfboard-title-single'>Island</p>
+                            <div className='listing-location-single'>{listing.location}</div>
+                            <p className='surfboard-title-single'>Board Size</p>
+                            <div className='listing-size-single'>{listing.size}'</div>
+                            <p className='surfboard-title-single'>Description</p>
+                            <div className='listing-description-single'>{listing.description}</div>
+                        </div>
+                    </div>
+                    <div className='review-and-rental'>
+                        {/* <div className='review-box'>
+                        </div> */}
+                        <div className='rental-box'>
+                            {owner_define && <p className='rentals-header'>Upcoming Rentals</p>}
+                            {owner_define ? Object.values(rentalsObj).length ? <ul className='upcoming-rentals'>
+                                {Object.values(rentalsObj).sort((a, b) => new Date(a.date) - new Date(b.date))
+                                    .map(rental =>
+                                        <li key={rental.date} className='scheduled-rental'>
+                                            {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
+                                            ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                                        </li>
+                                    )}
+                            </ul> : <p className='no-rentals-message'>No Upcoming Rentals</p> :
+                                <>
+                                    <div className='HST-notification'>* All time calculations relative to HST</div>
+                                    <RentalForm /></>}
+                            {userRentals && userRentals.length > 0 && <ul className='upcoming-user-rentals'>
+                                {userRentals.map(rental =>
+                                    <li key={rental.id} className='scheduled-rental user-rental'>
+                                        <div className='individual-date'>
+                                            <div className='date'>
+                                                {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
+                                                ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                                            </div>
+                                            <button className='mod-rental-button' id={`cog-wheel-${rental.id}`}
+                                                onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-edit fa-2x' /></button>
+                                        </div>
+                                        <div className='mods'>
+                                            <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} callMenuClose={closeModMenu} /></div>
+                                            <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Cancel Reservation</button>
+                                        </div>
+                                    </li>
+                                )}
+                            </ul>}
+                        </div>
+                    </div>
                 </div>
             </div>
         )

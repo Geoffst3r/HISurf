@@ -26,24 +26,23 @@ const LoginForm = ({ callSetter }) => {
     setPassword(e.target.value);
   };
 
-  const onDemo = async () => {
-    await dispatch(login('demo@aa.io', 'password'));
-    if (callSetter) callSetter();
-  };
-
   let errorMSGs = [];
   if (errors) errors.forEach(error => errorMSGs.push(error.split(' : ')[1]));
 
   return (
     <>
-      <form className='login-form' onSubmit={onLogin}>
+      <p className='loginForm-title'>Log in</p>
+      <p className='loginForm-welcome-message'>Welcome to HI Surf</p>
+      <div className='login-error-box'>
         {errors.length > 0 &&
-          <div className='login-error-box'>
-            {errorMSGs.map((error, ind) => (
-              <div key={ind} className='login-error'><i className='fas fa-times-circle' /> {error}</div>
-            ))}
-        </div>}
+          errorMSGs.map((error, ind) => (
+            <div key={ind} className='login-error'><i className='fas fa-times-circle' /> {error}</div>
+          ))
+        }
+      </div>
+      <form className='login-form' onSubmit={onLogin}>
         <input
+          className='loginForm-email'
           name='email'
           type='text'
           placeholder='Email'
@@ -52,6 +51,7 @@ const LoginForm = ({ callSetter }) => {
           required
         />
         <input
+          className='loginForm-password'
           name='password'
           type='password'
           placeholder='Password'
@@ -59,9 +59,8 @@ const LoginForm = ({ callSetter }) => {
           onChange={updatePassword}
           required
         />
-        <button className='login-button' type='submit'>Login</button>
+        <button className='login-button' type='submit'>Continue</button>
       </form>
-      <button className='demo-user' onClick={() => onDemo()}>Demo User</button>
     </>
   );
 };

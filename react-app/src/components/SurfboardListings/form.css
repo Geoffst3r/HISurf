@@ -1,70 +1,71 @@
 .surfboard-form {
-    background-color: #657394;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-}
-.required-tag{
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-}
-.required-star{
-    color: orange;
+    height: 650px;
+    width: 400px;
 }
 .surfboard-form select{
-    width: 300px;
-    background-color: rgba(0, 0, 0, 0.6);
-    font-family: monospace;
+    width: 100%;
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 20px 10px;
+    color: black;
     font-size: 20px;
-    border: none;
-    color: #FFFDFA;
-    padding: 10px;
-    border-radius: 20px;
-    text-align: center;
+}
+.surfboardForm-island-select {
+    border-radius: 15px 15px 0 0;
 }
 .surfboard-form textarea {
-    width: 300px;
-    background-color: rgba(0, 0, 0, 0.6);
-    border: none;
-    border-radius: 10px;
-    padding: 5px;
-    color: #FFFDFA;
-    font-size: 20px;
     resize: none;
-    height: 200px;
+    font-size: 20px;
     font-family: sans-serif;
+    width: 94.5%;
+    height: 10vh;
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 20px 10px;
+    color: black;
+    font-size: 20px;
+    overflow-y: scroll;
+}
+.surfboard-form textarea::-webkit-scrollbar {
+    display: none;
 }
 .image-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 50px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #FFFDFA;
-    border-radius: 10px;
+    justify-content: flex-start;
+    height: 14vh;
+    background-color: white;
+    border: 1px solid lightgray;
     padding: 5px;
+    width: 97%;
+    border-radius: 0 0 15px 15px;
 }
 .image-container > label, .image-container > div{
     font-family: sans-serif;
-    color: #FFFDFA;
-    font-size: 16px;
+    color: black;
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 .existing-image-container{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    height: 200px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #FFFDFA;
-    border-radius: 10px;
+    justify-content: center;
+    height: 14vh;
+    background-color: white;
+    border: 1px solid lightgray;
     padding: 5px;
+    width: 97%;
+    border-radius: 0 0 15px 15px;
 }
 .existing-image-container > label, .existing-image-container > div{
     font-family: sans-serif;
     color: #FFFDFA;
-    font-size: 16px;
+    font-size: 14px;
+    margin-left: 20px;
 }
 .edit-listing-mod{
     display: flex;
@@ -73,25 +74,32 @@
     margin-top: 10px;
 }
 .edit-listing-mod > img{
-    height: 150px;
-    width: 100px;
+    height: 10vh;
+    width: 3vh;
 }
 .remove-image-edit-form{
-    background-color: red;
-    color: #FFFDFA;
+    color: red;
+    opacity: 0.7;
+    background-color: transparent;
     border: none;
-    border-radius: 20px;
-    padding: 10px;
     font-size: 14px;
     cursor: pointer;
-    margin-left: 10px;
+    position: relative;
+    bottom: 8.5vh;
+    transition-duration: .3s;
+    transition-property: opacity, font-size;
+}
+.remove-image-edit-form:hover {
+    opacity: 1;
+    font-size: 18px;
 }
 .surfboard-button {
+    margin-top: 30px;
     font-size: 20px;
-    width: 150px;
-    color: #657394;
-    background-color: #FFFDFA;
-    border: 1px solid #FFFDFA;
+    width: 100%;
+    color: white;
+    background-color: #006994;
+    border: 1px solid #006994;
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;
@@ -103,13 +111,39 @@
     color: #FFFDFA;
 }
 .surfboard-button:active{
-    background-color: #C5CEE0;
-    border: 1px solid #C5CEE0;
+    background-color: purple;
+    border: 1px solid purple;
+}
+.loading {
+    background-color: purple;
+    border: 1px solid purple;
+    cursor: auto;
+}
+.loading:hover {
+    background-color: purple;
+    color: white;
 }
 .listing-error-box{
     font-family: sans-serif;
-    margin-bottom: 10px;
-    margin-left: 5px;
+    font-size: 20px;
+    height: 75px;
+    margin: 0 0 10px 0;
+    padding: 0;
     gap: 10px;
-    color: orange;
+    color: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.listingForm-title {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+    padding: 10px 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    border-bottom: 1px solid lightgray;
 }

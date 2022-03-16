@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import NavBar from './components/NavBar';
-import SideBar from './components/SideBar';
 import SurfboardListings from './components/SurfboardListings';
 import ListingsPage from './components/ListingsPage';
 import SplashPage from './components/SplashPage';
+import Footer from './components/Footer';
 import { authenticate } from './store/session';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -31,20 +31,16 @@ function App() {
         </Route>
         <Route path='/surfboards/' exact={true}>
           <div className='whole-page'>
-            <SideBar />
-            <div className='main-page'>
-              <NavBar />
-              <SurfboardListings />
-            </div>
+            <NavBar />
+            <SurfboardListings />
+            <Footer />
           </div>
         </Route>
         <Route path='/surfboards/:surfboardId/' exact={true}>
           <div className='individual-page'>
-            <SideBar />
-            <div className='listings-page'>
-              <NavBar />
-              <ListingsPage />
-            </div>
+            <NavBar />
+            <ListingsPage />
+            <Footer />
           </div>
         </Route>
         <Route>

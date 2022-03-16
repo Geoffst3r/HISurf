@@ -5,6 +5,7 @@ nav {
     justify-content: space-between;
     background-color: transparent;
     align-items: center;
+    margin-top: 10px;
 }
 nav ul {
     text-decoration: none;
@@ -13,13 +14,12 @@ nav ul {
     align-items: center;
     justify-content: flex-end;
     list-style: none;
-    cursor: pointer;
 }
 .appName{
     color: #FFFDFA;
     font-family: sans-serif;
     font-weight: bold;
-    margin-left: 50px;
+    margin-left: 20px;
     font-size: 30px;
     font-style: italic;
     border: none;
@@ -28,39 +28,98 @@ nav ul {
     cursor: pointer;
 }
 .NavButtons{
-    font-size: 14px;
+    font-size: 12px;
     font-family: sans-serif;
     font-weight: bold;
     text-decoration: none;
-    color: #FFFDFA;
+    color: black;
     border: none;
     background-color: transparent;
-    padding: 10px;
-    margin-right: 10px;
     cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px 0 5px 5px;
 }
-.signupNav-button{
-    border: 1px solid #FFFDFA;
+.NavButtons:hover {
+    background-color: lightgray;
+}
+.demoUser-button {
+    border-top: 1px solid gray;
+}
+.signupNav-button {
+    font-size: 14px;
+    font-weight: bold;
+}
+.profile-button {
+    padding: 5px 10px;
+    margin-right: 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.profile-dropdown {
+    position: absolute;
+    list-style-type: none;
+    padding: 10px 0;
+    right: 20px;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    border: 1px solid black;
     border-radius: 10px;
-    transition-duration: .3s;
-    transition-property: background-color, color;
+    width: 150px;
+    z-index: 99;
 }
-.signupNav-button:hover{
-    background-color: #FFFDFA;
+.profile-dropdown li {
+    width: 100%;
+}
+.logout {
+    border-top: 1px solid gray;
+}
+.title {
+    border-top: 1px solid gray;
+    font-size: 14px;
+    font-family: sans-serif;
+    padding-top: 5px;
+    margin: 0;
+    padding-left: 5px;
+    color: #006994;
+}
+.listings, .rentals {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    align-items: flex-start;
+}
+.listing, .rental {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-decoration: none;
     color: black;
 }
-.logout-profile-button, .add-listing{
-    color: #FFFDFA;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    margin-right: 10px;
+.listing:hover, .rental:hover {
+    background-color: lightgray;
 }
-.logout-profile-button, .add-listing{
-    font-family: sans-serif;
-    font-size: 14px;
+.listing > p {
+    margin: 0;
+    padding: 5px 0 5px 20px;
 }
-.loginNav-button:hover, .logout-profile-button:hover, .add-listing:hover{
-    text-decoration: underline;
+.rental-info {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0 5px 20px;
+}
+.board-info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }

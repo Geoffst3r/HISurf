@@ -182,8 +182,8 @@ const Listing = () => {
                         </div>
                     </div>
                     <div className='review-and-rental'>
-                        <div className='review-box'>
-                        </div>
+                        {/* <div className='review-box'>
+                        </div> */}
                         <div className='rental-box'>
                             {owner_define && <p className='rentals-header'>Upcoming Rentals</p>}
                             {owner_define ? Object.values(rentalsObj).length ? <ul className='upcoming-rentals'>
@@ -194,17 +194,17 @@ const Listing = () => {
                                             ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                                         </li>
                                     )}
-                            </ul> : <p>No Upcoming Rentals</p> : <RentalForm />}
+                            </ul> : <p className='no-rentals-message'>No Upcoming Rentals</p> : <RentalForm />}
                             {userRentals && userRentals.length > 0 && <ul className='upcoming-user-rentals'>
                                 {userRentals.map(rental =>
-                                    <li key={rental.id} className='scheduled-rental'>
+                                    <li key={rental.id} className='scheduled-rental user-rental'>
                                         <div className='individual-date'>
                                             <div className='date'>
                                                 {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
                                                 ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                                             </div>
                                             <button className='mod-rental-button' id={`cog-wheel-${rental.id}`}
-                                                onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-edit' /></button>
+                                                onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-edit fa-2x' /></button>
                                         </div>
                                         <div className='mods'>
                                             <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} callMenuClose={closeModMenu} /></div>

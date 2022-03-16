@@ -3,15 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getRentals, newRental, updateRental } from '../../store/rental';
 import { authenticate } from '../../store/session';
-import { Modal } from '../../context/Modal';
-import LoginForm from '../LoginModal/LoginForm';
 import './form.css'
 
 const RentalForm = ({ rental, callMenuClose }) => {
   const params = useParams();
   const dispatch = useDispatch();
   const [date, setDate] = useState('');
-  const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
   const sessionUser = useSelector(state => state.session.user);
 
@@ -67,10 +64,6 @@ const RentalForm = ({ rental, callMenuClose }) => {
     }
   };
 
-  const callSetter = () => {
-    setShowModal(false);
-  }
-
   const updateDate = (e) => {
     setDate(e.target.value);
   };
@@ -85,11 +78,6 @@ const RentalForm = ({ rental, callMenuClose }) => {
   return (
     <>
       <form onSubmit={rental ? onEdit : onSubmit} className='rental-form'>
-        {errorMSGs.length > 0 && <div className='rental-error-box'>
-          {errorMSGs.map((error, ind) => (
-            <div key={ind} className='rental-error'><i className='fas fa-times-circle' /> {error}</div>
-          ))}
-        </div>}
         <label className={rental ? 'edit-rental-label' : 'rental-label'} htmlFor='rental-date'>{inputLabelText}</label>
         <input
           className={rental ? `date-input-${rental.id} date-input` : 'date-post'}
@@ -101,12 +89,14 @@ const RentalForm = ({ rental, callMenuClose }) => {
           max='2022-12-31'
         />
         {sessionUser ? rental ? <button className={`rental-button-${rental.id} edit-rental-button`} type='submit'>Confirm Reservation Change</button> :
-        <button className='rental-button' type='submit'>Reserve</button> :
-        <button className='login-button-required' type='button' onClick={() => setShowModal(true)}>Log in to Rent</button>}
+          <button className='rental-button' type='submit'>Reserve</button> :
+          <button className='rental-button login-button-required' type='button' disabled>Log in to Rent</button>}
+        {errorMSGs.length > 0 && <div className='rental-error-box'>
+          {errorMSGs.map((error, ind) => (
+            <div key={ind} className='rental-error'><i className='fas fa-times-circle' /> {error}</div>
+          ))}
+        </div>}
       </form>
-      {showModal && <Modal onClose={() => setShowModal(false)}>
-          <LoginForm callSetter={callSetter}/>
-      </Modal>}
     </>
   );
 };

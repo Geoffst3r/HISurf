@@ -75,7 +75,7 @@
 }
 .edit-listing-mod > img{
     height: 10vh;
-    width: 5vh;
+    width: 3vh;
 }
 .remove-image-edit-form{
     color: red;
@@ -113,6 +113,15 @@
 .surfboard-button:active{
     background-color: purple;
     border: 1px solid purple;
+}
+.loading {
+    background-color: purple;
+    border: 1px solid purple;
+    cursor: auto;
+}
+.loading:hover {
+    background-color: purple;
+    color: white;
 }
 .listing-error-box{
     font-family: sans-serif;

@@ -16,6 +16,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const [inputIMG, setInputIMG] = useState(inputBoard ? inputBoard.image : '');
   const [errors, setErrors] = useState([]);
   const [remove_IMG, setRemove_IMG] = useState(false);
+  const [loaded, setLoaded] = useState(true);
   const sessionUser = useSelector(state => state.session.user);
   const surfboardId = inputBoard?.id
   const text = inputBoard ? 'Edit Listing' : 'Post Listing';
@@ -23,6 +24,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const onCreate = async (e) => {
     e.preventDefault();
     setErrors([]);
+    setLoaded(false);
 
     if (location && size && description) {
       const formData = new FormData();
@@ -34,6 +36,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
       const newSurfboard = await dispatch(newListing(formData));
       dispatch(authenticate());
       callSetter();
+      setLoaded(true);
       return history.push(`/surfboards/${newSurfboard['id']}/`);
     } else {
       const newErrors = [];
@@ -47,6 +50,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const onEdit = async (e) => {
     e.preventDefault();
     setErrors([]);
+    setLoaded(false);
 
     if (location && size && description) {
       const formData = new FormData();
@@ -59,7 +63,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
       await dispatch(authenticate());
       await dispatch(getListing(surfboardId));
       callSetter();
-      return;
+      return setLoaded(true);
     } else {
       const newErrors = [];
       if (!location) newErrors.push('Please include location of the surfboard.')
@@ -154,7 +158,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
             <button type='button' className='remove-image-edit-form' onClick={removeIMG}>X</button>
           </div>}
         </div>
-        <button className='surfboard-button' type='submit'>{text}</button>
+        {!loaded ? <button className='surfboard-button loading' type='button' disabled>Loading...</button> : <button className='surfboard-button' type='submit'>{text}</button>}
       </form>
     </>
   );

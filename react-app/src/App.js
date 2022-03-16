@@ -31,20 +31,16 @@ function App() {
         </Route>
         <Route path='/surfboards/' exact={true}>
           <div className='whole-page'>
-            <div className='main-page'>
-              <NavBar />
-              <SurfboardListings />
-              <Footer />
-            </div>
+            <NavBar />
+            <SurfboardListings />
+            <Footer />
           </div>
         </Route>
         <Route path='/surfboards/:surfboardId/' exact={true}>
           <div className='individual-page'>
-            <div className='listings-page'>
-              <NavBar />
-              <ListingsPage />
-              <Footer />
-            </div>
+            <NavBar />
+            <ListingsPage />
+            <Footer />
           </div>
         </Route>
         <Route>

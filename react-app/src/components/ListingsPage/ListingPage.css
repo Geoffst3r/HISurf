@@ -1,43 +1,18 @@
-.listing-and-rental{
+.whole-listing-stack{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    height: 100%;
-}
-.surfboard-listing{
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    margin-left: 10px;
-}
-.surfboard-info{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.surfboard-size{
-    font-size: 25px;
-    color: black;
-    margin: 0;
-    padding: 0;
-    align-self: flex-end;
-}
-.surfboard-location{
-    font-size: 36px;
-    font-family: sans-serif;
-    color: black;
-    margin: 0;
-    padding: 0;
+    height: calc(100vh - 102px);
 }
 .surfboard-img{
-    background-color: #FFFDFA;
-    padding: 10px;
-    border-radius: 10px;
-    height: 80vh;
-    width: 350px;
+    width: 15vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    border: 2px solid gray;
+    margin: 10px 20px 20px 20px;
 }
 .surfboard-img > img{
     width: 100%;
@@ -69,30 +44,131 @@
 .no-image-container > i{
     color: #FFFDFA;
 }
-.rental-box{
+.info-and-functionality-stack {
+    width: 100%;
+    border-radius: 20px;
+    border: 2px solid gray;
+    background-color: white;
+    margin: 10px 20px 20px 0;
+}
+.modifications, .edit-delete {
+    display: flex;
+    flex-direction: row;
+}
+.modifications {
+    position: absolute;
+    right: 3%;
+    top: 8%;
+}
+.mod-listing-button{
+    background-color: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition-duration: .3s;
+    transition-property: color;
+}
+.mod-listing-button:hover {
+    color: orange;
+}
+.mod-listing-button:hover:after {
+    content: "Modify Listing";
+    padding: 5px 10px;
+    color: white;
+    background-color: black;
+    position: absolute;
+    width: 82px;
+    right: 10px;
+    bottom: 35px;
+    z-index: 99;
+}
+.edit-listing, .delete-listing{
+    font-size: 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+}
+.edit-listing{
+    color: white;
+    background-color: rgba(15, 110, 148, 0.8);
+    border-radius: 20px;
+    transition-duration: .3s;
+    transition-property: background-color, color;
+}
+.edit-listing:hover{
+    background-color: #0F6E94;
+    color: white;
+}
+.delete-listing{
+    color: white;
+    background-color: rgb(138, 54, 54);
+    border-radius: 20px;
+    transition-duration: .3s;
+    transition-property: box-shadow, background-color;
+}
+.delete-listing:hover{
+    box-shadow: 0 8px 15px rgba(253, 1, 1, 0.2);
+    background-color: rgb(248, 68, 68);
+}
+.surfboard-info {
+    width: calc(100% - 10px);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 400px;
-    padding: 200px 0px 0px 50px;
+    padding: 5px 0 20px 10px;
+    border-bottom: 2px solid gray;
 }
-.surfboard-description{
+.surfboard-info > div {
+    font-size: 30px;
     font-family: sans-serif;
-    font-size: 25px;
-    margin-bottom: 20px;
+    color: black;
+    margin: 0 0 5px 30px;
+    padding: 0 20px 0 0;
+}
+.surfboard-title-single {
+    font-size: 16px;
+    font-family: sans-serif;
+    padding: 5px 0;
+    margin: 0;
+    text-decoration: none;
+    color: black;
+}
+.review-and-rental {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.review-and-rental > div {
+    width: 50%;
+}
+.rental-box {
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid gray;
+}
+/* .rental-box{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    height: 93%;
+    position: relative;
+    bottom: 25px;
+}
+.surfboard-info {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: fit-content;
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
 }
 .rentals-header{
     font-family: sans-serif;
     font-size: 25px;
     font-weight: bold;
     color: blue;
-}
-.mod-listing-button{
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-top: 7px;
 }
 .mod-rental-button{
     background-color: transparent;
@@ -125,36 +201,6 @@
     flex-direction: row;
     height: 30px;
     align-items: flex-start;
-}
-.edit-listing, .delete-listing{
-    font-size: 15px;
-    margin-left: 10px;
-    cursor: pointer;
-    padding: 5px;
-    border: none;
-}
-.edit-listing{
-    color: black;
-    background-color: #FFFDFA;
-    border-radius: 10px;
-    transition-duration: .3s;
-    transition-property: background-color, box-shadow, color;
-}
-.edit-listing:hover{
-    background-color: black;
-    box-shadow: 0px 1px 12px 0px rgba(255, 255, 255, 0.096);
-    color: #657394;
-}
-.delete-listing{
-    color: #FFFDFA;
-    background-color: rgb(138, 54, 54);
-    border-radius: 10px;
-    transition-duration: .3s;
-    transition-property: box-shadow, background-color;
-}
-.delete-listing:hover{
-    box-shadow: 0 8px 15px rgba(253, 1, 1, 0.2);
-    background-color: rgb(248, 68, 68);
 }
 .scheduled-rental{
     display: flex;
@@ -231,4 +277,4 @@
     justify-content: center;
     font-family: sans-serif;
     font-size: 40px;
-}
+} */

@@ -1,12 +1,13 @@
-/* TODO Add site wide styles */
 body{
     margin: 0;
 }
-.whole-page{
+.whole-page, .individual-page{
     width: 100vw;
     height: 100%;
     position: fixed;
     background-color: #003347;
+}
+.whole-page {
     overflow-y: scroll;
 }
 .whole-page::-webkit-scrollbar {
@@ -14,12 +15,7 @@ body{
 }
 .individual-page{
     display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    background-image: url('./testing.jpg');
-    background-size: 100% 100%;
+    flex-direction: column;
 }
 .main-page, .listings-page{
     display: flex;

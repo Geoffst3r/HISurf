@@ -141,6 +141,12 @@
     text-decoration: none;
     color: black;
 }
+.HST-notification {
+    font-family: sans-serif;
+    color: red;
+    font-size: 12px;
+    margin: 5px 0 0 5px;
+}
 .review-and-rental {
     display: flex;
     flex-direction: row;

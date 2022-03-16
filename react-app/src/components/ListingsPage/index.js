@@ -194,7 +194,10 @@ const Listing = () => {
                                             ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
                                         </li>
                                     )}
-                            </ul> : <p className='no-rentals-message'>No Upcoming Rentals</p> : <RentalForm />}
+                            </ul> : <p className='no-rentals-message'>No Upcoming Rentals</p> :
+                                <>
+                                    <div className='HST-notification'>* All time calculations relative to HST</div>
+                                    <RentalForm /></>}
                             {userRentals && userRentals.length > 0 && <ul className='upcoming-user-rentals'>
                                 {userRentals.map(rental =>
                                     <li key={rental.id} className='scheduled-rental user-rental'>

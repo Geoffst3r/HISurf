@@ -24,9 +24,9 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const onCreate = async (e) => {
     e.preventDefault();
     setErrors([]);
-    setLoaded(false);
 
     if (location && size && description) {
+      setLoaded(false);
       const formData = new FormData();
       formData.append('location', location);
       formData.append('size', size);
@@ -50,9 +50,9 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
   const onEdit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    setLoaded(false);
 
     if (location && size && description) {
+      setLoaded(false);
       const formData = new FormData();
       formData.append('location', location);
       formData.append('size', size);
@@ -104,6 +104,7 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
 
   return (
     <>
+      <button className='close-modal-button' onClick={() => callSetter()}>X</button>
       <p className='listingForm-title'>New Listing</p>
       <div className='listing-error-box'>
         {errors.length > 0 &&

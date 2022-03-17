@@ -31,6 +31,7 @@ const LoginForm = ({ callSetter }) => {
 
   return (
     <>
+      <button className='close-modal-button' onClick={() => callSetter()}>X</button>
       <p className='loginForm-title'>Log in</p>
       <p className='loginForm-welcome-message'>Welcome to HI Surf</p>
       <div className='login-error-box'>

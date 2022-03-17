@@ -139,11 +139,32 @@
 .listingForm-title {
     font-family: sans-serif;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
     margin: 0;
     padding: 10px 0;
     display: flex;
-    width: 100%;
+    width: calc(100% + 100px);
     justify-content: center;
     border-bottom: 1px solid lightgray;
+    position: relative;
+    right: 50px;
+}
+.close-modal-button {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 2px 7px;
+    margin: 0;
+    z-index: 999;
+}
+.close-modal-button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }

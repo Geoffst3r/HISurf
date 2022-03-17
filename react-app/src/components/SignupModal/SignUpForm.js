@@ -46,6 +46,7 @@ const SignUpForm = ({ callSetter }) => {
 
   return (
     <>
+      <button className='close-modal-button' onClick={() => callSetter()}>X</button>
       <p className='signupForm-title'>Sign up</p>
       <p className='signupForm-welcome-message'>Welcome to HI Surf</p>
       <div className='signup-error-box'>

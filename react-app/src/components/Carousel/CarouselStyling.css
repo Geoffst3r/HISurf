@@ -48,7 +48,7 @@
 }
 .individual-item:hover{
     transform: translate(0px, -40px);
-    box-shadow: 0 40px 50px black;
+    box-shadow: 0 40px 50px rgba(0, 0, 0, 0.6);
 }
 .individual-item-vertical{
     display: flex;

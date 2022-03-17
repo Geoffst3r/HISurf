@@ -96,7 +96,7 @@ const Listings = () => {
                     </select>
                     <button className='filter-set' onClick={() => filter()}><i className='fa fa-search'></i></button>
                 </div>
-                <p className='no-listings'>No listings to display with the given criteria...if the size of the board does not matter, you can filter the search by Island only.</p>
+                <p className='no-listings'>No listings to display with the given criteria...you can filter your search by just the island to see what is available there.</p>
             </div>
         )
     }

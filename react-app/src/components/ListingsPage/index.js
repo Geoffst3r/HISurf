@@ -198,24 +198,28 @@ const Listing = () => {
                                 <>
                                     <div className='HST-notification'>* All time calculations relative to HST</div>
                                     <RentalForm /></>}
-                            {userRentals && userRentals.length > 0 && <ul className='upcoming-user-rentals'>
-                                {userRentals.map(rental =>
-                                    <li key={rental.id} className='scheduled-rental user-rental'>
-                                        <div className='individual-date'>
-                                            <div className='date'>
-                                                {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
-                                                ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
-                                            </div>
-                                            <button className='mod-rental-button' id={`cog-wheel-${rental.id}`}
-                                                onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-edit fa-2x' /></button>
-                                        </div>
-                                        <div className='mods'>
-                                            <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} callMenuClose={closeModMenu} /></div>
-                                            <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Cancel Reservation</button>
-                                        </div>
-                                    </li>
-                                )}
-                            </ul>}
+                            {userRentals && userRentals.length > 0 &&
+                                <>
+                                    <div className='upcoming-dates-identification'>Your Upcoming Rental Dates for this Board:</div>
+                                    <ul className='upcoming-user-rentals'>
+                                        {userRentals.map(rental =>
+                                            <li key={rental.id} className='scheduled-rental user-rental'>
+                                                <div className='individual-date'>
+                                                    <div className='date'>
+                                                        {`${rental.date.split(',')[0]}, ${rental.date.split(' ')[2]}
+                                                    ${rental.date.split(' ')[1]} ${rental.date.split(' ')[3]}`}
+                                                    </div>
+                                                    <button className='mod-rental-button' id={`cog-wheel-${rental.id}`}
+                                                        onClick={() => modRental(rental.id)}><i id={`cog-icon-${rental.id}`} className='fas fa-edit fa-2x' /></button>
+                                                </div>
+                                                <div className='mods'>
+                                                    <div className='edit-rental' id={`rental-edit-${rental.id}`}><RentalForm rental={rental} callMenuClose={closeModMenu} /></div>
+                                                    <button id={`rental-delete-${rental.id}`} onClick={() => onDelete()} className='delete-rental'>Cancel Reservation</button>
+                                                </div>
+                                            </li>
+                                        )}
+                                    </ul>
+                                </>}
                         </div>
                     </div>
                 </div>

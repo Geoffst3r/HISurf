@@ -17,7 +17,7 @@ const Carousel = ({ listings, mQuery, filtered }) => {
                             <NavLink className='individual-item-vertical' to={`/surfboards/${listing.id}/`}>
                                 <div className='listing-img-vertical'>
                                     {listing.image ? <img alt='' src={`${listing.image}`} /> :
-                                        <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image.jpg' />}
+                                        <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image-crop.jpg' />}
                                 </div>
                                 <div className='listing-info-vertical'>
                                     <p className='info-title-vertical'>Island</p>
@@ -67,7 +67,7 @@ const Carousel = ({ listings, mQuery, filtered }) => {
                         <NavLink className='individual-item' to={`/surfboards/${listing.id}/`}>
                             <div className='listing-img'>
                                 {listing.image ? <img alt='' src={`${listing.image}`} /> :
-                                    <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image.jpg' />}
+                                    <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image-crop.jpg' />}
                             </div>
                             <div className='listing-location'>{listing.location}</div>
                             <div className='listing-size'>{listing.size}' Board</div>

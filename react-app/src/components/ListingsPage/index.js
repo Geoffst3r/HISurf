@@ -200,7 +200,7 @@ const Listing = () => {
                                     <RentalForm /></>}
                             {userRentals && userRentals.length > 0 &&
                                 <>
-                                    <div className='upcoming-dates-identification'>Your Upcoming Rental Dates for this Board:</div>
+                                    <div className='upcoming-dates-identification'>Your Upcoming Rental Dates for this Board</div>
                                     <ul className='upcoming-user-rentals'>
                                         {userRentals.map(rental =>
                                             <li key={rental.id} className='scheduled-rental user-rental'>

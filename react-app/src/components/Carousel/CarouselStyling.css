@@ -1,4 +1,4 @@
-.carousel-container{
+.carousel-container {
     width: fit-content;
     height: fit-content;
     margin: 0;
@@ -10,14 +10,16 @@
     justify-content: center;
     align-items: center;
 }
-.carousel-container button{
+
+.carousel-container button {
     background-color: transparent;
     border: none;
     cursor: pointer;
     z-index: 99;
     color: black;
 }
-.listings-list{
+
+.listings-list {
     display: flex;
     flex-direction: row;
     list-style: none;
@@ -26,7 +28,8 @@
     margin: 0px 20px;
     padding: 0;
 }
-.vertical-list{
+
+.vertical-list {
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -35,7 +38,8 @@
     margin: 20px 20px 70px 20px;
     padding: 0;
 }
-.individual-item{
+
+.individual-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,11 +50,13 @@
     transition-duration: 0.3s;
     transition-property: transform, box-shadow;
 }
-.individual-item:hover{
+
+.individual-item:hover {
     transform: translate(0px, -40px);
     box-shadow: 0 40px 50px rgba(0, 0, 0, 0.6);
 }
-.individual-item-vertical{
+
+.individual-item-vertical {
     display: flex;
     flex-direction: row;
     background-color: white;
@@ -61,69 +67,87 @@
     transition-duration: 0.3s;
     transition-property: transform, box-shadow;
 }
-.individual-item-vertical:hover{
+
+.individual-item-vertical:hover {
     transform: translate(1%, -1%);
     box-shadow: 0 40px 50px black;
 }
-.listing-img{
+
+.listing-img {
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.listing-img > img{
+
+.listing-img>img {
     height: 50vh;
     width: 12vh;
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
-    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+    background-size: 100% 20%;
     transition-duration: 0.3s;
     transition-property: border-top-left-radius, border-top-right-radius;
 }
-.listing-img > img:hover {
+
+.listing-img>img:hover {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
-.listing-img-vertical > img{
+
+.listing-img-vertical>img {
     height: 25vh;
     width: 7vh;
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
     background-size: 100% 100%;
 }
-.listing-img > i{
+
+.listing-img>i {
     color: black;
 }
-.listing-img > p{
+
+.listing-img>p {
     margin: 0;
     padding: 0;
     font-size: 12px;
     text-decoration: none;
     color: black;
 }
-.no-img{
+
+.no-img {
     background-image: url('https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image-crop.jpg');
     background-size: 100% 100%;
 }
-.listing-location{
+
+.listing-location {
     font-size: 30px;
     font-family: sans-serif;
     color: black;
 }
-.listing-size{
+
+.listing-size {
     font-family: sans-serif;
     font-size: 20px;
     color: black;
-};
-.listing-info-vertical{
+}
+
+;
+
+.listing-info-vertical {
     display: flex;
     flex-direction: column;
 }
-.listing-info-vertical > div {
+
+.listing-info-vertical>div {
     font-size: 30px;
     font-family: sans-serif;
     color: black;
 }
-.info-title-vertical{
+
+.info-title-vertical {
     font-size: 16px;
     font-family: sans-serif;
     padding: 10px 0;

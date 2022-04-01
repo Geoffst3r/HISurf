@@ -17,6 +17,7 @@ const Listings = () => {
     useEffect(() => {
         (async () => {
             await dispatch(listingsActions.getListings());
+            setFiltered(false);
             setLoaded(true);
         })();
     }, [dispatch]);

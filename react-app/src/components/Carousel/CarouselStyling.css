@@ -102,24 +102,10 @@
     height: 25vh;
     width: 7vh;
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
-    background-size: 100% 100%;
-}
-
-.listing-img>i {
-    color: black;
-}
-
-.listing-img>p {
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-    text-decoration: none;
-    color: black;
-}
-
-.no-img {
-    background-image: url('https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image-crop.jpg');
-    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+    background-size: 100% 20%;
 }
 
 .listing-location {

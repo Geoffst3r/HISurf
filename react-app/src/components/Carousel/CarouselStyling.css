@@ -13,10 +13,30 @@
 
 .carousel-container button {
     background-color: transparent;
+    height: 100%;
+    width: 50px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
     z-index: 99;
     color: black;
+    transition-duration: 0.2s;
+    transition-property: background-color, transform;
+}
+
+.carousel-container button#right:hover {
+    background-color: lightgray;
+    transform: translate(5px, 0);
+}
+
+.carousel-container button#left:hover {
+    background-color: lightgray;
+    transform: translate(-5px, 0);
+}
+
+#disabled-arrow-button {
+    cursor: default;
+    color: lightgray;
 }
 
 .listings-list {

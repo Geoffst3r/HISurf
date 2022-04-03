@@ -60,7 +60,8 @@ const Carousel = ({ listings, mQuery, filtered }) => {
 
     return (
         <div className='carousel-container'>
-            {index > 0 && <button onClick={leftArrow}><i className='fas fa-arrow-left fa-2x' /></button>}
+            {index > 0 ? <button id='left' onClick={leftArrow}><i className='fas fa-arrow-left fa-2x' /></button> :
+                <button id='disabled-arrow-button' disabled><i className='fas fa-arrow-left fa-2x' /></button>}
             <ul className='listings-list'>
                 {carouselListings.map(listing => (
                     <li key={listing.id}>
@@ -75,7 +76,8 @@ const Carousel = ({ listings, mQuery, filtered }) => {
                     </li>
                 ))}
             </ul>
-            {index < maxIndex && <button onClick={rightArrow}><i className='fas fa-arrow-right fa-2x' /></button>}
+            {index < maxIndex ? <button id='right' onClick={rightArrow}><i className='fas fa-arrow-right fa-2x' /></button> :
+                <button id='disabled-arrow-button' disabled><i className='fas fa-arrow-right fa-2x' /></button>}
         </div>
     )
 };

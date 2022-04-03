@@ -275,6 +275,7 @@
 .edit-rental,
 .delete-rental {
     visibility: hidden;
+    display: none;
 }
 
 .delete-rental,

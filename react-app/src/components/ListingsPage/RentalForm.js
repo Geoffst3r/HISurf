@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getRentals, newRental, updateRental } from '../../store/rental';
 import { authenticate } from '../../store/session';
+import { Modal } from '../../context/Modal';
+import LoginForm from '../LoginModal/LoginForm';
 import './form.css'
 
 const RentalForm = ({ rental, callMenuClose }) => {
@@ -10,6 +12,7 @@ const RentalForm = ({ rental, callMenuClose }) => {
   const dispatch = useDispatch();
   const [date, setDate] = useState('');
   const [errors, setErrors] = useState([]);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
 
   const surfboardId = params?.surfboardId;
@@ -90,13 +93,18 @@ const RentalForm = ({ rental, callMenuClose }) => {
         />
         {sessionUser ? rental ? <button className={`rental-button-${rental.id} edit-rental-button`} type='submit'>Confirm Reservation Change</button> :
           <button className='rental-button' type='submit'>Reserve</button> :
-          <button className='rental-button login-button-required' type='button' disabled>Log in to Rent</button>}
+          <button className='rental-button login-button-required' type='button' onClick={() => setShowLoginModal(true)}>Log in to Rent</button>}
         {errorMSGs.length > 0 && <div className='rental-error-box'>
           {errorMSGs.map((error, ind) => (
             <div key={ind} className='rental-error'><i className='fas fa-times-circle' /> {error}</div>
           ))}
         </div>}
       </form>
+      {showLoginModal && (
+        <Modal onClose={() => setShowLoginModal(false)}>
+          <LoginForm callSetter={() => setShowLoginModal(false)} />
+        </Modal>
+      )}
     </>
   );
 };

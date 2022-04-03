@@ -50,24 +50,30 @@ const Listings = () => {
         return (
             <div className='all-listings-page'>
                 <div className='filters'>
-                    <select id='island-select'>
-                        <option value=''>-Island- (Optional)</option>
-                        <option value='Oahu'>Oahu</option>
-                        <option value='Maui'>Maui</option>
-                        <option value='Big Island'>Big Island</option>
-                        <option value='Kaui'>Kauai</option>
-                        <option value='Molokai'>Molokai</option>
-                        <option value='Lanai'>Lanai</option>
-                    </select>
-                    <select id='size-select'>
-                        <option value=''>-Size- (Optional)</option>
-                        <option value='6'>6'</option>
-                        <option value='7'>7'</option>
-                        <option value='8'>8'</option>
-                        <option value='9'>9'</option>
-                        <option value='10'>10'</option>
-                        <option value='11'>11'</option>
-                    </select>
+                    <div className='island-filter'>
+                        <p className='optional-tag'>(Optional)</p>
+                        <select id='island-select'>
+                            <option value=''>-Island-</option>
+                            <option value='Oahu'>Oahu</option>
+                            <option value='Maui'>Maui</option>
+                            <option value='Big Island'>Big Island</option>
+                            <option value='Kaui'>Kauai</option>
+                            <option value='Molokai'>Molokai</option>
+                            <option value='Lanai'>Lanai</option>
+                        </select>
+                    </div>
+                    <div className='size-filter'>
+                        <p className='optional-tag'>(Optional)</p>
+                        <select id='size-select'>
+                            <option value=''>-Size-</option>
+                            <option value='6'>6'</option>
+                            <option value='7'>7'</option>
+                            <option value='8'>8'</option>
+                            <option value='9'>9'</option>
+                            <option value='10'>10'</option>
+                            <option value='11'>11'</option>
+                        </select>
+                    </div>
                     <button className='filter-set' onClick={() => filter()}><i className='fa fa-search'></i></button>
                 </div>
                 <Carousel listings={listings} mQuery={mQuery} filtered={filtered} />
@@ -77,24 +83,30 @@ const Listings = () => {
         return (
             <div className='all-listings-page'>
                 <div className='filters'>
-                    <select id='island-select'>
-                        <option value=''>-Island-</option>
-                        <option value='Oahu'>Oahu</option>
-                        <option value='Maui'>Maui</option>
-                        <option value='Big Island'>Big Island</option>
-                        <option value='Kaui'>Kauai</option>
-                        <option value='Molokai'>Molokai</option>
-                        <option value='Lanai'>Lanai</option>
-                    </select>
-                    <select id='size-select'>
-                        <option value=''>-Size-</option>
-                        <option value='6'>6'</option>
-                        <option value='7'>7'</option>
-                        <option value='8'>8'</option>
-                        <option value='9'>9'</option>
-                        <option value='10'>10'</option>
-                        <option value='11'>11'</option>
-                    </select>
+                    <div className='island-filter'>
+                        <p className='optional-tag'>(Optional)</p>
+                        <select id='island-select'>
+                            <option value=''>-Island-</option>
+                            <option value='Oahu'>Oahu</option>
+                            <option value='Maui'>Maui</option>
+                            <option value='Big Island'>Big Island</option>
+                            <option value='Kaui'>Kauai</option>
+                            <option value='Molokai'>Molokai</option>
+                            <option value='Lanai'>Lanai</option>
+                        </select>
+                    </div>
+                    <div className='size-filter'>
+                        <p className='optional-tag'>(Optional)</p>
+                        <select id='size-select'>
+                            <option value=''>-Size-</option>
+                            <option value='6'>6'</option>
+                            <option value='7'>7'</option>
+                            <option value='8'>8'</option>
+                            <option value='9'>9'</option>
+                            <option value='10'>10'</option>
+                            <option value='11'>11'</option>
+                        </select>
+                    </div>
                     <button className='filter-set' onClick={() => filter()}><i className='fa fa-search'></i></button>
                 </div>
                 <p className='no-listings'>No listings to display with the given criteria...you can filter your search by just the island to see what is available there.</p>

@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.vertical-listings {
+    width: 95vw;
+}
+
 .carousel-container button {
     background-color: transparent;
     height: 100%;

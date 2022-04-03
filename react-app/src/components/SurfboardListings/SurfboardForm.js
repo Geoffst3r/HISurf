@@ -35,8 +35,8 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
       formData.append('ownerId', sessionUser.id);
       const newSurfboard = await dispatch(newListing(formData));
       dispatch(authenticate());
-      callSetter();
       setLoaded(true);
+      callSetter();
       return history.push(`/surfboards/${newSurfboard['id']}/`);
     } else {
       const newErrors = [];
@@ -60,10 +60,9 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
       formData.append('image', image);
       formData.append('ownerId', sessionUser.id);
       await dispatch(updateListing(formData, surfboardId));
-      await dispatch(authenticate());
       await dispatch(getListing(surfboardId));
-      callSetter();
-      return setLoaded(true);
+      await dispatch(authenticate());
+      return window.location.reload(false);
     } else {
       const newErrors = [];
       if (!location) newErrors.push('Please include location of the surfboard.')
@@ -90,16 +89,17 @@ const SurfboardForm = ({ callSetter, inputBoard }) => {
     setPreview(URL.createObjectURL(e.target.files[0]));
   };
 
-  const removeIMG = () => {
+  const removeIMG = async () => {
     if (preview) {
-      setPreview('');
-      setImage(null);
+      await setImage(null);
+      await setPreview('');
       const imageStore = document.querySelector('.image-store');
       return imageStore.value = '';
+    } else {
+      await setRemove_IMG(true);
+      await setInputIMG('');
+      return await setImage('remove');
     }
-    setRemove_IMG(true);
-    setInputIMG('');
-    return setImage('remove');
   };
 
   return (

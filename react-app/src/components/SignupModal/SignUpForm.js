@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { signUp } from '../../store/session';
+import { login, signUp } from '../../store/session';
 import './SignupForm.css';
 
 const SignUpForm = ({ callSetter }) => {
@@ -26,6 +26,11 @@ const SignUpForm = ({ callSetter }) => {
     }
   };
 
+  const onDemo = async () => {
+    await dispatch(login('demo@aa.io', 'password'));
+    return callSetter();
+  };
+
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -49,13 +54,11 @@ const SignUpForm = ({ callSetter }) => {
       <button className='close-modal-button' onClick={() => callSetter()}>X</button>
       <p className='signupForm-title'>Sign up</p>
       <p className='signupForm-welcome-message'>Welcome to HI Surf</p>
-      <div className='signup-error-box'>
-        {errors.length > 0 &&
-          errorMSGs.map((error, ind) => (
-            <div key={ind} className='signup-error'><i className='fas fa-times-circle' /> {error}</div>
-          ))
-        }
-      </div>
+      {errors.length > 0 && <div className='signup-error-box'>
+        {errorMSGs.map((error, ind) => (
+          <div key={ind} className='signup-error'><i className='fas fa-times-circle' /> {error}</div>
+        ))}
+      </div>}
       <form onSubmit={onSignUp} className='signup-form' autoComplete='off'>
         <input
           className='signupForm-username'
@@ -89,6 +92,7 @@ const SignUpForm = ({ callSetter }) => {
           required={true}
         />
         <button type='submit' className='signup-button'>Continue</button>
+        <button className='demo-user-modals' type='submit' onClick={onDemo}>Demo User Login</button>
       </form>
     </>
   );

@@ -54,13 +54,11 @@ const SignUpForm = ({ callSetter }) => {
       <button className='close-modal-button' onClick={() => callSetter()}>X</button>
       <p className='signupForm-title'>Sign up</p>
       <p className='signupForm-welcome-message'>Welcome to HI Surf</p>
-      <div className='signup-error-box'>
-        {errors.length > 0 &&
-          errorMSGs.map((error, ind) => (
-            <div key={ind} className='signup-error'><i className='fas fa-times-circle' /> {error}</div>
-          ))
-        }
-      </div>
+      {errors.length > 0 && <div className='signup-error-box'>
+        {errorMSGs.map((error, ind) => (
+          <div key={ind} className='signup-error'><i className='fas fa-times-circle' /> {error}</div>
+        ))}
+      </div>}
       <form onSubmit={onSignUp} className='signup-form' autoComplete='off'>
         <input
           className='signupForm-username'

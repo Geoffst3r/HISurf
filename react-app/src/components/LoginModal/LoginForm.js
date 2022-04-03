@@ -39,13 +39,11 @@ const LoginForm = ({ callSetter }) => {
       <button className='close-modal-button' onClick={() => callSetter()}>X</button>
       <p className='loginForm-title'>Log in</p>
       <p className='loginForm-welcome-message'>Welcome to HI Surf</p>
-      <div className='login-error-box'>
-        {errors.length > 0 &&
-          errorMSGs.map((error, ind) => (
-            <div key={ind} className='login-error'><i className='fas fa-times-circle' /> {error}</div>
-          ))
-        }
-      </div>
+      {errors.length > 0 && <div className='login-error-box'>
+        {errorMSGs.map((error, ind) => (
+          <div key={ind} className='login-error'><i className='fas fa-times-circle' /> {error}</div>
+        ))}
+      </div>}
       <form className='login-form' onSubmit={onLogin}>
         <input
           className='loginForm-email'

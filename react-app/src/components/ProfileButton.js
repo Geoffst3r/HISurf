@@ -86,7 +86,7 @@ function ProfileButton() {
                 {showMenu &&
                     <ul className="profile-dropdown">
                         <li>
-                            <button className="new-listing NavButtons" onClick={() => setShowListingModal(true)}>New Listing</button>
+                            <button className="new-listing NavButtons" onClick={() => setShowListingModal(true)}>+New Listing</button>
                         </li>
                         <li>
                             <p className='title'>Your Listings</p>

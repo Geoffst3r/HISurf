@@ -20,7 +20,10 @@
     width: 100%;
     height: 100%;
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
-    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+    background-size: 100% 20%;
 }
 
 .surfboard-img>i {
@@ -30,8 +33,11 @@
 .no-image-container {
     height: 100%;
     width: 100%;
-    background-image: url('https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image-crop.jpg');
-    background-size: 100% 100%;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+    background-size: 100% 20%;
     display: flex;
     flex-direction: column;
     align-items: center;

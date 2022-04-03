@@ -120,7 +120,7 @@ const Listing = () => {
             await dispatch(listingsActions.getListing(surfboardId));
             await dispatch(rentalsActions.getRentals(surfboardId));
             // dispatch(reviewActions.getReviews(surfboardId));
-            setLoaded(true);
+            return setLoaded(true);
         })();
     }, [dispatch, surfboardId]);
 
@@ -134,7 +134,7 @@ const Listing = () => {
         document.addEventListener('click', closeMenu, false);
 
         return () => document.removeEventListener("click", closeMenu);
-    });
+    }, [cogWheelClicked]);
 
     if (!loaded) {
         return (
@@ -147,10 +147,7 @@ const Listing = () => {
             <div className='whole-listing-stack'>
                 <div className='surfboard-img'>
                     {listing.image ? <img alt='' src={`${listing.image}`} /> :
-                        <div className='no-image-container'>
-                            <i className='fas fa-camera fa-5x'></i>
-                            <p>No Image</p>
-                        </div>}
+                        <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-img.png' />}
                 </div>
                 <div className='info-and-functionality-stack'>
                     <div className='surfboard-info-stack'>

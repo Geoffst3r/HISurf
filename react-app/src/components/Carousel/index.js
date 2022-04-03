@@ -37,7 +37,7 @@ const Carousel = ({ listings, mQuery, filtered }) => {
         if (mQuery > 2250) carouselLength = 10;
         else if (mQuery > 2000) carouselLength = 9;
         else if (mQuery > 1700) carouselLength = 8;
-        else if (mQuery > 1450) carouselLength = 7;
+        else if (mQuery > 1475) carouselLength = 7;
         else if (mQuery > 1250) carouselLength = 6;
         else carouselLength = 5;
 

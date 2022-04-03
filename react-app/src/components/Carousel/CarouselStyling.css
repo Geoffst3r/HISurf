@@ -1,5 +1,6 @@
 .carousel-container {
-    width: fit-content;
+    width: 90%;
+    /* min-width: 75%; */
     height: fit-content;
     margin: 0;
     padding: 20px;
@@ -7,7 +8,7 @@
     background-color: white;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 

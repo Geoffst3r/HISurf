@@ -51,7 +51,7 @@ const Listings = () => {
             <div className='all-listings-page'>
                 <div className='filters'>
                     <select id='island-select'>
-                        <option value=''>-Island-</option>
+                        <option value=''>-Island- (Optional)</option>
                         <option value='Oahu'>Oahu</option>
                         <option value='Maui'>Maui</option>
                         <option value='Big Island'>Big Island</option>
@@ -60,7 +60,7 @@ const Listings = () => {
                         <option value='Lanai'>Lanai</option>
                     </select>
                     <select id='size-select'>
-                        <option value=''>-Size-</option>
+                        <option value=''>-Size- (Optional)</option>
                         <option value='6'>6'</option>
                         <option value='7'>7'</option>
                         <option value='8'>8'</option>

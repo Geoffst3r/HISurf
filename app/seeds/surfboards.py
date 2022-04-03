@@ -72,7 +72,7 @@ def seed_surfboards():
         size=8, location='Lanai', ownerId=6)
     surfboard23 = Surfboard(
         description='This board is being rented out by the owner of RipCurl. It is well taken care of. Rent it here or on our site.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(18)-crop.jpg",
-        size=8, location='Maui', ownerId=2)
+        size=11, location='Maui', ownerId=2)
     surfboard26 = Surfboard(
         description='This board is on it\'s final fin -- so to speak. In other words, it is not in good shape. Feel free to purchase off me to use for something else or refurbish.', image="https://hi-surf-dev.s3.us-west-1.amazonaws.com/seed(20)-crop.jpg",
         size=7, location='Kaui', ownerId=4)

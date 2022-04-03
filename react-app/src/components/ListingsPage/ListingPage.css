@@ -1,9 +1,10 @@
-.whole-listing-stack{
+.whole-listing-stack {
     display: flex;
     flex-direction: row;
     height: calc(100vh - 102px);
 }
-.surfboard-img{
+
+.surfboard-img {
     width: 15vh;
     display: flex;
     align-items: center;
@@ -14,16 +15,19 @@
     border: 2px solid gray;
     margin: 10px 20px 20px 20px;
 }
-.surfboard-img > img{
+
+.surfboard-img>img {
     width: 100%;
     height: 100%;
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif');
     background-size: 100% 100%;
 }
-.surfboard-img > i{
+
+.surfboard-img>i {
     color: black;
 }
-.no-image-container{
+
+.no-image-container {
     height: 100%;
     width: 100%;
     background-image: url('https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image-crop.jpg');
@@ -33,7 +37,8 @@
     align-items: center;
     justify-content: center;
 }
-.no-image-container > p{
+
+.no-image-container>p {
     margin: 0;
     padding: 0;
     font-size: 20px;
@@ -41,9 +46,11 @@
     text-decoration: none;
     color: white;
 }
-.no-image-container > i{
+
+.no-image-container>i {
     color: white;
 }
+
 .info-and-functionality-stack {
     width: 100%;
     border-radius: 20px;
@@ -51,16 +58,20 @@
     background-color: white;
     margin: 10px 20px 20px 0;
 }
-.modifications, .edit-delete {
+
+.modifications,
+.edit-delete {
     display: flex;
     flex-direction: row;
 }
+
 .modifications {
     position: absolute;
     right: 40px;
     top: 100px;
 }
-.mod-listing-button{
+
+.mod-listing-button {
     background-color: transparent;
     color: black;
     border: none;
@@ -68,9 +79,11 @@
     transition-duration: .3s;
     transition-property: color;
 }
+
 .mod-listing-button:hover {
     color: orange;
 }
+
 .mod-listing-button:hover:after {
     content: "Modify Listing";
     padding: 5px 10px;
@@ -82,90 +95,99 @@
     bottom: 35px;
     z-index: 99;
 }
-.edit-listing, .delete-listing{
+
+.edit-listing,
+.delete-listing {
     font-size: 15px;
     margin-right: 10px;
     cursor: pointer;
     padding: 5px;
     border: none;
 }
-.edit-listing{
+
+.edit-listing {
     color: white;
     background-color: rgba(15, 110, 148, 0.8);
     border-radius: 20px;
     transition-duration: .3s;
     transition-property: background-color, color;
 }
-.edit-listing:hover{
+
+.edit-listing:hover {
     background-color: #0F6E94;
     color: white;
 }
-.delete-listing{
+
+.delete-listing {
     color: white;
     background-color: rgb(138, 54, 54);
     border-radius: 20px;
     transition-duration: .3s;
     transition-property: box-shadow, background-color;
 }
-.delete-listing:hover{
+
+.delete-listing:hover {
     box-shadow: 0 8px 15px rgba(253, 1, 1, 0.2);
     background-color: rgb(248, 68, 68);
 }
+
 .surfboard-info-stack {
-    height: 30vh;
+    height: 25vh;
 }
+
 .surfboard-info {
     height: 100%;
     width: calc(100% - 10px);
     display: flex;
     flex-direction: column;
-    padding: 5px 0 20px 10px;
+    padding: 10px 0 20px 10px;
     border-bottom: 2px solid gray;
     overflow-y: scroll;
 }
+
 .surfboard-info::-webkit-scrollbar {
     display: none;
 }
-.surfboard-info > div {
-    font-size: 30px;
+
+.surfboard-info>div {
+    font-size: 36px;
     font-family: sans-serif;
     color: black;
-    margin: 0 0 5px 30px;
+    margin: 5px 0 5px 30px;
     padding: 0 20px 0 0;
 }
+
 .surfboard-title-single {
-    font-size: 16px;
+    font-size: 24px;
     font-family: sans-serif;
-    padding: 5px 0;
     margin: 0;
     text-decoration: none;
     color: black;
 }
-.HST-notification {
-    font-family: sans-serif;
-    color: red;
-    font-size: 12px;
-    margin: 5px 0 0 5px;
-}
+
 .review-and-rental {
     display: flex;
     flex-direction: row;
     height: calc(100% - 30vh - 27px);
     margin-top: 27px;
 }
-.review-and-rental > div {
+
+.review-and-rental>div {
     width: 100%;
 }
+
 .rental-box {
     display: flex;
     flex-direction: column;
 }
+
 .rentals-header {
     align-self: center;
     font-family: sans-serif;
     font-size: 24px;
     font-weight: bold;
 }
+
 .upcoming-dates-identification {
     align-self: center;
     font-family: sans-serif;
@@ -173,7 +195,9 @@
     margin-top: 20px;
     text-decoration: underline;
 }
-.upcoming-rentals, .upcoming-user-rentals {
+
+.upcoming-rentals,
+.upcoming-user-rentals {
     width: 100%;
     list-style: none;
     padding: 0;
@@ -184,18 +208,23 @@
     gap: 30px;
     overflow-y: auto;
 }
-.scheduled-rental, .no-rentals-message{
+
+.scheduled-rental,
+.no-rentals-message {
     font-family: sans-serif;
     font-size: 20px;
     color: black;
 }
+
 .scheduled-rental.user-rental {
     width: 80%;
 }
+
 .date {
     color: black;
     font-size: 28px;
 }
+
 .scheduled-rental {
     display: flex;
     flex-direction: column;
@@ -204,10 +233,12 @@
     margin-bottom: 20px;
     color: black;
 }
+
 .no-rentals-message {
     align-self: center;
 }
-.individual-date{
+
+.individual-date {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -215,31 +246,39 @@
     gap: 10px;
     margin-left: 50px;
 }
-.mod-rental-button{
+
+.mod-rental-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
     visibility: hidden;
     color: black;
 }
-.individual-date:hover .mod-rental-button{
+
+.individual-date:hover .mod-rental-button {
     visibility: visible;
 }
-.mod-rental-button-persist{
+
+.mod-rental-button-persist {
     background-color: transparent;
     border: none;
     cursor: pointer;
     color: orange;
 }
-.mods{
+
+.mods {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-.edit-rental, .delete-rental {
+
+.edit-rental,
+.delete-rental {
     visibility: hidden;
 }
-.delete-rental, .delete-rental-visible{
+
+.delete-rental,
+.delete-rental-visible {
     align-self: center;
     width: 60%;
     font-size: 15px;
@@ -252,7 +291,8 @@
     transition-duration: .3s;
     transition-property: box-shadow, background-color;
 }
-.delete-rental-visible:hover{
+
+.delete-rental-visible:hover {
     box-shadow: 0 8px 15px rgba(253, 1, 1, 0.2);
     background-color: rgb(248, 68, 68);
 }

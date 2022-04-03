@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { signUp } from '../../store/session';
+import { login, signUp } from '../../store/session';
 import './SignupForm.css';
 
 const SignUpForm = ({ callSetter }) => {
@@ -24,6 +24,11 @@ const SignUpForm = ({ callSetter }) => {
     } else {
       setErrors(['confirm : Passwords do not match.'])
     }
+  };
+
+  const onDemo = async () => {
+    await dispatch(login('demo@aa.io', 'password'));
+    return callSetter();
   };
 
   const updateUsername = (e) => {
@@ -89,6 +94,7 @@ const SignUpForm = ({ callSetter }) => {
           required={true}
         />
         <button type='submit' className='signup-button'>Continue</button>
+        <button className='demo-user-modals' type='submit' onClick={onDemo}>Demo User Login</button>
       </form>
     </>
   );

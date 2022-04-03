@@ -195,9 +195,7 @@ const Listing = () => {
                                         </li>
                                     )}
                             </ul> : <p className='no-rentals-message'>No Upcoming Rentals</p> :
-                                <>
-                                    <div className='HST-notification'>* All time calculations relative to HST</div>
-                                    <RentalForm /></>}
+                                <RentalForm />}
                             {userRentals && userRentals.length > 0 &&
                                 <>
                                     <div className='upcoming-dates-identification'>Your Upcoming Rental Dates for this Board</div>

@@ -18,6 +18,11 @@ const LoginForm = ({ callSetter }) => {
     if (!data && callSetter) callSetter();
   };
 
+  const onDemo = async () => {
+    await dispatch(login('demo@aa.io', 'password'));
+    return callSetter();
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -61,6 +66,7 @@ const LoginForm = ({ callSetter }) => {
           required
         />
         <button className='login-button' type='submit'>Continue</button>
+        <button className='demo-user-modals' type='submit' onClick={onDemo}>Demo User Login</button>
       </form>
     </>
   );

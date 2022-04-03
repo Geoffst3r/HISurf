@@ -17,7 +17,7 @@ const Carousel = ({ listings, mQuery, filtered }) => {
                             <NavLink className='individual-item-vertical' to={`/surfboards/${listing.id}/`}>
                                 <div className='listing-img-vertical'>
                                     {listing.image ? <img alt='' src={`${listing.image}`} /> :
-                                        <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image-crop.jpg' />}
+                                        <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-img.png' />}
                                 </div>
                                 <div className='listing-info-vertical'>
                                     <p className='info-title-vertical'>Island</p>
@@ -37,7 +37,7 @@ const Carousel = ({ listings, mQuery, filtered }) => {
         if (mQuery > 2250) carouselLength = 10;
         else if (mQuery > 2000) carouselLength = 9;
         else if (mQuery > 1700) carouselLength = 8;
-        else if (mQuery > 1450) carouselLength = 7;
+        else if (mQuery > 1475) carouselLength = 7;
         else if (mQuery > 1250) carouselLength = 6;
         else carouselLength = 5;
 
@@ -60,14 +60,15 @@ const Carousel = ({ listings, mQuery, filtered }) => {
 
     return (
         <div className='carousel-container'>
-            {index > 0 && <button onClick={leftArrow}><i className='fas fa-arrow-left fa-2x' /></button>}
+            {index > 0 ? <button id='left' onClick={leftArrow}><i className='fas fa-arrow-left fa-2x' /></button> :
+                <button id='disabled-arrow-button' disabled><i className='fas fa-arrow-left fa-2x' /></button>}
             <ul className='listings-list'>
                 {carouselListings.map(listing => (
                     <li key={listing.id}>
                         <NavLink className='individual-item' to={`/surfboards/${listing.id}/`}>
                             <div className='listing-img'>
                                 {listing.image ? <img alt='' src={`${listing.image}`} /> :
-                                    <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-image-crop.jpg' />}
+                                    <img alt='' src='https://hi-surf-dev.s3.us-west-1.amazonaws.com/no-img.png' />}
                             </div>
                             <div className='listing-location'>{listing.location}</div>
                             <div className='listing-size'>{listing.size}' Board</div>
@@ -75,7 +76,8 @@ const Carousel = ({ listings, mQuery, filtered }) => {
                     </li>
                 ))}
             </ul>
-            {index < maxIndex && <button onClick={rightArrow}><i className='fas fa-arrow-right fa-2x' /></button>}
+            {index < maxIndex ? <button id='right' onClick={rightArrow}><i className='fas fa-arrow-right fa-2x' /></button> :
+                <button id='disabled-arrow-button' disabled><i className='fas fa-arrow-right fa-2x' /></button>}
         </div>
     )
 };

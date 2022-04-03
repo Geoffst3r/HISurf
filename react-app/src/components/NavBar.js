@@ -1,14 +1,21 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import './NavBar.css'
 
 const NavBar = () => {
+  const history = useHistory();
+  const params = useParams();
+
+  const redirectHome = (e) => {
+    e.preventDefault();
+    if (params.surfboardId) return history.push('/surfboards/');
+    else return window.location.reload(false);
+  };
+
   return (
     <nav>
-      <NavLink to='/surfboards/'>
-        <button className='appName'>🏄 HI Surf</button>
-      </NavLink>
+      <button type='button' onClick={(e) => redirectHome(e)} className='appName'>🏄 HI Surf</button>
       <ProfileButton />
     </nav>
   );

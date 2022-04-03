@@ -6,7 +6,8 @@
     height: 650px;
     width: 400px;
 }
-.surfboard-form select{
+
+.surfboard-form select {
     width: 100%;
     background-color: white;
     border: 1px solid lightgray;
@@ -14,9 +15,11 @@
     color: black;
     font-size: 20px;
 }
+
 .surfboardForm-island-select {
     border-radius: 15px 15px 0 0;
 }
+
 .surfboard-form textarea {
     resize: none;
     font-size: 20px;
@@ -30,10 +33,12 @@
     font-size: 20px;
     overflow-y: scroll;
 }
+
 .surfboard-form textarea::-webkit-scrollbar {
     display: none;
 }
-.image-container{
+
+.image-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -44,55 +49,65 @@
     width: 97%;
     border-radius: 0 0 15px 15px;
 }
-.image-container > label, .image-container > div{
+
+.image-container>label,
+.image-container>div {
     font-family: sans-serif;
     color: black;
     font-size: 14px;
     margin-bottom: 5px;
 }
-.existing-image-container{
+
+.existing-image-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 14vh;
+    height: 325px;
     background-color: white;
     border: 1px solid lightgray;
     padding: 5px;
     width: 97%;
     border-radius: 0 0 15px 15px;
 }
-.existing-image-container > label, .existing-image-container > div{
+
+.existing-image-container>label,
+.existing-image-container>div {
     font-family: sans-serif;
     color: #FFFDFA;
     font-size: 14px;
     margin-left: 20px;
 }
-.edit-listing-mod{
+
+.edit-listing-mod {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     margin-top: 10px;
 }
-.edit-listing-mod > img{
-    height: 10vh;
-    width: 3vh;
+
+.edit-listing-mod>img {
+    height: 20vh;
+    width: 6vh;
 }
-.remove-image-edit-form{
+
+.remove-image-edit-form {
     color: red;
     opacity: 0.7;
     background-color: transparent;
     border: none;
-    font-size: 14px;
+    font-size: 18px;
     cursor: pointer;
     position: relative;
-    bottom: 8.5vh;
+    bottom: 18.5vh;
     transition-duration: .3s;
     transition-property: opacity, font-size;
 }
+
 .remove-image-edit-form:hover {
     opacity: 1;
-    font-size: 18px;
+    font-size: 24px;
 }
+
 .surfboard-button {
     margin-top: 30px;
     font-size: 20px;
@@ -106,24 +121,29 @@
     transition-duration: .3s;
     transition-property: color, background-color;
 }
-.surfboard-button:hover{
+
+.surfboard-button:hover {
     background-color: blue;
     color: #FFFDFA;
 }
-.surfboard-button:active{
+
+.surfboard-button:active {
     background-color: purple;
     border: 1px solid purple;
 }
+
 .loading {
     background-color: purple;
     border: 1px solid purple;
     cursor: auto;
 }
+
 .loading:hover {
     background-color: purple;
     color: white;
 }
-.listing-error-box{
+
+.listing-error-box {
     font-family: sans-serif;
     font-size: 20px;
     height: 75px;
@@ -136,6 +156,7 @@
     justify-content: center;
     align-items: flex-start;
 }
+
 .listingForm-title {
     font-family: sans-serif;
     font-weight: bold;
@@ -149,6 +170,7 @@
     position: relative;
     right: 50px;
 }
+
 .close-modal-button {
     position: absolute;
     left: 20px;
@@ -165,6 +187,7 @@
     margin: 0;
     z-index: 999;
 }
+
 .close-modal-button:hover {
     background-color: rgba(0, 0, 0, 0.2);
 }

@@ -92,7 +92,7 @@ const SignUpForm = ({ callSetter }) => {
           required={true}
         />
         <button type='submit' className='signup-button'>Continue</button>
-        <button className='demo-user-modals' type='submit' onClick={onDemo}>Demo User Login</button>
+        <button className='demo-user-modals' type='button' onClick={onDemo}>Demo User Login</button>
       </form>
     </>
   );

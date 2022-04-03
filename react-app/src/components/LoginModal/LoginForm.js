@@ -64,7 +64,7 @@ const LoginForm = ({ callSetter }) => {
           required
         />
         <button className='login-button' type='submit'>Continue</button>
-        <button className='demo-user-modals' type='submit' onClick={onDemo}>Demo User Login</button>
+        <button className='demo-user-modals' type='button' onClick={onDemo}>Demo User Login</button>
       </form>
     </>
   );
